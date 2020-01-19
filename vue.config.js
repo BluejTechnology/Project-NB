@@ -5,7 +5,7 @@ module.exports = {
 		'/':{
 			target:'https://qzi.html5.qq.com',
 			ws: true,
-			changeOrigin: true
+			changeOrigin: true,
 		}
 	}
   },
