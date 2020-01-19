@@ -96,7 +96,6 @@
 			>img{
 				display: block;
 				width: v(602);
-				height: 100%;
 				margin: 0 auto;
 			}
 		}
