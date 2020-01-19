@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<!-- 下面是海报结构	 -->
-		<div class="result">
+		<div class="result poster">
 			<div class="main">
 				<mheader class="header">
 				</mheader>
@@ -43,18 +43,17 @@
 					</div>
 					<div class="vatar_box">
 						<img src="../assets/images/result_vatar.png" alt="">
-						<div class="user_vatar_box">
+						<div class="user_vatar_box"> 
 							<img :src="user_vatar" alt="">
-						</div>
+						</div> 
 						<div class="des" v-html="des">
 						</div>
 					</div>
 					<div class="tip_box">
 						<p>本测试仅供娱乐</p>
 					</div>
-					<div class="btn_box">
-						<img src="../assets/images/result_btn1.png">
-						<img @click="toDownload" src="../assets/images/result_btn2.png">
+					<div class="qr_box">
+						<canvas ref="qrCanvas"></canvas>
 					</div>
 				</div>
 				<leftTree class="left_tree"></leftTree>
@@ -62,6 +61,7 @@
 				<img class="bgCloud" src="../assets/images/bgCloud.png" alt="">
 				<div class="logo">
 					<img src="../assets/images/logo.png" alt="欢遇logo">
+					<p>视频相亲&nbsp;欢乐相遇</p>
 				</div>
 			</div>
 		</div>
@@ -73,6 +73,7 @@
 	import mheader from "@/components/head.vue";
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
+	import QRCode from "qrcode"; // 引入qrcode
 	export default {
 		components: {
 			mheader,
@@ -88,10 +89,22 @@
 		created(){
 			// 获取本次游戏结果的描述:
 			this.des = '如果<i>美貌有罪</i><br>你会被关到一百岁<br>如果追你要排队<br>我宁愿今晚不睡!'
+		},
+		mounted(){
 			let type = this.$store.state.type;
 			let result = this.$store.state.result;
 			let uuid = document.cookie.slice(5);
 			window.console.log(type,result,uuid)
+			// 渲染二维码
+			QRCode.toCanvas(
+				this.$refs.qrCanvas,
+				`http://www.baidu.com?type=${type}&uuid=${uuid}&result=${result}`,
+				{ width: 115, height: 115 },
+				function(error) {
+				if (error) console.error(error);
+				console.log("success!");
+				}
+			);
 		},
 		methods:{
 			toDownload(){
@@ -100,7 +113,7 @@
 		}
 	}
 </script>
-<style lang="scss">
+<style lang="scss"> 
 	@import '~@/assets/css/reset.css';
 	#app{
 		height: 100%;
@@ -183,6 +196,7 @@
 						font-size: v(24);
 						color: #71416e;
 					}
+					
 					.btn_box{
 						width: v(500);
 						margin: v(10) auto 0 auto;
@@ -217,6 +231,30 @@
 						height: v(49);
 					}
 					
+				}
+			}
+		}
+		.poster{
+			height:v(1200);
+			background:skyblue;
+			z-index:9;
+			.qr_box{
+				text-align: center;
+				margin-top: v(18);
+
+			}
+			.main{
+				.logo{
+					left : v(23);
+					width: auto;
+					font-size:v(16);
+					color: #ffff;
+					width: v(164) !important;
+					letter-spacing: v(3);
+					img{
+						width: 100%;
+						height: auto !important;
+					}
 				}
 			}
 		}
