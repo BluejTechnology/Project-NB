@@ -1,5 +1,6 @@
 <template>
 	<div class="web">
+		<wb-share></wb-share>
 		<mheader>
 			<!-- 208-184 -->
 			<img src="../assets/images/angle.png" alt="" class="icon_angle">
@@ -9,11 +10,20 @@
 				<img src="../assets/images/window.png" alt="">
 				<div class="avator_wrapper">
 					<img :src="avatorUrl" alt="">
+					<img src="../assets/images/scan_icon.png" alt="" class="scan_icon ani_scan">
+					<img src="../assets/images/scan_border.png" alt="" class="scan_border">
+					
 				</div>
 				<left-tree></left-tree>
+				<div class="l_cloud">
+					<img src="../assets/images/left_cloud_02.png" alt="">
+				</div>
+				<div class="r_cloud">
+					<img src="../assets/images/cloud01.png" alt="">
+				</div>
 				<right-tree></right-tree>
 			</div>
-			<div class="upload_wrapper">
+			<div class="upload_wrapper" v-if="!isupload">
 				<div class="upload_btn">
 					<!-- 474-92 -->
 					<label>
@@ -23,8 +33,11 @@
 				</div>
 				<span>上传本人照片，获得新年桃花指数！</span>
 			</div>
+			<div class="loading_txt" v-if="isupload">
+				智能解析中……
+			</div>
 		</div>
-		
+		<img src="../assets/images/bgCloud.png" alt="cloud" class="bgCloud">
 		<div class="logo">
 			<img src="../assets/images/logo.png" alt="欢遇logo">
 		</div>
@@ -33,6 +46,7 @@
 
 <script>
 	// @ is an alias to /src
+	import wbShare from "@/components/share/weibo_share.vue"
 	import mheader from "@/components/head.vue";
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
@@ -40,18 +54,19 @@
 	export default {
 		name: 'home',
 		components: {
+			wbShare,
 			mheader,
 			leftTree,
 			rightTree
-
 		},
-		data(){
+		data() {
 			return {
-				avatorUrl:avatorUrl
+				avatorUrl: avatorUrl,
+				isupload: false
 			}
 		},
-		methods:{
-			uploadAvator(e){
+		methods: {
+			uploadAvator(e) {
 				this.uploadimage(e.target.files[0]);
 			},
 			// 上传image
@@ -59,11 +74,12 @@
 				let reads = new FileReader();
 				var that = this;
 				reads.readAsDataURL(f);
-				reads.onload = function () {
-					that.avatorUrl= this.result;
-					setTimeout(()=>{
-						that.$router.push({name:"download"})
-					},3000)
+				reads.onload = function() {
+					that.avatorUrl = this.result;
+					that.isupload = true;
+					// setTimeout(()=>{
+					// 	that.$router.push({name:"download"})
+					// },3000)
 				};
 			}
 		}
@@ -71,50 +87,75 @@
 </script>
 <style lang="scss">
 	@import '~@/assets/css/reset.css';
-	#app{
+
+	#app {
 		height: 100%;
 		overflow: hidden;
 	}
-	.web{
+
+	.web {
 		display: flex;
 		height: 100%;
 		flex-direction: column;
 		align-content: center;
 		justify-content: center;
 		background-repeat: no-repeat;
-		background-image: url(../assets/common_bg.jpg);
+		background-image: url(../assets/images/bg.png);
 		background-position: center;
-		background-size:cover ;
+		background-size: 100% 100%;
 	}
-	.hcontent{
+
+	.hcontent {
 		position: relative;
-		.window{
+
+		.window {
 			position: relative;
 			top: v(-138);
 			left: 0;
 			width: 100%;
-			>img{
+
+			>img {
 				display: block;
 				width: v(602);
 				margin: 0 auto;
 			}
 		}
 	}
-	.avator_wrapper{
+
+	.avator_wrapper {
 		position: absolute;
 		top: v(132);
 		left: v(207);
 		width: v(338);
 		height: v(338);
 		background-color: #fff;
-		>img{
+		overflow: hidden;
+
+		>img {
 			display: block;
 			width: v(338);
 			height: v(338);
 			margin: 0 auto;
 		}
+
+		>.scan_border {
+			position: absolute;
+			top: 0;
+			left:0;
+			width: v(338);
+			height: v(338);
+		}
+		.scan_icon{
+			position: absolute;
+			top: -50%;
+			left:0;
+			width: 100%;
+			height: auto;
+			// transform: translate3d(0,100%,0);
+		}
 	}
-	.icon_angle{
+
+	.icon_angle {
 		position: absolute;
 		bottom: 0;
 		left: v(25);
@@ -122,52 +163,116 @@
 		height: v(184);
 		z-index: 1;
 	}
-	.left_tree{
+
+	.left_tree {
 		position: absolute;
 		left: 0;
 		bottom: v(120);
 	}
-	.right_tree{
+	.l_cloud{
+		position: absolute;
+		left: 0;
+		bottom: v(60);
+		width: v(90);
+		height: v(67);
+		>img{
+			display: block;
+			width: 100%;
+		}
+	}
+	.r_cloud{
+		position: absolute;
+		right: v(-60);
+		top: v(158);
+		width: v(159);
+		height: v(44);
+		>img{
+			display: block;
+			width: 100%;
+		}
+	}
+	.right_tree {
 		position: absolute;
 		right: 0;
 		bottom: v(42);
 	}
-	.upload_wrapper{
+
+	.upload_wrapper {
+		position: absolute;
+		bottom: v(75);
+		left: 0;
+		width: 100%;
 		text-align: center;
 		color: #fff;
-		>span{
+		z-index: 1;
+
+		>span {
 			font-size: v(28);
 		}
 	}
-	.upload_btn{
+
+	.upload_btn {
 		width: v(474);
 		height: v(92);
-		margin:  0 auto;
-		img{
+		margin: 0 auto;
+
+		img {
 			display: block;
 			width: 100%;
 		}
-		input{
+
+		input {
 			opacity: 0;
 			display: none;
 		}
 	}
-	.logo{
+
+	.loading_txt {
+		position: absolute;
+		bottom: 10vw;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		font-size: v(25);
+		color: #fff;
+	}
+	.bgCloud{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+	}
+	.logo {
 		position: absolute;
 		width: 100%;
 		left: 0;
 		bottom: v(10);
 		text-align: center;
-		>img{
+
+		>img {
 			width: v(121);
 			height: v(49);
 		}
-		
+
 	}
-	.upload_wrapper{
-		position: absolute;
-		bottom:v(75);
-		left: 0;
-		width: 100%;
+	.ani_scan{
+		animation: ani_scan 2s infinite;
 	}
+	@-webkit-keyframes ani_scan{
+		from{
+			top: -50%;
+		}
+		to{
+			top: 120%;
+		}
+	}
+	@keyframes ani_scan{
+		from{
+			top: -50%;
+		}
+		to{
+			top: 120%;
+		}
+	}
+	
 </style>
