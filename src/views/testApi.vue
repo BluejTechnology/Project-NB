@@ -31,8 +31,8 @@ export default {
                 //             throw new Error("请求第二步报错");
                 //         }
                         let res = {
-	"Sign": "https://growth-1300522992.cos.ap-chengdu.myqcloud.com/%2Factive_cny%2FQZ%2Ff2295a1c-605e-4e4f-af43-2d52d47d0bb3_1579420309313922016?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDZbXM0ZAHJI6nIcMJcswwnZF6nMn7rNMA%26q-sign-time%3D1579420309%3B1579422109%26q-key-time%3D1579420309%3B1579422109%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3D05adc45b435fc6c26b99d59f6da7c8bb5c5196a7",
-	"CDNUrl": "http://growth-1300522992.image.myqcloud.com//active_cny/QZ/f2295a1c-605e-4e4f-af43-2d52d47d0bb3_1579420309313922016"
+	"Sign": "https://growth-1300522992.cos.ap-guangzhou.myqcloud.com/%2Factive_cny%2FQZ%2Ff2295a1c-605e-4e4f-af43-2d52d47d0bb3_1579433857767727426.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDZbXM0ZAHJI6nIcMJcswwnZF6nMn7rNMA%26q-sign-time%3D1579433857%3B1579435657%26q-key-time%3D1579433857%3B1579435657%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dd9ef1ccfa61d8aab11ded13ae70070cb30b61d6e",
+	"CDNUrl": "http://growth-1300522992.image.myqcloud.com//active_cny/QZ/f2295a1c-605e-4e4f-af43-2d52d47d0bb3_1579433857767727426.jpg"
 }
                         // res = res.data;
                         let url = decodeURIComponent(res.Sign)
