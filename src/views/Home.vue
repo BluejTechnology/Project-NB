@@ -62,7 +62,7 @@
 				reads.onload = function () {
 					that.avatorUrl= this.result;
 					setTimeout(()=>{
-						that.$router.push({name:"download"})
+						that.$router.push({name:"result"})
 					},3000)
 				};
 			}
