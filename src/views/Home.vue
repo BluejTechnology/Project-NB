@@ -1,20 +1,41 @@
 <template>
 	<div class="web">
-		<!-- <div class="emptybox">
-		</div> -->
-		<mheader></mheader>
-		<router-view></router-view>
+		<mheader>
+			<!-- 208-184 -->
+			<img src="../assets/images/angle.png" alt="" class="icon_angle">
+		</mheader>
+		<div class="hcontent">
+			<div class="window">
+				<img src="../assets/images/window.png" alt="">
+				<left-tree></left-tree>
+				<right-tree></right-tree>
+			</div>
+			<div class="upload_wrapper">
+				<div class="upload_btn">
+					<!-- 474-92 -->
+					<img src="../assets/images/upload_btn_12.png" alt="">
+				</div>
+				<span>上传本人照片，获得新年桃花指数！</span>
+			</div>
+		</div>
+		
+		<div class="logo">
+			<img src="../assets/images/logo.png" alt="欢遇logo">
+		</div>
 	</div>
 </template>
 
 <script>
 	// @ is an alias to /src
 	import mheader from "@/components/head.vue";
+	import leftTree from "@/components/base/left_tree.vue";
+	import rightTree from "@/components/base/right_tree.vue";
 	export default {
 		name: 'home',
 		components: {
-			mheader
-
+			mheader,
+			leftTree,
+			rightTree
 
 		},
 		methods:{
@@ -34,13 +55,73 @@
 		flex-direction: column;
 		align-content: center;
 		justify-content: center;
+		background-repeat: no-repeat;
 		background-image: url(../assets/common_bg.jpg);
-		background-size:100% 100% ;
+		background-position: center;
+		background-size:cover ;
 	}
-	.emptybox{
-		height: v(141);
+	.hcontent{
+		position: relative;
+		.window{
+			position: relative;
+			top: v(-138);
+			left: 0;
+			width: 100%;
+			>img{
+				display: block;
+				width: v(602);
+				height: 100%;
+				margin: 0 auto;
+			}
+		}
 	}
-	.header{
+	.icon_angle{
+		position: absolute;
+		bottom: 0;
+		left: v(25);
+		width: v(208);
+		height: v(184);
+		z-index: 1;
+	}
+	.left_tree{
+		position: absolute;
+		left: 0;
+		bottom: v(120);
+	}
+	.right_tree{
+		position: absolute;
+		right: 0;
+		bottom: v(42);
+	}
+	.upload_wrapper{
+		text-align: center;
+		color: #fff;
+	}
+	.upload_btn{
+		width: v(474);
+		height: v(92);
+		margin:  0 auto;
+		>img{
+			display: block;
+			width: 100%;
+		}
+	}
+	.logo{
+		position: absolute;
+		width: 100%;
+		left: 0;
+		bottom: v(10);
+		text-align: center;
+		>img{
+			width: v(121);
+			height: v(49);
+		}
 		
+	}
+	.upload_wrapper{
+		position: absolute;
+		bottom:v(120);
+		left: 0;
+		width: 100%;
 	}
 </style>
