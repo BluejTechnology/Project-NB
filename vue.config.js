@@ -7,10 +7,16 @@ module.exports = {
 				target:'https://qzi.html5.qq.com',
 				ws: true,
 				changeOrigin: true,
-			}
+            },
+            '/active_cny':{
+				target:'https://mvp-1300522992.cos.ap-chengdu.myqcloud.com',
+				ws: true,
+                changeOrigin: true,
+                pathRewrite:{"/active_cny":''}
+            }
         },
-        port:443,
-        https:true,
+        port:8080,
+        https:false,
         disableHostCheck: true
 	},
 	css:{
