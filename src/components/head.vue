@@ -6,6 +6,16 @@
 </template>
 
 <script>
+export default {
+	data(){
+		return {
+			titlePic:""
+		}
+	},
+	created(){
+		// this.titlePic = this.$store.state;
+	}
+}
 </script>
 
 <style lang="scss">

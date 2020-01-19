@@ -24,7 +24,7 @@
 				</div>
 				<p class="des">下载欢遇APP，红娘帮你撮合和TA们的桃花缘！</p>
 				<div class="download_btn_box">
-					<img src="../assets/images/downloadBtn.png" alt="">
+					<a href="https://cftweb.3g.qq.com/qqappstore/index"><img src="../assets/images/downloadBtn.png" alt=""></a>
 				</div>
 			</div>
 		</div>
@@ -130,7 +130,7 @@
 		}
 		.main{
 			height : v(1079);
-			border: 1px solid skyblue;
+			// border: 1px solid skyblue;
 			color: white;
 			position:relative;
 			z-index: 2;

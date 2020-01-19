@@ -74,12 +74,11 @@
 				let reads = new FileReader();
 				var that = this;
 				reads.readAsDataURL(f);
-				reads.onload = function() {
-					that.avatorUrl = this.result;
-					that.isupload = true;
-					// setTimeout(()=>{
-					// 	that.$router.push({name:"download"})
-					// },3000)
+				reads.onload = function () {
+					that.avatorUrl= this.result;
+					setTimeout(()=>{
+						that.$router.push({name:"result"})
+					},3000)
 				};
 			}
 		}
