@@ -1,0 +1,5 @@
+@charset "utf-8";
+
+@function v($px){
+	@return $px*100/750 *1vw;
+}

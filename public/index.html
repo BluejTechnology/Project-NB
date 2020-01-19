@@ -3,15 +3,161 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta property="wb:webmaster" content="fa38ad6c2e7e6ecc" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>project-nb</title>
   </head>
   <body>
+	 
     <noscript>
       <strong>We're sorry but project-nb doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+	<script src="//mvp-web-1300522992.file.myqcloud.com/js/mvpapp.min.js"></script>
+	<script src="//mvp-web-1300522992.file.myqcloud.com/js/qqapi.min.js"></script>
+	<script type="text/javascript">
+		var share_url = location.href;
+		var image_url = "https://i.gtimg.cn/vipstyle/mobile/mvip/v5/release/img/index/mod/header/svipqq.png"
+		var sourceName = "h5茄子春节";
+		var title = document.title;
+		var desc = "这是一个神奇的茄子";
+		var src_iconUrl = "//sqimg.qq.com/qq_product_operations/tencent-doc/title-icon/title/word_16x16.png"
+		_share();
+		function _share() {
+		      if (mqq.device.isMobileQQ()) {
+		
+		        setTimeout(function() {
+		          mqq.ui.setOnShareHandler(function(type) {
+		            mqq.ui.shareMessage(
+		              {
+		                title: title,
+		                desc: desc,
+		                share_type: type,
+		                back: true,
+		                image_url: image_url,
+		                imageUrl: image_url,
+		                share_url: share_url,
+		                sourceName: sourceName,
+		                puin: 0,
+		                src_iconUrl: src_iconUrl
+		              },
+		              function(res) {
+		                if (res.retCode === 0) {
+		                  // mqq.ui.popBack();
+		                }
+		              }
+		            );
+		          });
+		        }, 200);
+		      } else {
+		        let wechat_url = share_url + '&adtag=wechatshare';
+		        let onBridgeReady = function() {
+		          // 转发朋友圈
+		          WeixinJSBridge.on('menu:share:timeline', function(e) {
+		            let data = {
+		              img_url: image_url,
+		              img_width: '120',
+		              img_height: '120',
+		              link: wechat_url,
+		              // desc这个属性要加上，虽然不会显示，但是不加暂时会导致无法转发至朋友圈，
+		              desc: desc,
+		              title: title
+		            };
+		            WeixinJSBridge.invoke('shareTimeline', data, function(res) {
+		              WeixinJSBridge.log(res.err_msg);
+		            });
+		          });
+		          // 同步到微博
+		          WeixinJSBridge.on('menu:share:weibo', function() {
+		            WeixinJSBridge.invoke(
+		              'shareWeibo',
+		              {
+		                content: title,
+		                url: wechat_url
+		              },
+		              function(res) {
+		                WeixinJSBridge.log(res.err_msg);
+		              }
+		            );
+		          });
+		          // 分享给朋友
+		          WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+		            WeixinJSBridge.invoke(
+		              'sendAppMessage',
+		              {
+		                img_url: image_url,
+		                img_width: '120',
+		                img_height: '120',
+		                link: wechat_url,
+		                desc: desc,
+		                title: title
+		              },
+		              function(res) {
+		                WeixinJSBridge.log(res.err_msg);
+		              }
+		            );
+		          });
+		        };
+		        if (
+		          typeof top.window.WeixinJSBridge === 'undefined' ||
+		          !top.window.WeixinJSBridge.invoke
+		        ) {
+		          // 没有就监听ready事件
+		          if (document.addEventListener) {
+		            document.addEventListener(
+		              'WeixinJSBridgeReady',
+		              onBridgeReady,
+		              false
+		            );
+		          } else if (document.attachEvent) {
+		            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+		            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		          }
+		        } else {
+		          // 初始化结束直接就执行吧！
+		          onBridgeReady();
+		        }
+		      }
+		    }
+	</script>
+	
+	<script type="text/javascript">
+		
+		/*
+			*channel 
+			* 分享渠道（可以组合 1-茄子好友 2-微信 4-QQ 8-朋友圈 16-QQ空间）
+			* title
+			* 分享标题
+			* summary
+			* 分享概述
+			* panelTitle分享面板标题
+			* url
+			* 分享链接
+			* imgUrl
+			* 分享缩略图
+		*/
+		mvpApp.bridge.callHandler({
+		          module: 'QZCommon',
+		          method: 'share',
+		          query: {
+		            url:location.url ,
+		            title: location.title,
+		            summary: '2020新年快乐',
+		            panelTitle: '发送邀请到',
+		            channel:'4' ,
+		            imgUrl:'https://mat1.gtimg.com/www/mobi/2017/image/apple-touch-icon.png' 
+		          }
+		        }, (data) => {
+					console.log(data)
+		        }, (err) => {
+		          console.log('err', err);
+		        });
+				
+		
+	</script>
+		
+  
   </body>
 </html>
