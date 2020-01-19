@@ -7,13 +7,19 @@
 		<div class="hcontent">
 			<div class="window">
 				<img src="../assets/images/window.png" alt="">
+				<div class="avator_wrapper">
+					<img :src="avatorUrl" alt="">
+				</div>
 				<left-tree></left-tree>
 				<right-tree></right-tree>
 			</div>
 			<div class="upload_wrapper">
 				<div class="upload_btn">
 					<!-- 474-92 -->
-					<img src="../assets/images/upload_btn_12.png" alt="">
+					<label>
+						<img src="../assets/images/upload_btn_12.png" alt="">
+						<input type="file" @change="uploadAvator">
+					</label>
 				</div>
 				<span>上传本人照片，获得新年桃花指数！</span>
 			</div>
@@ -30,6 +36,7 @@
 	import mheader from "@/components/head.vue";
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
+	import avatorUrl from '@/assets/images/default_avator.jpg';
 	export default {
 		name: 'home',
 		components: {
@@ -38,8 +45,27 @@
 			rightTree
 
 		},
+		data(){
+			return {
+				avatorUrl:avatorUrl
+			}
+		},
 		methods:{
-			
+			uploadAvator(e){
+				this.uploadimage(e.target.files[0]);
+			},
+			// 上传image
+			uploadimage(f) {
+				let reads = new FileReader();
+				var that = this;
+				reads.readAsDataURL(f);
+				reads.onload = function () {
+					that.avatorUrl= this.result;
+					setTimeout(()=>{
+						that.$router.push({name:"download"})
+					},3000)
+				};
+			}
 		}
 	}
 </script>
@@ -75,6 +101,20 @@
 			}
 		}
 	}
+	.avator_wrapper{
+		position: absolute;
+		top: v(132);
+		left: v(207);
+		width: v(338);
+		height: v(338);
+		background-color: #fff;
+		>img{
+			display: block;
+			width: v(338);
+			height: v(338);
+			margin: 0 auto;
+		}
+	}
 	.icon_angle{
 		position: absolute;
 		bottom: 0;
@@ -96,14 +136,21 @@
 	.upload_wrapper{
 		text-align: center;
 		color: #fff;
+		>span{
+			font-size: v(28);
+		}
 	}
 	.upload_btn{
 		width: v(474);
 		height: v(92);
 		margin:  0 auto;
-		>img{
+		img{
 			display: block;
 			width: 100%;
+		}
+		input{
+			opacity: 0;
+			display: none;
 		}
 	}
 	.logo{
@@ -120,7 +167,7 @@
 	}
 	.upload_wrapper{
 		position: absolute;
-		bottom:v(120);
+		bottom:v(75);
 		left: 0;
 		width: 100%;
 	}
