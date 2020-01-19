@@ -17,8 +17,8 @@
 						<img src="" alt="">
 					</div>
 					<div class="random_vatar">
-						<div v-for="(item,index) in 18" class="randomVatar" :key="index">
-							<img src="" alt="">
+						<div v-for="(item,index) in otherVatar" class="randomVatar" :key="index">
+							<img :src='item.url' alt="">
 						</div>
 					</div>
 				</div>
@@ -43,11 +43,42 @@
 	// @ is an alias to /src
 	export default {
 		name: 'home',
+		data(){
+			return {
+				otherVatar:[],// 其他随机头像
+			}
+		},
+		created(){
+			this.getOtherVatar()
+		},
 		components: {
 
 		},
 		methods:{
-			
+			getOtherVatar(){
+				let mockData = [
+					{url:require('../assets/images/test/test01.jpg')},
+					{url:require('../assets/images/test/test02.jpg')},
+					{url:require('../assets/images/test/test03.jpg')},
+					{url:require('../assets/images/test/test01.jpg')},
+					{url:require('../assets/images/test/test02.jpg')},
+					{url:require('../assets/images/test/test03.jpg')},
+					{url:require('../assets/images/test/test01.jpg')},
+					{url:require('../assets/images/test/test02.jpg')},
+					{url:require('../assets/images/test/test03.jpg')},
+					{url:require('../assets/images/test/test01.jpg')},
+					{url:require('../assets/images/test/test02.jpg')},
+					{url:require('../assets/images/test/test03.jpg')},
+					{url:require('../assets/images/test/test01.jpg')},
+					{url:require('../assets/images/test/test02.jpg')},
+					{url:require('../assets/images/test/test03.jpg')},
+					{url:require('../assets/images/test/test01.jpg')},
+					{url:require('../assets/images/test/test02.jpg')},
+					{url:require('../assets/images/test/test03.jpg')},
+				];
+				// 请求随机头像
+				this.otherVatar = mockData;
+			}
 		}
 	}
 </script>
