@@ -147,7 +147,7 @@
 		}
 		.scan_icon{
 			position: absolute;
-			top: -50%;
+			top: 120%;
 			left:0;
 			width: 100%;
 			height: auto;
@@ -256,22 +256,26 @@
 
 	}
 	.ani_scan{
-		animation: ani_scan 2s infinite;
+		animation: ani_scan 2.5s infinite;
 	}
 	@-webkit-keyframes ani_scan{
 		from{
-			top: -50%;
+			top: 120%;
+			opacity: 1;
 		}
 		to{
-			top: 120%;
+			top: -50%;
+			opacity: 0.2;
 		}
 	}
 	@keyframes ani_scan{
 		from{
-			top: -50%;
+			top: 120%;
+			opacity: 1;
 		}
 		to{
-			top: 120%;
+			top: -50%;
+			opacity: 0.2;
 		}
 	}
 	
