@@ -1,9 +1,6 @@
 <template>
 	<div class="web">
-		<!-- <div class="emptybox">
-		</div> -->
 		<mheader></mheader>
-		<router-view></router-view>
 	</div>
 </template>
 
