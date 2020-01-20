@@ -61,11 +61,7 @@
 
 <style lang="scss">
 	@import '~@/assets/scss/util';
-<<<<<<< HEAD
 	.bgm_wrapper{
-=======
-	.bgm_wrapper {
->>>>>>> ea394dcf4d0ddb0d3aec879d3fe70b01c38a0978
 		position: absolute;
 		top: v(142);
 		left: v(40);
