@@ -17,7 +17,7 @@ let gameData = {
     "resultData": {
         "type1": {
             "scene_title": {
-                "home_title_url": '//yoo.qpic.cn/yoo_img/0/3026c7f1211d85adc857eb0691159016/0',
+                "home_title_url": '//yoo.qpic.cn/yoo_img/0/1c5e210094cec4481a9e1d3f25e83410/0',
                 "res_title_url": '/type1_title.png',
                 "upload_title": "上传本人照片，看看新年有多大的催婚火力等着你？",
                 "to_down_btn": "慰问单身战友!",
