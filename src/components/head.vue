@@ -19,6 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
+	@import '~@/assets/scss/util';
 	.header{
 		position: relative;
 		

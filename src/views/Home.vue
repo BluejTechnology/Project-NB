@@ -1,6 +1,6 @@
 <template>
 	<div class="web">
-		<bgm></bgm>
+		<!-- <bgm></bgm> -->
 		<!-- <wb-share></wb-share> -->
 		<mheader>
 			<!-- 208-184 -->
@@ -49,7 +49,7 @@
 <script>
 	// @ is an alias to /src
 	// import wbShare from "@/components/share/weibo_share.vue";
-	import bgm from '@/components/bgm.vue';
+	// import bgm from '@/components/bgm.vue';
 	import mheader from "@/components/head.vue";
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
@@ -58,7 +58,7 @@
 	export default {
 		name: 'home',
 		components: {
-			bgm,
+			// bgm,
 			// wbShare,
 			mheader,
 			leftTree,
@@ -93,7 +93,7 @@
 </script>
 <style lang="scss">
 	@import '~@/assets/css/reset.css';
-	
+	@import '~@/assets/scss/util';
 	#app {
 		height: 100%;
 		overflow: hidden;
