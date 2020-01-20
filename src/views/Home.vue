@@ -21,7 +21,7 @@
                         class="scan_icon ani_scan"
                     />
                     <img
-                        src="../assets/images/scan_border.png"
+                        src="//yoo.qpic.cn/yoo_img/0/9ab933ca5cfe491cd849d7e18dd59347/0"
                         alt=""
                         class="scan_border"
                     />
@@ -39,7 +39,10 @@
                 <div class="upload_btn">
                     <!-- 474-92 -->
                     <label>
-                        <img src="../assets/images/upload_btn_12.png" alt="" />
+                        <img
+                            src="//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0"
+                            alt=""
+                        />
                         <input type="file" ref="uploadpic" />
                     </label>
                 </div>
