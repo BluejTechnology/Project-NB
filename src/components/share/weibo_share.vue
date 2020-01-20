@@ -10,7 +10,7 @@
 						分享
 					</div>
 					<div class="logowrapper">
-						<img src="../../assets/images/wblogo.png" alt="" @click="sharewb">
+						<img src="//yoo.qpic.cn/yoo_img/0/e21365a0a555b5798f9652eeddab4e78/0" alt="" @click="sharewb">
 					</div>
 					<div @click="hideMask" class="btn_hide">取消</div>
 				</div>
@@ -28,10 +28,10 @@
 			return {
 				isShowMask: false,
 
-				baseUrl: "https://service.weibo.com/share/share.php",
+				baseUrl: "//service.weibo.com/share/share.php",
 				url:location.href,
 				title: '从欢遇APP的10000名优质异性嘉宾中,为你找到桃花运势相近的TA们！',
-				pic: "https://www.29663.com/uploadfile/2019/1219/20191219111236627.jpg",
+				pic: "//www.29663.com/uploadfile/2019/1219/20191219111236627.jpg",
 				appkey: '',
 				count: ''
 			}

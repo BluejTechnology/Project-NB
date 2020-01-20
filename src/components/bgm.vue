@@ -87,10 +87,10 @@
 		background-repeat: no-repeat;
 	}
 	.sound-on{
-		background-image: url(../assets/images/sound_on.png);
+		background-image: url(//yoo.qpic.cn/yoo_img/0/0f133fe15a6e7ac0466bb6998b8c7368/0);
 	}
 	.sound-off{
-		background-image: url(../assets/images/sound_off.png);
+		background-image: url(//yoo.qpic.cn/yoo_img/0/6fe2317ac03c97ae0daee3c9df383205/0);
 	}
 	@-webkit-keyframes rotate{
 		from{

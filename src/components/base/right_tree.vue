@@ -1,6 +1,6 @@
 <template>
 	<div class="right_tree">
-		<img src="../../assets/images/rtree.png" alt="">
+		<img src="//yoo.qpic.cn/yoo_img/0/96567b3e7e2ab4c02f4e57ec0981b973/0" alt="">
 	</div>
 </template>
 
