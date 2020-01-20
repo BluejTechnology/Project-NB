@@ -230,6 +230,9 @@ export default {
 <style lang="scss">
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
+body{
+	background-color: #ad2893;
+}
 #app {
     height: 100%;
     overflow: hidden;
