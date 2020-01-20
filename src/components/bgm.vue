@@ -1,7 +1,7 @@
 <template>
 	<div class="bgm_wrapper" @click="switchPlay">
 		<i class="btn_music" :class="{'sound-on':isPlay,'sound-off':!isPlay,'active':isPlay}"></i>
-		<video src="../assets/test_bgm.mp3" preload loop ref="sound0"></video>
+		<video src="../assets/test_bgm.mp3" preload autoplay loop ref="sound0"></video>
 	</div>
 </template>
 
