@@ -84,6 +84,7 @@
 		mounted(){
 			// 侦听input
 			this.$refs["uploadpic"].onchange = (e) => {
+				window.console.log(666666666666)
 				this.isupload = true;
 				let file = e.target.files[0];
 				this.avatorUrl = this.getObjectURL(file);
@@ -98,9 +99,12 @@
 						let res3 = await this.third_step(res1.CDNUrl)
 						window.console.log(res1,res2,res3)
 						if(!res3.gender){
-							window.console.log("非人脸请重新上传")
+							window.console.log("非人脸请重新上传");
+							// this.$refs["uploadpic"].value = ""
 							// 非人脸重置数据
-							Object.assign(this.$data, this.$options.data())
+							// Object.assign(this.$data, this.$options.data());
+							this.avatorUrl = avatorUrl;
+							this.isupload = false;
 							return 
 						}
 						this.$router.push({name:'result'});

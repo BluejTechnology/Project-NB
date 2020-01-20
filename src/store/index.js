@@ -39,12 +39,12 @@ let gameData = {
             "boy": [
                 {
                     "grade": 399,
-                    "res_des": "文案2",
+                    "res_des": "文案111<br>11",
                     "resID": "26"
                 },
                 {
                     "grade": 899,
-                    "res_des": "文案2",
+                    "res_des": "文案222<br>22",
                     "resID": "50"
                 }
             ]
@@ -128,14 +128,14 @@ export default new Vuex.Store({
             window.console.log(sex);
             if (sex == 1) {
                 let boys = state.gameData.boy;
-                let result = boys[Math.random() * boys.length];
+                let result = boys[Math.floor(Math.random() * boys.length)];
                 state.result = result
-                window.console.log(result)
+                // window.console.log(result)
             } else {
                 let girls = state.gameData.girl;
                 let result = girls[Math.floor(Math.random() * girls.length)];
                 state.result = result;
-                window.console.log(girls, Math.floor(Math.random() * girls.length))
+                // window.console.log(girls, Math.floor(Math.random() * girls.length))
             }
             // state.result
         }
