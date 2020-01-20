@@ -13,15 +13,17 @@ export function autoPlayMusic(media) {
 	}
 	document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
 }
-export function musicPlay(media,isPlay) {
+function musicPlay(media,isPlay) {
 	if (isPlay && media.paused) {
-		media.play();
-		console.log("播放")
+		media.play()
+		.catch(()=>{
+			window.console.log("浏览器不能自动播放")
+		})
 	}
 	if (!isPlay && !media.paused) {
 		media.pause();
-		console.log("暂停")
 	}
+	
 }
 
 	
