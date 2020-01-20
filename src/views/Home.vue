@@ -3,11 +3,18 @@
         <!-- <wb-share></wb-share> -->
         <mheader :getTitleUrl="titleUrl" :titleType="'home'">
             <!-- 208-184 -->
-            <img src="../assets/images/angle.png" alt="" class="icon_angle" />
+            <img
+                src="//yoo.qpic.cn/yoo_img/0/4a76508b31bc74db0ed05cc2165ead87/0"
+                alt=""
+                class="icon_angle"
+            />
         </mheader>
         <div class="hcontent">
             <div class="window">
-                <img src="../assets/images/window.png" alt="" />
+                <img
+                    src="//yoo.qpic.cn/yoo_img/0/23faf06d6898a1e47cbab546880c5480/0"
+                    alt=""
+                />
                 <div class="avator_wrapper">
                     <div
                         class="avator"
@@ -16,7 +23,7 @@
                         }"
                     ></div>
                     <img
-                        src="../assets/images/scan_icon.png"
+                        src="//yoo.qpic.cn/yoo_img/0/5106a2354b5e1c6973ce4edd712507b3/0"
                         alt=""
                         class="scan_icon ani_scan"
                     />
@@ -28,14 +35,20 @@
                 </div>
                 <left-tree class="slideleft"></left-tree>
                 <div class="l_cloud slideleft">
-                    <img src="../assets/images/left_cloud_02.png" alt="" />
+                    <img
+                        src="//yoo.qpic.cn/yoo_img/0/89a4c07940a508bcba2f02d43341e217/0"
+                        alt=""
+                    />
                 </div>
                 <div class="r_cloud slideright">
-                    <img src="../assets/images/cloud01.png" alt="" />
+                    <img
+                        src="//yoo.qpic.cn/yoo_img/0/b1f263b446d715fc269c334d11837fa0/0"
+                        alt=""
+                    />
                 </div>
                 <right-tree class="slideright"></right-tree>
             </div>
-            <div class="upload_wrapper" v-if="!isupload">
+            <div class="upload_wrapper" v-show="!isupload">
                 <div class="upload_btn">
                     <!-- 474-92 -->
                     <label>
@@ -48,11 +61,15 @@
                 </div>
                 <span>{{upload_title}}</span>
             </div>
-            <div class="loading_txt" v-if="isupload">
+            <div class="loading_txt" v-show="isupload">
                 智能解析中……
             </div>
         </div>
-        <img src="../assets/images/bgCloud.png" alt="cloud" class="bgCloud" />
+        <img
+            src="//yoo.qpic.cn/yoo_img/0/8cb68ab2cfa39042fbb252b672b65941/0"
+            alt="cloud"
+            class="bgCloud"
+        />
         <div class="hlogo">
             <logo></logo>
         </div>
@@ -65,7 +82,7 @@
 import mheader from "@/components/head.vue";
 import leftTree from "@/components/base/left_tree.vue";
 import rightTree from "@/components/base/right_tree.vue";
-import avatorUrl from "@/assets/images/default_avator.jpg";
+// import avatorUrl from "@/assets/images/default_avator.jpg";
 import logo from "@/components/base/logo.vue";
 import axios from "axios";
 import tool from "@/libs/utils.js";
@@ -84,7 +101,8 @@ export default {
     },
     data() {
         return {
-            avatorUrl: avatorUrl,
+            avatorUrl:
+                "//yoo.qpic.cn/yoo_img/0/0e9442b3f22021b636ce43a7400c9f0a/0",
             isupload: false
         };
     },
@@ -97,14 +115,21 @@ export default {
     },
     mounted() {
         // 侦听input
-        this.$refs["uploadpic"].onchange = e => {
+        this.$refs["uploadpic"].addEventListener("change", this.fileChange);
+
+        setTimeout(() => {
+            tool.preload(tmpArr);
+        }, 2000);
+    },
+    methods: {
+        fileChange(e) {
             this.isupload = true;
             let file = e.target.files[0];
             this.avatorUrl = this.getObjectURL(file);
+            e.target.value = "";
             window.user_avator_data = this.avatorUrl;
             let reader = new FileReader();
             reader.onload = async () => {
-                window.console.log(reader.result);
                 try {
                     let filecontent = reader.result;
                     let res1 = await this.first_step(file.name);
@@ -117,6 +142,7 @@ export default {
                         Object.assign(this.$data, this.$options.data());
                         return;
                     }
+                    this.preloadAvator();
                     this.$router.push({ name: "result" });
                     this.$store.commit("setResult", res3.gender);
                 } catch (e) {
@@ -124,13 +150,7 @@ export default {
                 }
             };
             reader.readAsArrayBuffer(file);
-        };
-
-        setTimeout(() => {
-            this.preloadAvator();
-        }, 2000);
-    },
-    methods: {
+        },
         getObjectURL(file) {
             var url = null;
             if (window.createObjectURL != undefined) {
@@ -202,7 +222,7 @@ export default {
             });
             tool.preload(male_arr);
             tool.preload(female_arr);
-            tool.preload(tmpArr);
+
             window.femalePicUrl = female_arr;
             window.malePicUrl = male_arr;
         }
@@ -212,21 +232,24 @@ export default {
 <style lang="scss">
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
+body{
+	background-color: #ad2893;
+}
 #app {
     height: 100%;
     overflow: hidden;
 }
-	.web {
-		display: flex;
-		height: 100%;
-		flex-direction: column;
-		align-content: center;
-		justify-content: center;
-		background-repeat: no-repeat;
-		background-image: url(//yoo.qpic.cn/yoo_img/0/1f9dd9ac6bd031e049ec323f73d89d6a/0);
-		background-position: center;
-		background-size: 100% 100%;
-	}
+.web {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-image: url(//yoo.qpic.cn/yoo_img/0/1f9dd9ac6bd031e049ec323f73d89d6a/0);
+    background-position: center;
+    background-size: 100% 100%;
+}
 
 .hcontent {
     position: relative;
@@ -296,40 +319,40 @@ export default {
     height: v(184);
     z-index: 1;
 }
-	.left_tree {
-		position: absolute;
-		left: 0;
-		bottom: v(120);
-	}
-	.l_cloud{
-		position: absolute;
-		left: 0;
-		bottom: v(60);
-		width: v(90);
-		height: v(67);
-		transform: translate3d(-100%, 0, 0);
-		>img{
-			display: block;
-			width: 100%;
-		}
-	}
-	.r_cloud{
-		position: absolute;
-		right: v(-60);
-		top: v(158);
-		width: v(159);
-		height: v(44);
-		transform: translate3d(100%, 0, 0);
-		>img{
-			display: block;
-			width: 100%;
-		}
-	}
-	.right_tree {
-		position: absolute;
-		right: 0;
-		bottom: v(42);
-	}
+.left_tree {
+    position: absolute;
+    left: 0;
+    bottom: v(120);
+}
+.l_cloud {
+    position: absolute;
+    left: 0;
+    bottom: v(60);
+    width: v(90);
+    height: v(67);
+    transform: translate3d(-100%, 0, 0);
+    > img {
+        display: block;
+        width: 100%;
+    }
+}
+.r_cloud {
+    position: absolute;
+    right: v(-60);
+    top: v(158);
+    width: v(159);
+    height: v(44);
+    transform: translate3d(100%, 0, 0);
+    > img {
+        display: block;
+        width: 100%;
+    }
+}
+.right_tree {
+    position: absolute;
+    right: 0;
+    bottom: v(42);
+}
 
 .upload_wrapper {
     position: absolute;
@@ -360,85 +383,85 @@ export default {
         display: none;
     }
 }
-	.loading_txt {
-		position: absolute;
-		bottom: 10vw;
-		left: 0;
-		width: 100%;
-		text-align: center;
-		font-size: v(25);
-		color: #fff;
-	}
-	.bgCloud{
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-	}
-	.hlogo {
-		position: absolute;
-		width: 100%;
-		left: 0;
-		bottom: v(10);
-		>.logo{
-			margin: 0 auto;
-		}
-	}
-	.ani_scan{
-		animation: ani_scan 2.5s infinite;
-	}
-	@-webkit-keyframes ani_scan{
-		from{
-			top: 120%;
-			opacity: 1;
-		}
-		to{
-			top: -50%;
-			opacity: 0.2;
-		}
-	}
-	@keyframes ani_scan{
-		from{
-			top: 120%;
-			opacity: 1;
-		}
-		to{
-			top: -50%;
-			opacity: 0.2;
-		}
-	}
-	.slideleft{
-		animation: sildeLeft 1.3s both;
-	}
-	@keyframes sildeLeft{
-		from{
-			transform: translate3d(-100%,0,0);
-		}
-		to{
-			transform: translate3d(0,0,0);
-		}
-	}
-	.slideright{
-		animation: sildeRight 1.3s both;
-	}
-	@keyframes sildeRight{
-		from{
-			transform: translate3d(100%,0,0);
-		}
-		to{
-			transform: translate3d(0,0,0);
-		}
-	}
-	.delay1{
-		animation-delay: 0.8s;
-	}
-	.delay2{
-		animation-delay: 0.8s;
-	}
-	.delay3{
-		animation-delay: 1.3s;
-	}
-	.delay4{
-		animation-delay: 1.4s;
-	}
+.loading_txt {
+    position: absolute;
+    bottom: 10vw;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: v(25);
+    color: #fff;
+}
+.bgCloud {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.hlogo {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: v(10);
+    > .logo {
+        margin: 0 auto;
+    }
+}
+.ani_scan {
+    animation: ani_scan 2.5s infinite;
+}
+@-webkit-keyframes ani_scan {
+    from {
+        top: 120%;
+        opacity: 1;
+    }
+    to {
+        top: -50%;
+        opacity: 0.2;
+    }
+}
+@keyframes ani_scan {
+    from {
+        top: 120%;
+        opacity: 1;
+    }
+    to {
+        top: -50%;
+        opacity: 0.2;
+    }
+}
+.slideleft {
+    animation: sildeLeft 1.3s both;
+}
+@keyframes sildeLeft {
+    from {
+        transform: translate3d(-100%, 0, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+.slideright {
+    animation: sildeRight 1.3s both;
+}
+@keyframes sildeRight {
+    from {
+        transform: translate3d(100%, 0, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+.delay1 {
+    animation-delay: 0.8s;
+}
+.delay2 {
+    animation-delay: 0.8s;
+}
+.delay3 {
+    animation-delay: 1.3s;
+}
+.delay4 {
+    animation-delay: 1.4s;
+}
 </style>

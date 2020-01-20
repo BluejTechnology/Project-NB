@@ -214,13 +214,13 @@
             }
             .vatar_box {
                 position: relative;
-				z-index: 3;
                 .user_vatar {
                     width: v(175);
                     height: v(175);
                     position: absolute;
                     top: v(262);
                     left: 50%;
+					z-index: 3;
                     transform: translateX(-50%);
                     overflow: hidden;
                     border-radius: 50%;
@@ -228,6 +228,7 @@
 					background-size: cover;
 					background-repeat: no-repeat;
 					background-position: center;
+					
                 }
                 .random_vatar {
                     div {
