@@ -17,12 +17,12 @@ let gameData = {
     "resultData": {
         "type1": {
             "scene_title": {
-                "home_title_url": '/type1_title.png',
+                "home_title_url": '//yoo.qpic.cn/yoo_img/0/3026c7f1211d85adc857eb0691159016/0',
                 "res_title_url": '/type1_title.png',
                 "upload_title": "上传本人照片，看看新年有多大的催婚火力等着你？",
                 "to_down_btn": "慰问单身战友!",
-                "down_title1:": "从欢遇APP的上万名优质单身战友中，找到跟你火力近似的TA们！",
-                "down_title2": "下载欢遇APP，视频相亲更靠谱，来找到真实优质的TA！"
+                "down_title1": "从欢遇APP的上万名优质单身战友中，<br>找到跟你火力近似的TA们！",
+                "down_title2": "下载欢遇APP，视频相亲更靠谱，<br>来找到真实优质的TA！"
             },
             "girl": [
                 {
@@ -55,8 +55,8 @@ let gameData = {
                 "res_title_url": '/type2_title.png',
                 "upload_title": "上传本人照片，看看新年会在什么情况下脱单？",
                 "to_down_btn": "看看同一天脱单的TA",
-                "down_title1:": "从欢遇APP的上万名优质异性嘉宾中，找到跟你同天脱单的TA们！",
-                "down_title2": "下载欢遇APP，视频相亲更靠谱，来找到真实优质的TA！"
+                "down_title1": "从欢遇APP的上万名优质异性嘉宾中，<br>找到跟你同天脱单的TA们！",
+                "down_title2": "下载欢遇APP，视频相亲更靠谱，<br>来找到真实优质的TA！"
             },
             "girl": [
                 {
@@ -84,8 +84,8 @@ let gameData = {
                 "res_title_url": '/type3_title.png',
                 "upload_title": "上传本人照片，看看新年桃花运势如何？",
                 "to_down_btn": "看看同运势的TA",
-                "down_title1:": "从欢遇APP的上万名优质异性嘉宾中，找到跟你同运势的TA们！",
-                "down_title2": "下载欢遇APP，视频相亲更靠谱，来找到真实优质的TA！"
+                "down_title1": "从欢遇APP的上万名优质异性嘉宾中，<br>找到跟你同运势的TA们！",
+                "down_title2": "下载欢遇APP，视频相亲更靠谱，<br>来找到真实优质的TA！"
             },
             "girl": [
                 {
@@ -121,6 +121,8 @@ export default new Vuex.Store({
             state.type = type;
             // 存入当前游戏类型的相关数据
             state.gameData = gameData.resultData[`type${type}`];
+            let htmlTitle = ["测一测新年催婚火力", "测一测新年脱单日", "测一测新年桃花运"];
+            document.title = htmlTitle[type - 1];
         },
         setResult(state, sex) {
             // gender: 1 为男 2 为女
@@ -135,9 +137,7 @@ export default new Vuex.Store({
                 let girls = state.gameData.girl;
                 let result = girls[Math.floor(Math.random() * girls.length)];
                 state.result = result;
-                // window.console.log(girls, Math.floor(Math.random() * girls.length))
             }
-            // state.result
         }
     },
     actions: {

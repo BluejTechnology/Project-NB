@@ -1,19 +1,20 @@
 <template>
 	<div class="header">
-		<img :src="require('../assets/images'+getTitleUrl)" crossOrigin='anonymous' alt="htitle" class="htitle">
+		<img v-if="titleType=='result'" :src="require('../assets/images'+getTitleUrl)" crossOrigin='anonymous' alt="htitle" class="htitle">
+		<img v-else :src="getTitleUrl" crossOrigin='anonymous' alt="htitle" class="htitle">
 		<slot></slot>
 	</div>
 </template>
 
 <script>
 export default {
-	props:['getTitleUrl'],
+	props:['getTitleUrl','titleType'],
 	data(){
 		return {
 		} 
 	},
 	created(){
-		// window.console.log("当前titleUrl",this.getTitleUrl) 
+		window.console.log("当前props",this.getTitleUrl,this.titleType) 
 	},
 }
 </script>

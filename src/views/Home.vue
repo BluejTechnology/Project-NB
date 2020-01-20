@@ -1,7 +1,7 @@
 <template>
     <div class="web">
         <!-- <wb-share></wb-share> -->
-        <mheader :getTitleUrl="titleUrl">
+        <mheader :getTitleUrl="titleUrl" :titleType="'home'">
             <!-- 208-184 -->
             <img src="../assets/images/angle.png" alt="" class="icon_angle" />
         </mheader>
@@ -46,7 +46,7 @@
                         <input type="file" ref="uploadpic" />
                     </label>
                 </div>
-                <span>上传本人照片，获得新年桃花指数！</span>
+                <span>{{upload_title}}</span>
             </div>
             <div class="loading_txt" v-if="isupload">
                 智能解析中……
@@ -71,6 +71,7 @@ import axios from "axios";
 import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
 import tmpArr from "@/data/animation.json";
+import { mapState } from 'vuex';
 const SUM = 18;
 export default {
     name: "home",
@@ -89,9 +90,10 @@ export default {
     },
     created() {},
     computed: {
-        titleUrl() {
-            return this.$store.state.gameData.scene_title.home_title_url;
-        }
+		...mapState({
+			upload_title:(state)=>state.gameData.scene_title.upload_title,
+			titleUrl:(state)=>state.gameData.scene_title.home_title_url
+		})
     },
     mounted() {
         // 侦听input
