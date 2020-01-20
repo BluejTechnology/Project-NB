@@ -1,7 +1,7 @@
 <template>
     <div class="web">
         <!-- <wb-share></wb-share> -->
-        <mheader>
+        <mheader :getTitleUrl="titleUrl">
             <!-- 208-184 -->
             <img src="../assets/images/angle.png" alt="" class="icon_angle" />
         </mheader>
@@ -67,8 +67,7 @@ import logo from "@/components/base/logo.vue";
 import axios from "axios";
 import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
-import tools from "../libs/utils";
-import imgArr from "../data/animation.json";
+import tmpArr from "@/data/animation.json";
 const SUM = 18;
 export default {
     name: "home",
@@ -86,6 +85,11 @@ export default {
         };
     },
     created() {},
+    computed: {
+        titleUrl() {
+            return this.$store.state.gameData.scene_title.home_title_url;
+        }
+    },
     mounted() {
         // 侦听input
         this.$refs["uploadpic"].onchange = e => {
@@ -101,15 +105,22 @@ export default {
                     let res1 = await this.first_step(file.name);
                     let res2 = await this.second_step(res1.Sign, filecontent);
                     let res3 = await this.third_step(res1.CDNUrl);
-                    // window.console.log(res1,res2,res3)
+                    window.console.log(res1, res2, res3);
+                    if (!res3.gender) {
+                        window.console.log("非人脸请重新上传");
+                        // 非人脸重置数据
+                        Object.assign(this.$data, this.$options.data());
+                        return;
+                    }
                     this.$router.push({ name: "result" });
-                    window.console.log();
+                    this.$store.commit("setResult", res3.gender);
                 } catch (e) {
                     window.console.log("报错拉！", e.message);
                 }
             };
             reader.readAsArrayBuffer(file);
         };
+
         setTimeout(() => {
             this.preloadAvator();
         }, 2000);
@@ -186,7 +197,7 @@ export default {
             });
             tool.preload(male_arr);
             tool.preload(female_arr);
-            tools.preload(imgArr);
+            tool.preload(tmpArr);
             window.femalePicUrl = female_arr;
             window.malePicUrl = male_arr;
         }
