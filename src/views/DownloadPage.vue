@@ -6,6 +6,7 @@
 				<p>为你找到桃花运势相近的TA们！</p>
 			</div>
 			<div class="content">
+				<animation></animation>
 				<div class="angle angle_left">
 					<img src="../assets/images/angle.png" alt="">
 				</div>
@@ -41,6 +42,7 @@
 
 <script>
 	// @ is an alias to /src
+	import animation from '@/views/animation.vue';
 	export default {
 		data(){
 			return {
@@ -51,7 +53,7 @@
 			this.getOtherVatar()
 		},
 		components: {
-
+			animation
 		},
 		methods:{
 			getOtherVatar(){
@@ -77,6 +79,8 @@
 				// ];
 				// 请求随机头像
 				// this.otherVatar = mockData;
+				window.femalePicUrl=window.femalePicUrl || [];
+				window.malePicUrl = window.malePicUrl || [];
 				this.otherVatar = window.femalePicUrl.concat(window.malePicUrl);
 			}
 		}

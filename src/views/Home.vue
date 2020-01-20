@@ -75,21 +75,7 @@
 			}
 		},
 		created(){
-			let rand_mode=[4,8,9,10];
-			let rand_n = parseInt(Math.random()*rand_mode.length);
-			let male_num = rand_mode[rand_n];
-			let female_num = SUM-male_num;
-			//分别产生预加载数组
-			let female_arr = this.c_rand(female_num).map((ele)=>{
-				return gameData.avatarData.femalePicUrl[ele]
-			});
-			let male_arr = this.c_rand(male_num).map((ele)=>{
-				return gameData.avatarData.malePicUrl[ele]
-			});
-			tool.preload(male_arr);
-			tool.preload(female_arr);
-			window.femalePicUrl = female_arr;
-			window.malePicUrl = male_arr;
+			this.preloadAvator();
 		},
 		mounted(){
 			// 侦听input
@@ -170,6 +156,24 @@
 					}
 				}
 				return temp_arr;
+			},
+			preloadAvator(){
+				//固定几个随机数
+				let rand_mode=[4,8,9,10];
+				let rand_n = parseInt(Math.random()*rand_mode.length);
+				let male_num = rand_mode[rand_n];
+				let female_num = SUM-male_num;
+				//分别产生预加载数组
+				let female_arr = this.c_rand(female_num).map((ele)=>{
+					return gameData.avatarData.femalePicUrl[ele]
+				});
+				let male_arr = this.c_rand(male_num).map((ele)=>{
+					return gameData.avatarData.malePicUrl[ele]
+				});
+				tool.preload(male_arr);
+				tool.preload(female_arr);
+				window.femalePicUrl = female_arr;
+				window.malePicUrl = male_arr;
 			}
 		}
 	}
