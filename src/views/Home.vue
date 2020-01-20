@@ -10,7 +10,9 @@
 			<div class="window">
 				<img src="../assets/images/window.png" alt="">
 				<div class="avator_wrapper">
-					<img :src="avatorUrl" alt="">
+					<div class="avator" :style="{'background-image':'url('+avatorUrl+')'}">
+						
+					</div>
 					<img src="../assets/images/scan_icon.png" alt="" class="scan_icon ani_scan">
 					<img src="../assets/images/scan_border.png" alt="" class="scan_border">
 				</div>
@@ -48,7 +50,6 @@
 <script>
 	// @ is an alias to /src
 	// import wbShare from "@/components/share/weibo_share.vue";
-	// import bgm from '@/components/bgm.vue';
 	import mheader from "@/components/head.vue";
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
@@ -58,7 +59,6 @@
 	export default {
 		name: 'home',
 		components: {
-			// bgm,
 			// wbShare,
 			mheader,
 			leftTree,
@@ -70,6 +70,9 @@
 				avatorUrl: avatorUrl,
 				isupload: false
 			}
+		},
+		created(){
+			
 		},
 		mounted(){
 			// 侦听input
@@ -194,7 +197,17 @@
 			height: v(338);
 			margin: 0 auto;
 		}
-
+		>.avator{
+			width: 100%;
+			height: 100%;
+			background-size:contain ;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-color: #730065;
+			>img{
+				width: 100%;
+			}
+		}
 		>.scan_border {
 			position: absolute;
 			top: 0;

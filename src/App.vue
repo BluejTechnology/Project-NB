@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+	<bgm />
     <router-view/>
   </div>
 </template>
@@ -8,6 +9,7 @@
 </style>
 <script>
 	import axios from "axios";
+	import bgm from '@/components/bgm.vue';
 	export default {
 		data(){ 
 			return {
@@ -27,5 +29,8 @@
 			// 存入游戏类型,用于后续取文案区间 1对应 1-50,以此类推
 			this.$store.commit("setType",type);
 		},
+		components:{
+			bgm
+		}
 	}
 </script>
