@@ -78,6 +78,7 @@
 				];
 				// 请求随机头像
 				this.otherVatar = mockData;
+				
 			}
 		}
 	}
