@@ -6,7 +6,7 @@
 				</mheader>
 				<div class="content">
 					<div class="cardBox">
-						<img src="//yoo.qpic.cn/yoo_img/0/65f633f347031e238f8e616a58a180d4/0" alt="">
+						<img src="../assets/images/resultCard.png" alt="">
 					</div>
 					<div class="vatar_box">
 						<img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="">
@@ -16,7 +16,7 @@
 						<div class="grade">
 							{{gradeData}}分
 						</div>
-						<div class="des" v-html="des">
+						<div class="des" v-html="desData">
 						</div>
 					</div>
 					<div class="tip_box">
@@ -26,6 +26,12 @@
 						<img @click="showImage" src="//yoo.qpic.cn/yoo_img/0/c9ffec292d13f0c0e8896ccd8985a141/0">
 						<img @click="toDownload" src="//yoo.qpic.cn/yoo_img/0/a9e261b9e1346515362efdf8d8f6018b/0">
 					</div>
+				</div>
+				<div class="cloud_l">
+					<img src="../assets/images/cloud02.png" alt="">
+				</div>
+				<div class="cloud_r">
+					<img src="../assets/images/cloud01.png" alt="">
 				</div>
 				<leftTree class="left_tree"></leftTree>
 				<rightTree class="right_tree"></rightTree>
@@ -42,7 +48,7 @@
 				</mheader>
 				<div class="content">
 					<div class="cardBox">
-						<img src="//yoo.qpic.cn/yoo_img/0/65f633f347031e238f8e616a58a180d4/0" alt="">
+						<img src="../assets/images/resultCard.png" alt="">
 					</div>
 					<div class="vatar_box">
 						<img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="">
@@ -51,7 +57,7 @@
 						<div class="grade">
 							{{gradeData}}分
 						</div>
-						<div class="des" v-html="des">
+						<div class="des" v-html="desData">
 						</div>
 					</div>
 					<div class="qr_box">
@@ -96,14 +102,11 @@
 		data(){
 			return {
 				user_vatar:'',
-				des:null,
 				showPoster:false,
 				outPoster:''
 			}
 		}, 
 		created(){
-			// 获取本次游戏结果的描述:
-			this.des = '如果<i>美貌有罪</i><br>你会被关到一百岁<br>如果追你要排队<br>我宁愿今晚不睡!'
 			// window.console.log(window.user_avator_data)
 			// 传入头像临时地址,读取blob并转化为base64,回调内将结果写入user_vatar
 			this.blobToBase64(window.user_avator_data,(res)=>{
@@ -172,7 +175,8 @@
 			},
 			...mapState({
                 // 使用自定义变量名
-                gradeData:(state)=>state.result.grade
+				gradeData:(state)=>state.result.grade,
+				desData:(state)=>state.result.res_des
             }),
 		}
 	}
@@ -281,6 +285,26 @@
 						img{
 							width : 100%;
 						}
+					}
+				}
+				.cloud_l {
+					position: absolute;
+					top: v(920);
+					left: v(-80);
+					width: v(170);
+					z-index: 2;
+					img {
+						width: 100%;
+					}
+				}
+				.cloud_r {
+					position: absolute;
+					top: v(550);
+					right: v(-60);
+					width: v(160);
+					z-index: 2;
+					img {
+						width: 100%;
 					}
 				}
 				.left_tree{
