@@ -14,8 +14,8 @@
 					<img src="../assets/images/angle.png" alt="">
 				</div>
 				<div class="vatar_box">	
-					<div class="user_vatar">
-						<img src="" alt="">
+					<div class="user_vatar" :style="{'background-image':'url('+user_avator+')'}">
+						<!-- <img :src="user_avator" alt=""> -->
 					</div>
 					<div class="random_vatar">
 						<div v-for="(item,index) in otherVatar" class="randomVatar" :key="index">
@@ -47,6 +47,7 @@
 		data(){
 			return {
 				otherVatar:[],// 其他随机头像
+				user_avator:window.user_avator_data
 			}
 		},
 		created(){
@@ -194,6 +195,7 @@
             }
             .vatar_box {
                 position: relative;
+				z-index: 3;
                 .user_vatar {
                     width: v(175);
                     height: v(175);
@@ -204,9 +206,9 @@
                     overflow: hidden;
                     border-radius: 50%;
                     background-color: #660e61;
-                    img {
-                        width: 100%;
-                    }
+					background-size: cover;
+					background-repeat: no-repeat;
+					background-position: center;
                 }
                 .random_vatar {
                     div {

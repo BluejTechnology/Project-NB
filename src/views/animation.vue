@@ -93,6 +93,7 @@ export default {
     position: absolute;
     left: 50%;
     transform: translatex(-50%);
+	z-index: 2;
     img {
         opacity: 0;
         width: v(720);
