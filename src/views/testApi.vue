@@ -28,7 +28,7 @@ export default {
         },
         async second_step(url,filecontent){
             return axios.put(url, filecontent).then(res => {
-                if (res.status !== 200 || !res.data) {
+                if (res.status !== 200 ) {
                     Promise.reject("请求第二步报错");
                 }
                 return res.data
@@ -55,16 +55,16 @@ export default {
                     let filecontent = reader.result;
                     let res1 = await this.first_step(file.name)
                     let res2 = await this.second_step(res1.Sign,filecontent)
-                    // let res3 = await this.third_step(res1.CDNUrl)
-                    console.log(res1,res2)
+                    let res3 = await this.third_step(res1.CDNUrl)
+                    window.console.log(res1,res2,res3)
 
                 }catch(e){
-                    console.log('报错拉！',e.message)
+                    window.console.log('报错拉！',e.message)
                 }
             };
             reader.readAsArrayBuffer(file);
         };
-    }
+    } 
 };
 </script>
 

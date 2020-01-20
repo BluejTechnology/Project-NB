@@ -13,10 +13,7 @@ const routes = [
   {
     path: '/testApi',
     name: 'testApi',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/testApi.vue')
+    component: () => import('../views/testApi.vue')
   },
   {
     path: '/download',
@@ -31,7 +28,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    routes
+  routes
 })
 
 export default router

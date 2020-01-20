@@ -13,7 +13,6 @@
 					<img :src="avatorUrl" alt="">
 					<img src="../assets/images/scan_icon.png" alt="" class="scan_icon ani_scan">
 					<img src="../assets/images/scan_border.png" alt="" class="scan_border">
-					
 				</div>
 				<left-tree></left-tree>
 				<div class="l_cloud">
@@ -29,7 +28,7 @@
 					<!-- 474-92 -->
 					<label>
 						<img src="../assets/images/upload_btn_12.png" alt="">
-						<input type="file" @change="uploadAvator">
+						<input type="file" ref="uploadpic">
 					</label>
 				</div>
 				<span>上传本人照片，获得新年桃花指数！</span>
@@ -55,6 +54,7 @@
 	import rightTree from "@/components/base/right_tree.vue";
 	import avatorUrl from '@/assets/images/default_avator.jpg';
 	import logo from '@/components/base/logo.vue';
+	import axios from "axios";
 	export default {
 		name: 'home',
 		components: {
@@ -71,22 +71,73 @@
 				isupload: false
 			}
 		},
-		methods: {
-			uploadAvator(e) {
-				this.uploadimage(e.target.files[0]);
-			},
-			// 上传image
-			uploadimage(f) {
-				let reads = new FileReader();
-				var that = this;
-				reads.readAsDataURL(f);
-				reads.onload = function () {
-					that.avatorUrl= this.result;
-					that.isupload = true;
-					setTimeout(()=>{
-						that.$router.push({name:"result"})
-					},3000)
+		mounted(){
+			// 侦听input
+			this.$refs["uploadpic"].onchange = (e) => {
+				this.isupload = true;
+				let file = e.target.files[0];
+				this.avatorUrl = this.getObjectURL(file) ;
+				let reader = new FileReader();
+				reader.onload = async () => {
+					// this.avatorUrl = reader.result;
+					try{
+						let filecontent = reader.result;
+						let res1 = await this.first_step(file.name)
+						let res2 = await this.second_step(res1.Sign,filecontent)
+						let res3 = await this.third_step(res1.CDNUrl)
+						window.console.log(res1,res2,res3)
+						setTimeout(() => {
+							this.$router.push({name:'result'})
+						}, 3000);
+					}catch(e){
+						window.console.log('报错拉！',e.message)
+					}
 				};
+				reader.readAsArrayBuffer(file);
+			};
+		},
+		methods: {
+			getObjectURL(file){
+			    var url = null;
+				if(window.createObjectURL!=undefined){
+				      url = window.createObjectURL(file);
+				    }else if(window.URL!=undefined){
+				      url = window.URL.createObjectURL(file) ;
+				    }else if(window.webkitURL!=undefined){
+				      url = window.webkitURL.createObjectURL(file) ;
+				    }
+			    return url;
+			  },
+			async first_step(fileName){
+				return axios
+						.post("/fcgi/gwlogout/GetTencentCloudInfo", {
+							BizID: "QZ",
+							File: fileName
+						}).then(res=>{
+							if (res.status !== 200 || !res.data) {
+								Promise.reject("请求第一步报错");
+							}
+							return res.data
+						})
+			},
+			async second_step(url,filecontent){
+				return axios.put(url, filecontent).then(res => {
+					if (res.status !== 200 ) {
+						Promise.reject("请求第二步报错");
+					}
+					return res.data
+				})
+			},
+			async third_step(picUrl){
+				return axios.post("/fcgi/gwlogout/ImgVerify", {
+						BIZID: "QZ",
+						ImgURL: picUrl
+					}).then(res => {
+						if (res.status !== 200 || !res.data) {
+							Promise.reject("请求第三步报错");
+						}
+						return res.data
+				})
 			}
 		}
 	}
