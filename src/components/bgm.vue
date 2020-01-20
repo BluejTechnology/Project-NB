@@ -84,6 +84,7 @@
 		animation: rotate 2s linear infinite;
 		animation-play-state: paused;
 		background-size: contain;
+		background-repeat: no-repeat;
 	}
 	.sound-on{
 		background-image: url(../assets/images/sound_on.png);

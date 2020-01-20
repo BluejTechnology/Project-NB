@@ -1,6 +1,5 @@
 <template>
 	<div class="web">
-		<!-- <bgm></bgm> -->
 		<!-- <wb-share></wb-share> -->
 		<mheader>
 			<!-- 208-184 -->
@@ -16,14 +15,14 @@
 					<img src="../assets/images/scan_icon.png" alt="" class="scan_icon ani_scan">
 					<img src="../assets/images/scan_border.png" alt="" class="scan_border">
 				</div>
-				<left-tree></left-tree>
-				<div class="l_cloud">
+				<left-tree class="slideleft"></left-tree>
+				<div class="l_cloud slideleft">
 					<img src="../assets/images/left_cloud_02.png" alt="">
 				</div>
-				<div class="r_cloud">
+				<div class="r_cloud slideright">
 					<img src="../assets/images/cloud01.png" alt="">
 				</div>
-				<right-tree></right-tree>
+				<right-tree class="slideright"></right-tree>
 			</div>
 			<div class="upload_wrapper" v-if="!isupload">
 				<div class="upload_btn">
@@ -233,7 +232,7 @@
 		>.avator{
 			width: 100%;
 			height: 100%;
-			background-size:contain ;
+			background-size:cover ;
 			background-position: center;
 			background-repeat: no-repeat;
 			background-color: #730065;
@@ -377,5 +376,26 @@
 			opacity: 0.2;
 		}
 	}
-	
+	.slideleft{
+		animation: sildeLeft 1.3s;
+	}
+	@keyframes sildeLeft{
+		from{
+			transform: translate3d(-100%,0,0);
+		}
+		to{
+			transform: translate3d(0,0,0);
+		}
+	}
+	.slideright{
+		animation: sildeRight 1.3s;
+	}
+	@keyframes sildeRight{
+		from{
+			transform: translate3d(100%,0,0);
+		}
+		to{
+			transform: translate3d(0,0,0);
+		}
+	}
 </style>
