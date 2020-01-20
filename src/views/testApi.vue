@@ -64,7 +64,7 @@ export default {
             };
             reader.readAsArrayBuffer(file);
         };
-    }
+    } 
 };
 </script>
 
