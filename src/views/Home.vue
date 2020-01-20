@@ -1,5 +1,6 @@
 <template>
 	<div class="web">
+		<bgm></bgm>
 		<!-- <wb-share></wb-share> -->
 		<mheader>
 			<!-- 208-184 -->
@@ -47,7 +48,8 @@
 
 <script>
 	// @ is an alias to /src
-	// import wbShare from "@/components/share/weibo_share.vue"
+	// import wbShare from "@/components/share/weibo_share.vue";
+	import bgm from '@/components/bgm.vue';
 	import mheader from "@/components/head.vue";
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
@@ -56,6 +58,7 @@
 	export default {
 		name: 'home',
 		components: {
+			bgm,
 			// wbShare,
 			mheader,
 			leftTree,
