@@ -3,24 +3,24 @@
 		<!-- <wb-share></wb-share> -->
 		<mheader>
 			<!-- 208-184 -->
-			<img src="../assets/images/angle.png" alt="" class="icon_angle">
+			<img src="//yoo.qpic.cn/yoo_img/0/4a76508b31bc74db0ed05cc2165ead87/0" alt="" class="icon_angle">
 		</mheader>
 		<div class="hcontent">
 			<div class="window">
-				<img src="../assets/images/window.png" alt="">
+				<img src="https://yoo.qpic.cn/yoo_img/0/23faf06d6898a1e47cbab546880c5480/0" alt="">
 				<div class="avator_wrapper">
 					<div class="avator" :style="{'background-image':'url('+avatorUrl+')'}">
 						
 					</div>
-					<img src="../assets/images/scan_icon.png" alt="" class="scan_icon ani_scan">
-					<img src="../assets/images/scan_border.png" alt="" class="scan_border">
+					<img src="//yoo.qpic.cn/yoo_img/0/5106a2354b5e1c6973ce4edd712507b3/0" alt="" class="scan_icon ani_scan">
+					<img src="//yoo.qpic.cn/yoo_img/0/9ab933ca5cfe491cd849d7e18dd59347/0" alt="" class="scan_border">
 				</div>
 				<left-tree class="slideleft"></left-tree>
-				<div class="l_cloud slideleft">
-					<img src="../assets/images/left_cloud_02.png" alt="">
+				<div class="l_cloud slideleft delay1">
+					<img src="//yoo.qpic.cn/yoo_img/0/89a4c07940a508bcba2f02d43341e217/0" alt="">
 				</div>
-				<div class="r_cloud slideright">
-					<img src="../assets/images/cloud01.png" alt="">
+				<div class="r_cloud slideright delay2">
+					<img src="//yoo.qpic.cn/yoo_img/0/b1f263b446d715fc269c334d11837fa0/0" alt="">
 				</div>
 				<right-tree class="slideright"></right-tree>
 			</div>
@@ -38,7 +38,7 @@
 				智能解析中……
 			</div>
 		</div>
-		<img src="../assets/images/bgCloud.png" alt="cloud" class="bgCloud">
+		<img src="//yoo.qpic.cn/yoo_img/0/8cb68ab2cfa39042fbb252b672b65941/0" alt="cloud" class="bgCloud">
 		<div class="hlogo">
 			<logo></logo>
 		</div>
@@ -52,7 +52,6 @@
 	import mheader from "@/components/head.vue";
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
-	import avatorUrl from '@/assets/images/default_avator.jpg';
 	import logo from '@/components/base/logo.vue';
 	import axios from "axios";
 	import tool from '@/libs/utils.js';
@@ -69,7 +68,7 @@
 		},
 		data() {
 			return {
-				avatorUrl: avatorUrl,
+				avatorUrl: '//yoo.qpic.cn/yoo_img/0/0e9442b3f22021b636ce43a7400c9f0a/0',
 				isupload: false
 			}
 		},
@@ -192,7 +191,7 @@
 		align-content: center;
 		justify-content: center;
 		background-repeat: no-repeat;
-		background-image: url(../assets/images/bg.png);
+		background-image: url(//yoo.qpic.cn/yoo_img/0/1f9dd9ac6bd031e049ec323f73d89d6a/0);
 		background-position: center;
 		background-size: 100% 100%;
 	}
@@ -277,6 +276,7 @@
 		bottom: v(60);
 		width: v(90);
 		height: v(67);
+		transform: translate3d(-100%, 0, 0);
 		>img{
 			display: block;
 			width: 100%;
@@ -288,6 +288,7 @@
 		top: v(158);
 		width: v(159);
 		height: v(44);
+		transform: translate3d(100%, 0, 0);
 		>img{
 			display: block;
 			width: 100%;
@@ -377,7 +378,7 @@
 		}
 	}
 	.slideleft{
-		animation: sildeLeft 1.3s;
+		animation: sildeLeft 1.3s both;
 	}
 	@keyframes sildeLeft{
 		from{
@@ -388,7 +389,7 @@
 		}
 	}
 	.slideright{
-		animation: sildeRight 1.3s;
+		animation: sildeRight 1.3s both;
 	}
 	@keyframes sildeRight{
 		from{
@@ -397,5 +398,17 @@
 		to{
 			transform: translate3d(0,0,0);
 		}
+	}
+	.delay1{
+		animation-delay: 0.8s;
+	}
+	.delay2{
+		animation-delay: 0.8s;
+	}
+	.delay3{
+		animation-delay: 1.3s;
+	}
+	.delay4{
+		animation-delay: 1.4s;
 	}
 </style>
