@@ -6,10 +6,10 @@
 				</mheader>
 				<div class="content">
 					<div class="cardBox">
-						<img src="../assets/images/resultCard.png" alt="">
+						<img src="//yoo.qpic.cn/yoo_img/0/65f633f347031e238f8e616a58a180d4/0" alt="">
 					</div>
 					<div class="vatar_box">
-						<img src="../assets/images/result_vatar.png" alt="">
+						<img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="">
 						<div class="user_vatar_box" :style="{'background-image':'url('+user_vatar+')'}">
 							<!-- <img :src="user_vatar" alt=""> -->
 						</div>
@@ -23,8 +23,8 @@
 						<p>本测试仅供娱乐</p>
 					</div>
 					<div class="btn_box">
-						<img @click="showImage" src="../assets/images/result_btn1.png">
-						<img @click="toDownload" src="../assets/images/result_btn2.png">
+						<img @click="showImage" src="//yoo.qpic.cn/yoo_img/0/c9ffec292d13f0c0e8896ccd8985a141/0">
+						<img @click="toDownload" src="//yoo.qpic.cn/yoo_img/0/a9e261b9e1346515362efdf8d8f6018b/0">
 					</div>
 				</div>
 				<leftTree class="left_tree"></leftTree>
@@ -42,10 +42,10 @@
 				</mheader>
 				<div class="content">
 					<div class="cardBox">
-						<img src="../assets/images/resultCard.png" alt="">
+						<img src="//yoo.qpic.cn/yoo_img/0/65f633f347031e238f8e616a58a180d4/0" alt="">
 					</div>
 					<div class="vatar_box">
-						<img src="../assets/images/result_vatar.png" alt="">
+						<img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="">
 						<div class="user_vatar_box" :style="{'background-image':'url('+user_vatar+')'}"> 
 						</div> 
 						<div class="grade">
