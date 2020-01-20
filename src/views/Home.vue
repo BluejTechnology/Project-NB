@@ -3,7 +3,11 @@
         <!-- <wb-share></wb-share> -->
         <mheader :getTitleUrl="titleUrl" :titleType="'home'">
             <!-- 208-184 -->
-            <img src="//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0" alt="" class="icon_angle" />
+            <img
+                src="//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0"
+                alt=""
+                class="icon_angle"
+            />
         </mheader>
         <div class="hcontent">
             <div class="window">
@@ -31,10 +35,16 @@
                 </div>
                 <left-tree class="slideleft"></left-tree>
                 <div class="l_cloud slideleft">
-                    <img src="//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0" alt="" />
+                    <img
+                        src="//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0"
+                        alt=""
+                    />
                 </div>
                 <div class="r_cloud slideright">
-                    <img src="//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0" alt="" />
+                    <img
+                        src="//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0"
+                        alt=""
+                    />
                 </div>
                 <right-tree class="slideright"></right-tree>
             </div>
@@ -49,13 +59,17 @@
                         <input type="file" ref="uploadpic" />
                     </label>
                 </div>
-                <span>{{upload_title}}</span>
+                <span>{{ upload_title }}</span>
             </div>
             <div class="loading_txt" v-show="isupload">
                 智能解析中……
             </div>
         </div>
-        <img src="//yoo.qpic.cn/yoo_img/0/ea417e4dab8e9f591c8d70ecd898b209/0" alt="cloud" class="bgCloud" />
+        <img
+            src="//yoo.qpic.cn/yoo_img/0/ea417e4dab8e9f591c8d70ecd898b209/0"
+            alt="cloud"
+            class="bgCloud"
+        />
         <div class="hlogo">
             <logo></logo>
         </div>
@@ -74,7 +88,7 @@ import axios from "axios";
 import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
 import tmpArr from "@/data/animation.json";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 const SUM = 18;
 export default {
     name: "home",
@@ -87,16 +101,17 @@ export default {
     },
     data() {
         return {
-            avatorUrl: '//yoo.qpic.cn/yoo_img/0/e5d43b13019d854effc1106c88f7a977/0',
+            avatorUrl:
+                "//yoo.qpic.cn/yoo_img/0/e5d43b13019d854effc1106c88f7a977/0",
             isupload: false
         };
     },
     created() {},
     computed: {
-		...mapState({
-			upload_title:(state)=>state.gameData.scene_title.upload_title,
-			titleUrl:(state)=>state.gameData.scene_title.home_title_url
-		})
+        ...mapState({
+            upload_title: state => state.gameData.scene_title.upload_title,
+            titleUrl: state => state.gameData.scene_title.home_title_url
+        })
     },
     mounted() {
         // 侦听input
@@ -104,7 +119,7 @@ export default {
 
         setTimeout(() => {
             tool.preload(tmpArr);
-        }, 2000);
+        }, 40000);
     },
     methods: {
         fileChange(e) {
@@ -217,24 +232,24 @@ export default {
 <style lang="scss">
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
-body{
-	background-color: #ad2893;
+body {
+    background-color: #ad2893;
 }
 #app {
     height: 100%;
     overflow: hidden;
 }
-	.web {
-		display: flex;
-		height: 100%;
-		flex-direction: column;
-		align-content: center;
-		justify-content: center;
-		background-repeat: no-repeat;
-		background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
-		background-position: center;
-		background-size: 100% 100%;
-	}
+.web {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
+    background-position: center;
+    background-size: 100% 100%;
+}
 
 .hcontent {
     position: relative;
