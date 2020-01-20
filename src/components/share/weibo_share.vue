@@ -75,7 +75,7 @@
 		height: 100%;
 		background-repeat: no-repeat;
 		background-size: cover;
-		background-image: url(//yoo.qpic.cn/yoo_img/0/de4cf33d14fb6f5cb5153ed10bc0dea4/0);
+		background-image: url(//yoo.qpic.cn/yoo_img/0/cf197466706b87270938ff6f7ef3639d/0);
 		background-position: 50%;
 		transform: scale(0.6);
 	}

@@ -2,7 +2,7 @@
 	<div class="result_box">
 		<div class="result">
 			<div class="main">
-				<mheader class="header" :getTitleUrl="titleUrl">
+				<mheader class="header" :getTitleUrl="titleUrl" :titleType="'result'">
 				</mheader>
 				<div class="content">
 					<div class="cardBox">
@@ -44,7 +44,7 @@
 		<!-- 下面是海报结构	 -->
 		<div class="result posterCanvas" ref='posterCanvas'>
 			<div class="main">
-				<mheader class="header" :getTitleUrl="titleUrl">
+				<mheader class="header" :getTitleUrl="titleUrl"  :titleType="'result'">
 				</mheader>
 				<div class="content">
 					<div class="cardBox">
@@ -118,14 +118,14 @@
 				return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
 			};
 			let type = this.$store.state.type;
-			let result = this.$store.state.result;
+			let result = this.$store.state.result.resID;
 			let uuid = getCookie('UUID');
 			window.console.log(type,result,uuid)
 			// 渲染二维码
 			QRCode.toCanvas(
 				this.$refs.qrCanvas,
-				`http://www.baidu.com?type=${type}&uuid=${uuid}&result=${result}`,
-				{ width: 115, height: 115 },
+				`https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`,
+				{ width: 200, height: 200 },
 				(error)=>{
 					if (error) window.console.error(error);
 					window.console.log("qr success!");
@@ -170,13 +170,10 @@
 			}
 		},
 		computed:{
-			titleUrl(){
-				return this.$store.state.gameData.scene_title.home_title_url;
-			},
 			...mapState({
-                // 使用自定义变量名
 				gradeData:(state)=>state.result.grade,
-				desData:(state)=>state.result.res_des
+				desData:(state)=>state.result.res_des,
+				titleUrl:(state)=>state.gameData.scene_title.res_title_url
             }),
 		}
 	}
