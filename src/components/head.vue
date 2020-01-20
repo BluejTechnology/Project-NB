@@ -1,20 +1,20 @@
 <template>
 	<div class="header">
-		<img src="../assets/images/title.png" alt="htitle" class="htitle">
+		<img :src="require('../assets/images'+getTitleUrl)" crossOrigin='anonymous' alt="htitle" class="htitle">
 		<slot></slot>
 	</div>
 </template>
 
 <script>
 export default {
+	props:['getTitleUrl'],
 	data(){
 		return {
-			titlePic:""
-		}
+		} 
 	},
 	created(){
-		// this.titlePic = this.$store.state;
-	}
+		// window.console.log("当前titleUrl",this.getTitleUrl) 
+	},
 }
 </script>
 

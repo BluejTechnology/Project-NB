@@ -2,7 +2,7 @@
 	<div class="web">
 		<!-- <bgm></bgm> -->
 		<!-- <wb-share></wb-share> -->
-		<mheader>
+		<mheader :getTitleUrl="titleUrl">
 			<!-- 208-184 -->
 			<img src="../assets/images/angle.png" alt="" class="icon_angle">
 		</mheader>
@@ -74,6 +74,11 @@
 		created(){
 			
 		},
+		computed:{
+			titleUrl(){
+				return this.$store.state.gameData.scene_title.home_title_url;
+			}
+		},
 		mounted(){
 			// 侦听input
 			this.$refs["uploadpic"].onchange = (e) => {
@@ -89,9 +94,15 @@
 						let res1 = await this.first_step(file.name)
 						let res2 = await this.second_step(res1.Sign,filecontent)
 						let res3 = await this.third_step(res1.CDNUrl)
-						// window.console.log(res1,res2,res3)
+						window.console.log(res1,res2,res3)
+						if(!res3.gender){
+							window.console.log("非人脸请重新上传")
+							// 非人脸重置数据
+							Object.assign(this.$data, this.$options.data())
+							return 
+						}
 						this.$router.push({name:'result'});
-						 window.console.log();
+						this.$store.commit("setResult",res3.gender);
 						 
 					}catch(e){
 						window.console.log('报错拉！',e.message)
