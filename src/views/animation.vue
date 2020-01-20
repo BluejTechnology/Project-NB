@@ -12,9 +12,12 @@
 
 <script>
 import tools from "../libs/utils";
+import "../libs/requestAnimationFrame";
 export default {
     data() {
         return {
+            timeStep: 5,
+            time: 0,
             curIndex: 0,
             imgArr: [
                 "https://yoo.qpic.cn/yoo_img/0/2136271d3843c1ec16e96f54ccb0fdd0/0",
@@ -78,9 +81,16 @@ export default {
         tools.preload(this.imgArr);
     },
     mounted() {
-        setInterval(() => {
-            this.curIndex < 49 ? this.curIndex++ : (this.curIndex = 0);
-        }, 66);
+        window.requestAnimationFrame(this.animation);
+    },
+    methods: {
+        animation() {
+            this.time < this.timeStep ? this.time++ : (this.time = 0);
+            if (this.time == this.timeStep) {
+                this.curIndex < 49 ? this.curIndex++ : (this.curIndex = 0);
+            }
+            window.requestAnimationFrame(this.animation);
+        }
     }
 };
 </script>
@@ -93,6 +103,7 @@ export default {
     position: absolute;
     left: 50%;
     transform: translatex(-50%);
+    z-index: 100;
     img {
         opacity: 0;
         width: v(720);
