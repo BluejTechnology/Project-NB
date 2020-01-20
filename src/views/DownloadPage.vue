@@ -2,8 +2,10 @@
 	<div class="downLoadPage">
 		<div class="main">
 			<div class="title">
-				<p>从欢遇APP的10000名优质异性嘉宾中</p>
-				<p>为你找到桃花运势相近的TA们！</p>
+				<p v-html="down_title1">
+					从欢遇APP的10000名优质异性嘉宾中<br>
+					为你找到桃花运势相近的TA们！
+				</p>
 			</div>
 			<div class="content">
 				<animation></animation>
@@ -23,9 +25,9 @@
 						</div>
 					</div>
 				</div>
-				<p class="des">下载欢遇APP，红娘帮你撮合和TA们的桃花缘！</p>
+				<p class="des" v-html="down_title2">下载欢遇APP，红娘帮你撮合和TA们的桃花缘！</p>
 				<div class="download_btn_box">
-					<a href="//cftweb.3g.qq.com/qqappstore/index"><img src="../assets/images/downloadBtn.png" alt=""></a>
+					<a :href="btn_url"><img src="../assets/images/downloadBtn.png" alt=""></a>
 				</div>
 			</div>
 		</div>
@@ -43,20 +45,39 @@
 <script>
 	// @ is an alias to /src
 	import animation from '@/views/animation.vue';
+	import { mapState } from "vuex";
 	export default {
 		data(){
 			return {
 				otherVatar:[],// 其他随机头像
-				user_avator:window.user_avator_data
+				user_avator:window.user_avator_data,
+				btn_url:""
 			}
-		},
+		},	
 		created(){
-			this.getOtherVatar()
+			this.getOtherVatar();
+			this.btn_url = this.getBtnUrl();
 		},
 		components: {
 			animation
 		},
+		computed:{
+			...mapState({
+				down_title1:(state)=>state.gameData.scene_title.down_title1,
+				down_title2:(state)=>state.gameData.scene_title.down_title2,
+			})
+		},
 		methods:{
+			//判断访问终端
+			getBtnUrl(){
+				var u = navigator.userAgent,
+					isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1,
+					isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+				//三元运算
+				let andUrl = "http://a.app.qq.com/o/simple.jsp?pkgname=com.demeter.eggplant&ckey=CK1448971972105";
+				let iosUrl = "https://wj.qq.com/s2/5276144/2329/";
+				return isAndroid?andUrl:iosUrl
+			},
 			getOtherVatar(){
 				// let mockData = [
 				// 	{url:require('../assets/images/test/test01.jpg')},
@@ -142,14 +163,11 @@
         z-index: 2;
         .title {
             text-align: center;
-            font-size: 12px;
             letter-spacing: 1px;
-            line-height: 12px;
             padding: v(40) 0 v(11) 0;
             p {
-                &:first-child {
-                    margin-bottom: v(22);
-                }
+				font-size: V(24);
+				line-height:v(46);
             }
         }
         .content {
@@ -177,7 +195,8 @@
             }
             .des {
                 position: absolute;
-                bottom: v(219);
+                // bottom: v(219);
+				bottom: v(193);
                 font-size: v(25);
                 text-align: center;
                 width: 100%;
