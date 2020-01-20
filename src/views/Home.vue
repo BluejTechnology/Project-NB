@@ -3,7 +3,7 @@
         <!-- <wb-share></wb-share> -->
         <mheader :getTitleUrl="titleUrl">
             <!-- 208-184 -->
-            <img src="//yoo.qpic.cn/yoo_img/0/4a76508b31bc74db0ed05cc2165ead87/0" alt="" class="icon_angle" />
+            <img src="//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0" alt="" class="icon_angle" />
         </mheader>
         <div class="hcontent">
             <div class="window">
@@ -16,22 +16,22 @@
                         }"
                     ></div>
                     <img
-                        src="//yoo.qpic.cn/yoo_img/0/5106a2354b5e1c6973ce4edd712507b3/0"
+                        src="//yoo.qpic.cn/yoo_img/0/107d8e774cb64aa489a7bb5fd4a53d6b/0"
                         alt=""
                         class="scan_icon ani_scan"
                     />
                     <img
-                        src="//yoo.qpic.cn/yoo_img/0/9ab933ca5cfe491cd849d7e18dd59347/0"
+                        src="//yoo.qpic.cn/yoo_img/0/aac53124453f9fded50b2004e4b2903d/0"
                         alt=""
                         class="scan_border"
                     />
                 </div>
                 <left-tree class="slideleft"></left-tree>
                 <div class="l_cloud slideleft">
-                    <img src="//yoo.qpic.cn/yoo_img/0/89a4c07940a508bcba2f02d43341e217/0" alt="" />
+                    <img src="//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0" alt="" />
                 </div>
                 <div class="r_cloud slideright">
-                    <img src="//yoo.qpic.cn/yoo_img/0/b1f263b446d715fc269c334d11837fa0/0" alt="" />
+                    <img src="//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0" alt="" />
                 </div>
                 <right-tree class="slideright"></right-tree>
             </div>
@@ -52,7 +52,7 @@
                 智能解析中……
             </div>
         </div>
-        <img src="//yoo.qpic.cn/yoo_img/0/8cb68ab2cfa39042fbb252b672b65941/0" alt="cloud" class="bgCloud" />
+        <img src="//yoo.qpic.cn/yoo_img/0/ea417e4dab8e9f591c8d70ecd898b209/0" alt="cloud" class="bgCloud" />
         <div class="hlogo">
             <logo></logo>
         </div>
@@ -83,7 +83,7 @@ export default {
     },
     data() {
         return {
-            avatorUrl: '//yoo.qpic.cn/yoo_img/0/0e9442b3f22021b636ce43a7400c9f0a/0',
+            avatorUrl: '//yoo.qpic.cn/yoo_img/0/e5d43b13019d854effc1106c88f7a977/0',
             isupload: false
         };
     },
@@ -225,7 +225,7 @@ body{
 		align-content: center;
 		justify-content: center;
 		background-repeat: no-repeat;
-		background-image: url(//yoo.qpic.cn/yoo_img/0/1f9dd9ac6bd031e049ec323f73d89d6a/0);
+		background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
 		background-position: center;
 		background-size: 100% 100%;
 	}

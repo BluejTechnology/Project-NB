@@ -1,6 +1,6 @@
 <template>
 	<div class="header">
-		<img :src="require('../assets/images'+getTitleUrl)" crossOrigin='anonymous' alt="htitle" class="htitle">
+		<img :src="getTitleUrl" crossOrigin='anonymous' alt="htitle" class="htitle">
 		<slot></slot>
 	</div>
 </template>
