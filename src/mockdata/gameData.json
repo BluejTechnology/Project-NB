@@ -1,103 +1,111 @@
 {
-	"avatarDate": {
-		"femalePicUrl": [
-			"http://img5.imgtn.bdimg.com/it/u=3095199558,2495602023&fm=26&gp=0.jpg",
-			"http://img0.imgtn.bdimg.com/it/u=1808742536,1500106222&fm=26&gp=0.jpg",
-			"http://img0.imgtn.bdimg.com/it/u=3293099503,606929711&fm=26&gp=0.jpg",
-			"http://img4.imgtn.bdimg.com/it/u=3010616495,3326443035&fm=26&gp=0.jpg",
-			"http://img2.imgtn.bdimg.com/it/u=1678115145,291755825&fm=11&gp=0.jpg",
-			"http://img3.imgtn.bdimg.com/it/u=3961132851,357242140&fm=11&gp=0.jpg",
-			"http://img2.imgtn.bdimg.com/it/u=2190106112,2961949114&fm=26&gp=0.jpg",
-			"http://img1.imgtn.bdimg.com/it/u=2054454227,1114685042&fm=26&gp=0.jpg",
-			"http://img4.imgtn.bdimg.com/it/u=356348526,1852070656&fm=26&gp=0.jpg",
-			"http://img4.imgtn.bdimg.com/it/u=2959482750,2022633608&fm=11&gp=0.jpg"
-		],
-		"malePicUrl": [
-			"http://img1.imgtn.bdimg.com/it/u=1284531878,4049357469&fm=11&gp=0.jpg",
-			"http://img0.imgtn.bdimg.com/it/u=1323177690,2474770482&fm=26&gp=0.jpg",
-			"http://img5.imgtn.bdimg.com/it/u=3406305879,1083129690&fm=11&gp=0.jpg",
-			"http://img0.imgtn.bdimg.com/it/u=3866717482,1913608878&fm=26&gp=0.jpg",
-			"http://img2.imgtn.bdimg.com/it/u=2790900036,2265170928&fm=26&gp=0.jpg
-		]
-	},
-	"resultData": {
-		"type1": {
-			"scene_title": {
-				"upload_title": "上传本人头像,获得新年桃花指数!",
-				"to_down_btn": "看看谁和我匹配!",
-				"down_title1:": "从欢遇APP的10000名优质嘉宾中为你挑选桃花运势相近的人",
-				"down_title2": "下载欢遇APP,红娘帮你撮合TA们的桃花缘!"
-			},
-			"girl": [{
-					"grade": 999,
-					"res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
-					"resID": "1"
-				},
-				{
-					"grade": 999,
-					"res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
-					"resID": "25"
-				}
-			],
-			"boy": [{
-					"grade": 999,
-					"res_des": "文案2",
-					"resID": "26"
-				},
-				{
-					"grade": 999,
-					"res_des": "文案2",
-					"resID": "50"
-				}
-			]
-		},
-		"type2": {
-			"scene_title": {
-				"upload_title": "上传本人头像,获得新年桃花指数!",
-				"to_down_btn": "看看谁和我匹配!",
-				"down_title1:": "从欢遇APP的10000名优质嘉宾中为你挑选桃花运势相近的人",
-				"down_title2": "下载欢遇APP,红娘帮你撮合TA们的桃花缘!"
-			},
-			"girl": [{
-					"grade": 999,
-					"res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
-					"resID": "2-1"
-				},
-				{
-					"grade": 999,
-					"res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
-					"resID": "2-2"
-				}
-			],
-			"boy": [{
-				"grade": 999,
-				"res_des": "文案2",
-				"resID": "2-3"
-			}]
-		},
-		"type3": {
-			"scene_title": {
-				"upload_title": "上传本人头像,获得新年桃花指数!",
-				"to_down_btn": "看看谁和我匹配!",
-				"down_title1:": "从欢遇APP的10000名优质嘉宾中为你挑选桃花运势相近的人",
-				"down_title2": "下载欢遇APP,红娘帮你撮合TA们的桃花缘!"
-			},
-			"girl": [{
-					"grade": 999,
-					"res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
-					"resID": "3-1"
-				},
-				{
-					"grade": 999,
-					"res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
-					"resID": "3-2"
-				}
-			],
-			"boy": [{
-				"grade": 999,
-				"res_des": "文案2",
-				"resID": "3-3"
-			}]
-		}
-	}
+    "avatarDate": {
+        "femalePicUrl": [
+            "http://img5.imgtn.bdimg.com/it/u=3095199558,2495602023&fm=26&gp=0.jpg",
+            "http://img0.imgtn.bdimg.com/it/u=1808742536,1500106222&fm=26&gp=0.jpg",
+            "http://img0.imgtn.bdimg.com/it/u=3293099503,606929711&fm=26&gp=0.jpg",
+            "http://img4.imgtn.bdimg.com/it/u=3010616495,3326443035&fm=26&gp=0.jpg",
+            "http://img2.imgtn.bdimg.com/it/u=1678115145,291755825&fm=11&gp=0.jpg",
+            "http://img3.imgtn.bdimg.com/it/u=3961132851,357242140&fm=11&gp=0.jpg",
+            "http://img2.imgtn.bdimg.com/it/u=2190106112,2961949114&fm=26&gp=0.jpg",
+            "http://img1.imgtn.bdimg.com/it/u=2054454227,1114685042&fm=26&gp=0.jpg",
+            "http://img4.imgtn.bdimg.com/it/u=356348526,1852070656&fm=26&gp=0.jpg",
+            "http://img4.imgtn.bdimg.com/it/u=2959482750,2022633608&fm=11&gp=0.jpg"
+        ],
+        "malePicUrl": [
+            "http://img1.imgtn.bdimg.com/it/u=1284531878,4049357469&fm=11&gp=0.jpg",
+            "http://img0.imgtn.bdimg.com/it/u=1323177690,2474770482&fm=26&gp=0.jpg",
+            "http://img5.imgtn.bdimg.com/it/u=3406305879,1083129690&fm=11&gp=0.jpg",
+            "http://img0.imgtn.bdimg.com/it/u=3866717482,1913608878&fm=26&gp=0.jpg",
+            "http://img2.imgtn.bdimg.com/it/u=2790900036,2265170928&fm=26&gp=0.jpg"
+        ]
+    },
+    "resultData": {
+        "type1": {
+            "scene_title": {
+                "upload_title": "上传本人头像,获得新年桃花指数!",
+                "to_down_btn": "看看谁和我匹配!",
+                "down_title1:": "从欢遇APP的10000名优质嘉宾中为你挑选桃花运势相近的人",
+                "down_title2": "下载欢遇APP,红娘帮你撮合TA们的桃花缘!"
+            },
+            "girl": [
+                {
+                    "grade": 999,
+                    "res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
+                    "resID": "1"
+                },
+                {
+                    "grade": 999,
+                    "res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
+                    "resID": "25"
+                }
+            ],
+            "boy": [
+                {
+                    "grade": 999,
+                    "res_des": "文案2",
+                    "resID": "26"
+                },
+                {
+                    "grade": 999,
+                    "res_des": "文案2",
+                    "resID": "50"
+                }
+            ]
+        },
+        "type2": {
+            "scene_title": {
+                "upload_title": "上传本人头像,获得新年桃花指数!",
+                "to_down_btn": "看看谁和我匹配!",
+                "down_title1:": "从欢遇APP的10000名优质嘉宾中为你挑选桃花运势相近的人",
+                "down_title2": "下载欢遇APP,红娘帮你撮合TA们的桃花缘!"
+            },
+            "girl": [
+                {
+                    "grade": 999,
+                    "res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
+                    "resID": "2-1"
+                },
+                {
+                    "grade": 999,
+                    "res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
+                    "resID": "2-2"
+                }
+            ],
+            "boy": [
+                {
+                    "grade": 999,
+                    "res_des": "文案2",
+                    "resID": "2-3"
+                }
+            ]
+        },
+        "type3": {
+            "scene_title": {
+                "upload_title": "上传本人头像,获得新年桃花指数!",
+                "to_down_btn": "看看谁和我匹配!",
+                "down_title1:": "从欢遇APP的10000名优质嘉宾中为你挑选桃花运势相近的人",
+                "down_title2": "下载欢遇APP,红娘帮你撮合TA们的桃花缘!"
+            },
+            "girl": [
+                {
+                    "grade": 999,
+                    "res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
+                    "resID": "3-1"
+                },
+                {
+                    "grade": 999,
+                    "res_des": "新年一定<i>发财</i><br>鼠钱鼠到<i>手软</i>",
+                    "resID": "3-2"
+                }
+            ],
+            "boy": [
+                {
+                    "grade": 999,
+                    "res_des": "文案2",
+                    "resID": "3-3"
+                }
+            ]
+        }
+    }
 }

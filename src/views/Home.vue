@@ -1,6 +1,5 @@
 <template>
 	<div class="web">
-		<!-- <bgm></bgm> -->
 		<!-- <wb-share></wb-share> -->
 		<mheader :getTitleUrl="titleUrl">
 			<!-- 208-184 -->
@@ -16,14 +15,14 @@
 					<img src="../assets/images/scan_icon.png" alt="" class="scan_icon ani_scan">
 					<img src="../assets/images/scan_border.png" alt="" class="scan_border">
 				</div>
-				<left-tree></left-tree>
-				<div class="l_cloud">
+				<left-tree class="slideleft"></left-tree>
+				<div class="l_cloud slideleft">
 					<img src="../assets/images/left_cloud_02.png" alt="">
 				</div>
-				<div class="r_cloud">
+				<div class="r_cloud slideright">
 					<img src="../assets/images/cloud01.png" alt="">
 				</div>
-				<right-tree></right-tree>
+				<right-tree class="slideright"></right-tree>
 			</div>
 			<div class="upload_wrapper" v-if="!isupload">
 				<div class="upload_btn">
@@ -56,6 +55,9 @@
 	import avatorUrl from '@/assets/images/default_avator.jpg';
 	import logo from '@/components/base/logo.vue';
 	import axios from "axios";
+	import tool from '@/libs/utils.js';
+	import gameData from '@/data/gameData.json';
+	const SUM = 18;
 	export default {
 		name: 'home',
 		components: {
@@ -72,7 +74,7 @@
 			}
 		},
 		created(){
-			
+			this.preloadAvator();
 		},
 		computed:{
 			titleUrl(){
@@ -153,6 +155,35 @@
 						}
 						return res.data
 				})
+			},
+			c_rand(sum){
+				let temp_arr=[];
+				let n=0;
+				while(temp_arr.length<sum){
+					n=parseInt(Math.random()*sum);
+					if(!temp_arr.includes(n)){
+						temp_arr.push(n)
+					}
+				}
+				return temp_arr;
+			},
+			preloadAvator(){
+				//固定几个随机数
+				let rand_mode=[4,8,9,10];
+				let rand_n = parseInt(Math.random()*rand_mode.length);
+				let male_num = rand_mode[rand_n];
+				let female_num = SUM-male_num;
+				//分别产生预加载数组
+				let female_arr = this.c_rand(female_num).map((ele)=>{
+					return gameData.avatarData.femalePicUrl[ele]
+				});
+				let male_arr = this.c_rand(male_num).map((ele)=>{
+					return gameData.avatarData.malePicUrl[ele]
+				});
+				tool.preload(male_arr);
+				tool.preload(female_arr);
+				window.femalePicUrl = female_arr;
+				window.malePicUrl = male_arr;
 			}
 		}
 	}
@@ -212,7 +243,7 @@
 		>.avator{
 			width: 100%;
 			height: 100%;
-			background-size:contain ;
+			background-size:cover ;
 			background-position: center;
 			background-repeat: no-repeat;
 			background-color: #730065;
@@ -356,5 +387,26 @@
 			opacity: 0.2;
 		}
 	}
-	
+	.slideleft{
+		animation: sildeLeft 1.3s;
+	}
+	@keyframes sildeLeft{
+		from{
+			transform: translate3d(-100%,0,0);
+		}
+		to{
+			transform: translate3d(0,0,0);
+		}
+	}
+	.slideright{
+		animation: sildeRight 1.3s;
+	}
+	@keyframes sildeRight{
+		from{
+			transform: translate3d(100%,0,0);
+		}
+		to{
+			transform: translate3d(0,0,0);
+		}
+	}
 </style>
