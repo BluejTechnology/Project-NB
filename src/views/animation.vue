@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import "../libs/requestAnimationFrame";
+import tickFactory from "../libs/requestAnimationFrame";
 import imgArr from "../data/animation.json";
 export default {
     data() {
@@ -24,15 +24,12 @@ export default {
     },
     created() {},
     mounted() {
-        window.requestAnimationFrame(this.animation);
+        const tick = tickFactory(10, this.animation);
+        tick();
     },
     methods: {
         animation() {
-            this.time < this.timeStep ? this.time++ : (this.time = 0);
-            if (this.time == this.timeStep) {
-                this.curIndex < 49 ? this.curIndex++ : (this.curIndex = 0);
-            }
-            window.requestAnimationFrame(this.animation);
+            this.curIndex < 49 ? this.curIndex++ : (this.curIndex = 0);
         }
     }
 };
