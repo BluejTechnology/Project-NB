@@ -2,16 +2,19 @@
 	<div class="result_box">
 		<div class="result">
 			<div class="main">
-				<mheader class="header">
+				<mheader class="header" :getTitleUrl="titleUrl">
 				</mheader>
 				<div class="content">
 					<div class="cardBox">
-						<img src="../assets/images/resultCard.png" alt="">
+						<img src="//yoo.qpic.cn/yoo_img/0/65f633f347031e238f8e616a58a180d4/0" alt="">
 					</div>
 					<div class="vatar_box">
-						<img src="../assets/images/result_vatar.png" alt="">
-						<div class="user_vatar_box">
-							<img :src="user_vatar" alt="">
+						<img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="">
+						<div class="user_vatar_box" :style="{'background-image':'url('+user_vatar+')'}">
+							<!-- <img :src="user_vatar" alt=""> -->
+						</div>
+						<div class="grade">
+							{{gradeData}}分
 						</div>
 						<div class="des" v-html="des">
 						</div>
@@ -20,8 +23,8 @@
 						<p>本测试仅供娱乐</p>
 					</div>
 					<div class="btn_box">
-						<img @click="showImage" src="../assets/images/result_btn1.png">
-						<img @click="toDownload" src="../assets/images/result_btn2.png">
+						<img @click="showImage" src="//yoo.qpic.cn/yoo_img/0/c9ffec292d13f0c0e8896ccd8985a141/0">
+						<img @click="toDownload" src="//yoo.qpic.cn/yoo_img/0/a9e261b9e1346515362efdf8d8f6018b/0">
 					</div>
 				</div>
 				<leftTree class="left_tree"></leftTree>
@@ -35,16 +38,19 @@
 		<!-- 下面是海报结构	 -->
 		<div class="result posterCanvas" ref='posterCanvas'>
 			<div class="main">
-				<mheader class="header"></mheader>
+				<mheader class="header" :getTitleUrl="titleUrl">
+				</mheader>
 				<div class="content">
 					<div class="cardBox">
-						<img src="../assets/images/resultCard.png" alt="">
+						<img src="//yoo.qpic.cn/yoo_img/0/65f633f347031e238f8e616a58a180d4/0" alt="">
 					</div>
 					<div class="vatar_box">
-						<img src="../assets/images/result_vatar.png" alt="">
-						<div class="user_vatar_box"> 
-							<img :src="user_vatar" alt="">
+						<img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="">
+						<div class="user_vatar_box" :style="{'background-image':'url('+user_vatar+')'}"> 
 						</div> 
+						<div class="grade">
+							{{gradeData}}分
+						</div>
 						<div class="des" v-html="des">
 						</div>
 					</div>
@@ -80,6 +86,7 @@
 	import rightTree from "@/components/base/right_tree.vue";
 	import QRCode from "qrcode"; // 引入qrcode
 	import html2canvas from 'html2canvas';
+	import { mapState } from 'vuex';
 	export default {
 		components: {
 			mheader,
@@ -104,9 +111,12 @@
 			})
 		},
 		mounted(){
+			function getCookie(sKey) {
+				return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+			};
 			let type = this.$store.state.type;
 			let result = this.$store.state.result;
-			let uuid = document.cookie.slice(5);
+			let uuid = getCookie('UUID');
 			window.console.log(type,result,uuid)
 			// 渲染二维码
 			QRCode.toCanvas(
@@ -131,7 +141,7 @@
 		methods:{
 			blobToBase64(blobUrl, callback) {
 				//获取图片的Blob值
-				this.axios({
+				this.$axios({
 					url:blobUrl,
 					responseType:"blob"
 				}).then(res=>{
@@ -155,6 +165,15 @@
 					this.outPoster = dataURL;
 				});
 			}
+		},
+		computed:{
+			titleUrl(){
+				return this.$store.state.gameData.scene_title.home_title_url;
+			},
+			...mapState({
+                // 使用自定义变量名
+                gradeData:(state)=>state.result.grade
+            }),
 		}
 	}
 </script>
@@ -205,6 +224,15 @@
 						top: v(30);
 						left: 50%;
 						transform: translateX(-50%);
+						.grade{
+							position:absolute;
+							font-size: v(44);
+							top: v(205);
+							left: 50%;
+							transform: translateX(-50%);
+							color:#ffffff;
+							font-weight: bold;
+						}
 						.des{
 							margin-top: v(-20);
 							text-align: center;
@@ -230,6 +258,9 @@
 							left:50%;
 							background-color:skyblue;
 							transform: translateX(-50%);
+							background-size: cover ;
+							background-position: center;
+							background-repeat: no-repeat;
 							img{
 								width: 100%;
 							}
@@ -255,14 +286,14 @@
 				.left_tree{
 					position: absolute;
 					left: 0;
-					bottom: v(509);
-					z-index:3;
+					bottom: v(450);
+					z-index:6;
 				}
 				.right_tree{
 					position: absolute;
 					right: 0;
 					bottom: v(438);
-					z-index:3;
+					z-index:6;
 				}
 				.bgCloud{
 					width: 100%;
@@ -332,7 +363,6 @@
 			width:100vw;
 			height:100vh;
 			z-index:99;
-			
 			display:flex;
 			justify-content:center;
 			align-items: center;

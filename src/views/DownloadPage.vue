@@ -8,10 +8,10 @@
 			<div class="content">
 				<animation></animation>
 				<div class="angle angle_left">
-					<img src="../assets/images/angle.png" alt="">
+					<img src="//yoo.qpic.cn/yoo_img/0/4a76508b31bc74db0ed05cc2165ead87/0" alt="">
 				</div>
 				<div class="angle angle_right">
-					<img src="../assets/images/angle.png" alt="">
+					<img src="//yoo.qpic.cn/yoo_img/0/4a76508b31bc74db0ed05cc2165ead87/0" alt="">
 				</div>
 				<div class="vatar_box">	
 					<div class="user_vatar" :style="{'background-image':'url('+user_avator+')'}">
@@ -155,7 +155,7 @@
         .content {
             height: v(903);
             margin: 0 auto;
-            background-image: url("../assets/images/content_bg.png");
+            background-image: url("//yoo.qpic.cn/yoo_img/0/0aaf65a4dada537ad528fd0eb86a74f5/0");
             background-size: 100%;
             background-repeat: no-repeat;
             position: relative;

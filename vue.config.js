@@ -1,3 +1,4 @@
+var path = require("path");
 module.exports = {
 	lintOnSave: false,
 	publicPath: process.env.NODE_ENV === "production" ? "./" : "/",
@@ -12,6 +13,13 @@ module.exports = {
 		https: false,
 		port: 80,
 		disableHostCheck: true
+	},
+	configureWebpack: {
+		resolve: {
+			alias: {
+				'@images': path.resolve(__dirname, './src/assets/images'),
+			}
+		}
 	},
 	// css: {
 	// 	loaderOptions: {
