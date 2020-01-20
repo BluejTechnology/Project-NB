@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import testApi from '../views/testApi.vue'
+import download from '../views/DownloadPage.vue'
+import resultPage from '../views/resultPage.vue'
 
 Vue.use(VueRouter)
 
@@ -13,20 +16,17 @@ const routes = [
   {
     path: '/testApi',
     name: 'testApi',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/testApi.vue')
+    component: testApi
   },
   {
     path: '/download',
     name: 'download',
-    component: () => import('../views/DownloadPage.vue')
+    component: download
   },
   {
     path: '/result',
     name: 'result',
-    component: () => import('../views/resultPage.vue')
+    component: resultPage
   }
 ]
 
