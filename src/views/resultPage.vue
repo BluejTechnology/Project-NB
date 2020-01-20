@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<!-- 下面是海报结构	 -->
-		<div class="result poster">
+		<!-- <div class="result poster">
 			<div class="main">
 				<mheader class="header">
 				</mheader>
@@ -49,9 +49,6 @@
 						<div class="des" v-html="des">
 						</div>
 					</div>
-					<div class="tip_box">
-						<p>本测试仅供娱乐</p>
-					</div>
 					<div class="qr_box">
 						<canvas ref="qrCanvas"></canvas>
 					</div>
@@ -64,7 +61,7 @@
 					<p>视频相亲&nbsp;欢乐相遇</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -101,8 +98,8 @@
 				`http://www.baidu.com?type=${type}&uuid=${uuid}&result=${result}`,
 				{ width: 115, height: 115 },
 				function(error) {
-				if (error) console.error(error);
-				console.log("success!");
+				if (error) window.console.error(error);
+				window.console.log("success!");
 				}
 			);
 		},
@@ -209,11 +206,13 @@
 					position: absolute;
 					left: 0;
 					bottom: v(509);
+					z-index:3;
 				}
 				.right_tree{
 					position: absolute;
 					right: 0;
 					bottom: v(438);
+					z-index:3;
 				}
 				.bgCloud{
 					width: 100%;
