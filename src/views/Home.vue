@@ -56,6 +56,9 @@
 	import avatorUrl from '@/assets/images/default_avator.jpg';
 	import logo from '@/components/base/logo.vue';
 	import axios from "axios";
+	import tool from '@/libs/utils.js';
+	import gameData from '@/data/gameData.json';
+	const SUM = 18;
 	export default {
 		name: 'home',
 		components: {
@@ -72,7 +75,21 @@
 			}
 		},
 		created(){
-			
+			let rand_mode=[4,8,9,10];
+			let rand_n = parseInt(Math.random()*rand_mode.length);
+			let male_num = rand_mode[rand_n];
+			let female_num = SUM-male_num;
+			//分别产生预加载数组
+			let female_arr = this.c_rand(female_num).map((ele)=>{
+				return gameData.avatarData.femalePicUrl[ele]
+			});
+			let male_arr = this.c_rand(male_num).map((ele)=>{
+				return gameData.avatarData.malePicUrl[ele]
+			});
+			tool.preload(male_arr);
+			tool.preload(female_arr);
+			window.femalePicUrl = female_arr;
+			window.malePicUrl = male_arr;
 		},
 		mounted(){
 			// 侦听input
@@ -91,7 +108,7 @@
 						let res3 = await this.third_step(res1.CDNUrl)
 						// window.console.log(res1,res2,res3)
 						this.$router.push({name:'result'});
-						 window.console.log();
+						window.console.log();
 						 
 					}catch(e){
 						window.console.log('报错拉！',e.message)
@@ -142,6 +159,17 @@
 						}
 						return res.data
 				})
+			},
+			c_rand(sum){
+				let temp_arr=[];
+				let n=0;
+				while(temp_arr.length<sum){
+					n=parseInt(Math.random()*sum);
+					if(!temp_arr.includes(n)){
+						temp_arr.push(n)
+					}
+				}
+				return temp_arr;
 			}
 		}
 	}

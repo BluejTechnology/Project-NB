@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 let gameData = {
-    "avatarDate":{
+    "avatarData":{
         "femalePicUrl":[
             "xxxxx",
             "xxxxx"

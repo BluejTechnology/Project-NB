@@ -18,7 +18,7 @@
 					</div>
 					<div class="random_vatar">
 						<div v-for="(item,index) in otherVatar" class="randomVatar" :key="index">
-							<img :src='item.url' alt="">
+							<img :src="item" alt="">
 						</div>
 					</div>
 				</div>
@@ -55,29 +55,29 @@
 		},
 		methods:{
 			getOtherVatar(){
-				let mockData = [
-					{url:require('../assets/images/test/test01.jpg')},
-					{url:require('../assets/images/test/test02.jpg')},
-					{url:require('../assets/images/test/test03.jpg')},
-					{url:require('../assets/images/test/test01.jpg')},
-					{url:require('../assets/images/test/test02.jpg')},
-					{url:require('../assets/images/test/test03.jpg')},
-					{url:require('../assets/images/test/test01.jpg')},
-					{url:require('../assets/images/test/test02.jpg')},
-					{url:require('../assets/images/test/test03.jpg')},
-					{url:require('../assets/images/test/test01.jpg')},
-					{url:require('../assets/images/test/test02.jpg')},
-					{url:require('../assets/images/test/test03.jpg')},
-					{url:require('../assets/images/test/test01.jpg')},
-					{url:require('../assets/images/test/test02.jpg')},
-					{url:require('../assets/images/test/test03.jpg')},
-					{url:require('../assets/images/test/test01.jpg')},
-					{url:require('../assets/images/test/test02.jpg')},
-					{url:require('../assets/images/test/test03.jpg')},
-				];
+				// let mockData = [
+				// 	{url:require('../assets/images/test/test01.jpg')},
+				// 	{url:require('../assets/images/test/test02.jpg')},
+				// 	{url:require('../assets/images/test/test03.jpg')},
+				// 	{url:require('../assets/images/test/test01.jpg')},
+				// 	{url:require('../assets/images/test/test02.jpg')},
+				// 	{url:require('../assets/images/test/test03.jpg')},
+				// 	{url:require('../assets/images/test/test01.jpg')},
+				// 	{url:require('../assets/images/test/test02.jpg')},
+				// 	{url:require('../assets/images/test/test03.jpg')},
+				// 	{url:require('../assets/images/test/test01.jpg')},
+				// 	{url:require('../assets/images/test/test02.jpg')},
+				// 	{url:require('../assets/images/test/test03.jpg')},
+				// 	{url:require('../assets/images/test/test01.jpg')},
+				// 	{url:require('../assets/images/test/test02.jpg')},
+				// 	{url:require('../assets/images/test/test03.jpg')},
+				// 	{url:require('../assets/images/test/test01.jpg')},
+				// 	{url:require('../assets/images/test/test02.jpg')},
+				// 	{url:require('../assets/images/test/test03.jpg')},
+				// ];
 				// 请求随机头像
-				this.otherVatar = mockData;
-				
+				// this.otherVatar = mockData;
+				this.otherVatar = window.femalePicUrl.concat(window.malePicUrl);
 			}
 		}
 	}
