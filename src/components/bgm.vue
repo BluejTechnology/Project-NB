@@ -30,6 +30,7 @@
 </script>
 
 <style lang="scss">
+	@import '~@/assets/scss/util';
 	.bgm_wrapper{
 		position: absolute;
 		top: v(150);

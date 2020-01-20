@@ -88,7 +88,7 @@
 		},
 		data(){
 			return {
-				user_vatar:this.$store.state.vatarCDN,
+				user_vatar:'',
 				des:null,
 				showPoster:false,
 				outPoster:''
@@ -97,6 +97,11 @@
 		created(){
 			// 获取本次游戏结果的描述:
 			this.des = '如果<i>美貌有罪</i><br>你会被关到一百岁<br>如果追你要排队<br>我宁愿今晚不睡!'
+			// window.console.log(window.user_avator_data)
+			// 传入头像临时地址,读取blob并转化为base64,回调内将结果写入user_vatar
+			this.blobToBase64(window.user_avator_data,(res)=>{
+				this.user_vatar = res;
+			})
 		},
 		mounted(){
 			let type = this.$store.state.type;
@@ -112,31 +117,50 @@
 					if (error) window.console.error(error);
 					window.console.log("qr success!");
 					// 二维码生成后生成海报
-					html2canvas(this.$refs.posterCanvas,{
-						backgroundColor: null
-					}).then((canvas) => {
-						let dataURL = canvas.toDataURL("image/png");
-						window.console.log(6666);
-						this.outPoster = dataURL;
-					});
+					// html2canvas(this.$refs.posterCanvas,{
+					// 	backgroundColor: null
+					// }).then((canvas) => {
+					// 	let dataURL = canvas.toDataURL("image/png");
+					// 	window.console.log(6666);
+					// 	this.outPoster = dataURL;
+					// });
 				}
 			);
 			
 		},
 		methods:{
+			blobToBase64(blobUrl, callback) {
+				//获取图片的Blob值
+				this.axios({
+					url:blobUrl,
+					responseType:"blob"
+				}).then(res=>{
+					let a = new FileReader();
+					a.onload = function (e) { callback(e.target.result); }
+					a.readAsDataURL(res.data);
+				});
+			},
 			toDownload(){
 				this.$router.push({name:"download"})
 			},
 			showImage() {
 				window.console.log("海报!出现吧!")
 				this.showPoster = true;
-				window.console.log(this.showPoster)
+				window.console.log(this.showPoster);
+				html2canvas(this.$refs.posterCanvas,{
+					backgroundColor: null
+				}).then((canvas) => {
+					let dataURL = canvas.toDataURL("image/png");
+					window.console.log(6666);
+					this.outPoster = dataURL;
+				});
 			}
 		}
 	}
 </script>
 <style lang="scss"> 
 	@import '~@/assets/css/reset.css';
+	@import '~@/assets/scss/util';
 	#app{
 		height: 100%;
 		overflow: hidden;
@@ -308,18 +332,19 @@
 			width:100vw;
 			height:100vh;
 			z-index:99;
-			background-color:rgba(0,0,0,0.6);
+			
 			display:flex;
 			justify-content:center;
 			align-items: center;
 			flex-wrap: wrap;
 			flex-direction: column;
+			background-color:rgba(0,0,0,0.32);
 			img{
-				border-radius: 8px;
-				width:85%;
-				box-shadow: 0 0 15px white;
+				width:92%;
+				z-index:9;
 			}
 			p{
+				z-index:9;
 				position:absolute;
 				bottom: v(40);
 				text-align: center;

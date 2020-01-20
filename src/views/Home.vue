@@ -76,19 +76,20 @@
 			this.$refs["uploadpic"].onchange = (e) => {
 				this.isupload = true;
 				let file = e.target.files[0];
-				this.avatorUrl = this.getObjectURL(file) ;
+				this.avatorUrl = this.getObjectURL(file);
+				window.user_avator_data = this.avatorUrl;
 				let reader = new FileReader();
 				reader.onload = async () => {
-					// this.avatorUrl = reader.result;
+					window.console.log(reader.result)
 					try{
 						let filecontent = reader.result;
 						let res1 = await this.first_step(file.name)
 						let res2 = await this.second_step(res1.Sign,filecontent)
 						let res3 = await this.third_step(res1.CDNUrl)
-						window.console.log(res1,res2,res3)
-						setTimeout(() => {
-							this.$router.push({name:'result'})
-						}, 3000);
+						// window.console.log(res1,res2,res3)
+						this.$router.push({name:'result'});
+						 window.console.log();
+						 
 					}catch(e){
 						window.console.log('报错拉！',e.message)
 					}
@@ -144,7 +145,7 @@
 </script>
 <style lang="scss">
 	@import '~@/assets/css/reset.css';
-	
+	@import '~@/assets/scss/util';
 	#app {
 		height: 100%;
 		overflow: hidden;

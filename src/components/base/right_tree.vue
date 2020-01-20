@@ -11,6 +11,7 @@
 </script>
 
 <style lang="scss">
+@import '~@/assets/scss/util';
 	.right_tree{
 		width: v(182);
 		height: v(190);

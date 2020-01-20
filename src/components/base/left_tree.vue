@@ -8,7 +8,7 @@
 </script>
 
 <style lang="scss">
-	
+	@import '~@/assets/scss/util';
 	.left_tree{
 		width: v(205);
 		height: v(324);

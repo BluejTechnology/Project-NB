@@ -9,6 +9,7 @@
 	}
 </script>
 <style lang="scss">
+@import '~@/assets/scss/util';
 .logo{
     width: v(164);
     img{

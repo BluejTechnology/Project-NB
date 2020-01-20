@@ -42,7 +42,6 @@
 <script>
 	// @ is an alias to /src
 	export default {
-		name: 'home',
 		data(){
 			return {
 				otherVatar:[],// 其他随机头像
@@ -85,6 +84,7 @@
 </script>
 <style lang="scss">
 	@import '~@/assets/css/reset.css';
+	@import '~@/assets/scss/util';
 	.downLoadPage{
 		display: flex;
 		height: 100%;
