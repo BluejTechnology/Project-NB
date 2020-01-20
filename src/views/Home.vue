@@ -115,6 +115,7 @@ export default {
                         Object.assign(this.$data, this.$options.data());
                         return;
                     }
+					this.preloadAvator();
                     this.$router.push({ name: "result" });
                     this.$store.commit("setResult", res3.gender);
                 } catch (e) {
@@ -125,7 +126,7 @@ export default {
         };
 
         setTimeout(() => {
-            this.preloadAvator();
+			tool.preload(tmpArr);
         }, 2000);
     },
     methods: {
@@ -200,7 +201,7 @@ export default {
             });
             tool.preload(male_arr);
             tool.preload(female_arr);
-            tool.preload(tmpArr);
+            
             window.femalePicUrl = female_arr;
             window.malePicUrl = male_arr;
         }
