@@ -38,9 +38,10 @@
 			</div>
 		</div>
 		<img src="../assets/images/bgCloud.png" alt="cloud" class="bgCloud">
-		<div class="logo">
-			<img src="../assets/images/logo.png" alt="欢遇logo">
+		<div class="hlogo">
+			<logo></logo>
 		</div>
+		
 	</div>
 </template>
 
@@ -51,13 +52,15 @@
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
 	import avatorUrl from '@/assets/images/default_avator.jpg';
+	import logo from '@/components/base/logo.vue';
 	export default {
 		name: 'home',
 		components: {
 			wbShare,
 			mheader,
 			leftTree,
-			rightTree
+			rightTree,
+			logo
 		},
 		data() {
 			return {
@@ -86,7 +89,7 @@
 </script>
 <style lang="scss">
 	@import '~@/assets/css/reset.css';
-
+	
 	#app {
 		height: 100%;
 		overflow: hidden;
@@ -241,18 +244,14 @@
 		left: 0;
 		width: 100%;
 	}
-	.logo {
+	.hlogo {
 		position: absolute;
 		width: 100%;
 		left: 0;
 		bottom: v(10);
-		text-align: center;
-
-		>img {
-			width: v(121);
-			height: v(49);
+		>.logo{
+			margin: 0 auto;
 		}
-
 	}
 	.ani_scan{
 		animation: ani_scan 2.5s infinite;

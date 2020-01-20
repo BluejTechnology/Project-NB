@@ -1,6 +1,6 @@
 <template>
     <div class="logo">
-        <img src="../assets/images/logo.png" alt="欢遇logo">
+        <img src="@/assets/images/logo.png" alt="欢遇logo">
     </div>
 </template>
 <script>
