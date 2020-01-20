@@ -77,10 +77,6 @@ export default {
             let result2 = await that.uploadImg(result1);
             let result3 = await that.imgVerify(result2);
 
-            // that.getUploadUrl()
-            //   .then(data=>{that.uploadImg(data)})
-            //   .then(data=>{that.imgVerify()})
-            //   .catch(err=>{window.console.log("图片上传错误",err)})
     //   --------------------------
 
         };

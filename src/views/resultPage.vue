@@ -20,7 +20,7 @@
 						<p>本测试仅供娱乐</p>
 					</div>
 					<div class="btn_box">
-						<img src="../assets/images/result_btn1.png">
+						<img @click="showImage" src="../assets/images/result_btn1.png">
 						<img @click="toDownload" src="../assets/images/result_btn2.png">
 					</div>
 				</div>
@@ -33,10 +33,9 @@
 			</div>
 		</div>
 		<!-- 下面是海报结构	 -->
-		<!-- <div class="result poster">
+		<div class="result posterCanvas" ref='posterCanvas'>
 			<div class="main">
-				<mheader class="header">
-				</mheader>
+				<mheader class="header"></mheader>
 				<div class="content">
 					<div class="cardBox">
 						<img src="../assets/images/resultCard.png" alt="">
@@ -52,6 +51,10 @@
 					<div class="qr_box">
 						<canvas ref="qrCanvas"></canvas>
 					</div>
+					<div class="tip">
+						长按设别二维码<br>
+						测测你的桃花运
+					</div>
 				</div>
 				<leftTree class="left_tree"></leftTree>
 				<rightTree class="right_tree"></rightTree>
@@ -61,7 +64,12 @@
 					<p>视频相亲&nbsp;欢乐相遇</p>
 				</div>
 			</div>
-		</div> -->
+		</div>
+		<!-- 下面是展示海报用 -->
+		<div class="poster" v-if="showPoster" @click.self="showPoster=false">
+			<img :src="outPoster" alt="">
+			<p @click.self="showPoster=false">长按保存图片分享</p>
+		</div>
 	</div>
 </template>
 
@@ -71,6 +79,7 @@
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
 	import QRCode from "qrcode"; // 引入qrcode
+	import html2canvas from 'html2canvas';
 	export default {
 		components: {
 			mheader,
@@ -80,7 +89,9 @@
 		data(){
 			return {
 				user_vatar:this.$store.state.vatarCDN,
-				des:null
+				des:null,
+				showPoster:false,
+				outPoster:''
 			}
 		}, 
 		created(){
@@ -97,15 +108,29 @@
 				this.$refs.qrCanvas,
 				`http://www.baidu.com?type=${type}&uuid=${uuid}&result=${result}`,
 				{ width: 115, height: 115 },
-				function(error) {
-				if (error) window.console.error(error);
-				window.console.log("success!");
+				(error)=>{
+					if (error) window.console.error(error);
+					window.console.log("qr success!");
+					// 二维码生成后生成海报
+					html2canvas(this.$refs.posterCanvas,{
+						backgroundColor: null
+					}).then((canvas) => {
+						let dataURL = canvas.toDataURL("image/png");
+						window.console.log(6666);
+						this.outPoster = dataURL;
+					});
 				}
 			);
+			
 		},
 		methods:{
 			toDownload(){
 				this.$router.push({name:"download"})
+			},
+			showImage() {
+				window.console.log("海报!出现吧!")
+				this.showPoster = true;
+				window.console.log(this.showPoster)
 			}
 		}
 	}
@@ -134,6 +159,7 @@
 			position: absolute;
 			top:0;
 			left:0;
+			z-index:9;
 			.main{
 				.header{
 					z-index: 3;
@@ -233,28 +259,73 @@
 				}
 			}
 		}
-		.poster{
+		.posterCanvas{
 			height:v(1200);
-			background:skyblue;
-			z-index:9;
+			z-index:3;
+			.tip{
+				color:white;
+				margin-top: v(13);
+				text-align: center;
+				font-size: v(19);
+				line-height: v(38);
+			}
 			.qr_box{
 				text-align: center;
-				margin-top: v(18);
-
+				margin: v(18) auto 0 auto;
+				width: v(115);
+				height: v(115);
+				canvas{
+					width: 100% !important;
+					height: 100% !important;
+				}
 			}
 			.main{
 				.logo{
-					left : v(23);
-					width: auto;
-					font-size:v(16);
+					position:absolute;
+					left : v(24);
+					bottom: v(48);
 					color: #ffff;
-					width: v(164) !important;
-					letter-spacing: v(3);
+					width: v(166) !important;
+					font-size: 0;
 					img{
 						width: 100%;
 						height: auto !important;
 					}
+					p{
+						width:190%;
+						font-size:v(16);
+						letter-spacing: v(2);
+						position:absolute;
+						left: 50%;
+						bottom: v(-30);
+						transform:translate(-50%) scale(0.75);
+					}
 				}
+			}
+		}
+		.poster{
+			position:fixed;
+			width:100vw;
+			height:100vh;
+			z-index:99;
+			background-color:rgba(0,0,0,0.6);
+			display:flex;
+			justify-content:center;
+			align-items: center;
+			flex-wrap: wrap;
+			flex-direction: column;
+			img{
+				border-radius: 8px;
+				width:85%;
+				box-shadow: 0 0 15px white;
+			}
+			p{
+				position:absolute;
+				bottom: v(40);
+				text-align: center;
+				color: white;
+				width: 100%;
+				margin-top: v(50);
 			}
 		}
 	}
