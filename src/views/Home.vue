@@ -1,6 +1,7 @@
 <template>
 	<div class="web">
-		<wb-share></wb-share>
+		<bgm></bgm>
+		<!-- <wb-share></wb-share> -->
 		<mheader>
 			<!-- 208-184 -->
 			<img src="../assets/images/angle.png" alt="" class="icon_angle">
@@ -47,7 +48,8 @@
 
 <script>
 	// @ is an alias to /src
-	import wbShare from "@/components/share/weibo_share.vue"
+	// import wbShare from "@/components/share/weibo_share.vue";
+	import bgm from '@/components/bgm.vue';
 	import mheader from "@/components/head.vue";
 	import leftTree from "@/components/base/left_tree.vue";
 	import rightTree from "@/components/base/right_tree.vue";
@@ -56,7 +58,8 @@
 	export default {
 		name: 'home',
 		components: {
-			wbShare,
+			bgm,
+			// wbShare,
 			mheader,
 			leftTree,
 			rightTree,
@@ -79,6 +82,7 @@
 				reads.readAsDataURL(f);
 				reads.onload = function () {
 					that.avatorUrl= this.result;
+					that.isupload = true;
 					setTimeout(()=>{
 						that.$router.push({name:"result"})
 					},3000)

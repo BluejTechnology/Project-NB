@@ -29,10 +29,10 @@
 				isShowMask: false,
 
 				baseUrl: "https://service.weibo.com/share/share.php",
-				url: 'http://randyho.gitee.io/dingsou1/' || location.href,
+				url:location.href,
 				title: '从欢遇APP的10000名优质异性嘉宾中,为你找到桃花运势相近的TA们！',
 				pic: "https://www.29663.com/uploadfile/2019/1219/20191219111236627.jpg",
-				appkey: '1477041152',
+				appkey: '',
 				count: ''
 			}
 		},
@@ -109,7 +109,7 @@
 
 		>img {
 			display: block;
-			width: v(120);
+			width: v(80);
 			margin: 0 auto;
 		}
 	}

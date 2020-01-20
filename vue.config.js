@@ -2,21 +2,14 @@ module.exports = {
 	publicPath: process.env.NODE_ENV === "production" ? "./" : "/",
 	devServer: {
 		// host:'qzi.html5.qq.com',
-		proxy: {
+        proxy: {
 			'/fcgi':{
 				target:'https://qzi.html5.qq.com',
-				ws: true,
 				changeOrigin: true,
-            },
-            '/active_cny':{
-				target:'https://mvp-1300522992.cos.ap-chengdu.myqcloud.com',
-				ws: true,
-                changeOrigin: true,
-                pathRewrite:{"/active_cny":''}
             }
         },
-        port:8080,
         https:false,
+        port:80,
         disableHostCheck: true
 	},
 	css:{
