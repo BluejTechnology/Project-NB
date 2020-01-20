@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import testApi from '../views/testApi.vue'
-import download from '../views/DownloadPage.vue'
-import resultPage from '../views/resultPage.vue'
 
 Vue.use(VueRouter)
 
@@ -16,22 +13,22 @@ const routes = [
   {
     path: '/testApi',
     name: 'testApi',
-    component: testApi
+    component: () => import('../views/testApi.vue')
   },
   {
     path: '/download',
     name: 'download',
-    component: download
+    component: () => import('../views/DownloadPage.vue')
   },
   {
     path: '/result',
     name: 'result',
-    component: resultPage
+    component: () => import('../views/resultPage.vue')
   }
 ]
 
 const router = new VueRouter({
-    routes
+  routes
 })
 
 export default router

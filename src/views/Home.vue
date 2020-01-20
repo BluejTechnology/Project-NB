@@ -13,7 +13,6 @@
 					<img :src="avatorUrl" alt="">
 					<img src="../assets/images/scan_icon.png" alt="" class="scan_icon ani_scan">
 					<img src="../assets/images/scan_border.png" alt="" class="scan_border">
-					
 				</div>
 				<left-tree></left-tree>
 				<div class="l_cloud">
@@ -75,41 +74,40 @@
 		mounted(){
 			// 侦听input
 			this.$refs["uploadpic"].onchange = (e) => {
+				this.isupload = true;
 				let file = e.target.files[0];
+				this.avatorUrl = this.getObjectURL(file) ;
 				let reader = new FileReader();
 				reader.onload = async () => {
+					// this.avatorUrl = reader.result;
 					try{
 						let filecontent = reader.result;
 						let res1 = await this.first_step(file.name)
 						let res2 = await this.second_step(res1.Sign,filecontent)
-						// let res3 = await this.third_step(res1.CDNUrl)
-						console.log(res1,res2)
-
+						let res3 = await this.third_step(res1.CDNUrl)
+						window.console.log(res1,res2,res3)
+						setTimeout(() => {
+							this.$router.push({name:'result'})
+						}, 3000);
 					}catch(e){
-						console.log('报错拉！',e.message)
+						window.console.log('报错拉！',e.message)
 					}
 				};
 				reader.readAsArrayBuffer(file);
 			};
 		},
 		methods: {
-			uploadAvator(e) {
-				this.uploadimage(e.target.files[0]);
-			},
-			// 上传image
-			uploadimage(f) {
-				let reads = new FileReader();
-				var that = this;
-				reads.readAsDataURL(f);
-				reads.onload = function () {
-					that.avatorUrl= this.result;
-					that.isupload = true;
-					setTimeout(()=>{
-						that.$router.push({name:"result"})
-					},3000)
-				};
-			},
-			// ------------------
+			getObjectURL(file){
+			    var url = null;
+				if(window.createObjectURL!=undefined){
+				      url = window.createObjectURL(file);
+				    }else if(window.URL!=undefined){
+				      url = window.URL.createObjectURL(file) ;
+				    }else if(window.webkitURL!=undefined){
+				      url = window.webkitURL.createObjectURL(file) ;
+				    }
+			    return url;
+			  },
 			async first_step(fileName){
 				return axios
 						.post("/fcgi/gwlogout/GetTencentCloudInfo", {
@@ -124,7 +122,7 @@
 			},
 			async second_step(url,filecontent){
 				return axios.put(url, filecontent).then(res => {
-					if (res.status !== 200 || !res.data) {
+					if (res.status !== 200 ) {
 						Promise.reject("请求第二步报错");
 					}
 					return res.data

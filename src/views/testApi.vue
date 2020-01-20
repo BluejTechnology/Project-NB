@@ -56,10 +56,10 @@ export default {
                     let res1 = await this.first_step(file.name)
                     let res2 = await this.second_step(res1.Sign,filecontent)
                     let res3 = await this.third_step(res1.CDNUrl)
-                    console.log(res1,res2,res3)
+                    window.console.log(res1,res2,res3)
 
                 }catch(e){
-                    console.log('报错拉！',e.message)
+                    window.console.log('报错拉！',e.message)
                 }
             };
             reader.readAsArrayBuffer(file);

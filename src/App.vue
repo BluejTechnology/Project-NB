@@ -4,8 +4,7 @@
   </div>
 </template>
 
-<style>
-
+<style lang="scss">
 </style>
 <script>
 	import axios from "axios";
