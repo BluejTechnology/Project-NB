@@ -7,16 +7,46 @@ import axios from 'axios'
 import * as Sentry from '@sentry/browser'
 import * as Integrations from '@sentry/integrations'
 process.env.isBuild && Sentry.init({
-    dsn: 'https://266aeebd126448cfb530211d02ff9825@report.url.cn/sentry/2163',
-    integrations: [new Integrations.Vue({ Vue, attachProps: true })],
-    logErrors: true,
-    release: `qzi`
+	dsn: 'https://266aeebd126448cfb530211d02ff9825@report.url.cn/sentry/2163',
+	integrations: [new Integrations.Vue({
+		Vue,
+		attachProps: true
+	})],
+	logErrors: true,
+	release: `qzi`
 })
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+	if (to.name == "result" || to.name == "download") {
+		var _event, uuid;
+		switch (to.name) {
+			case 'result':
+				_event = 'upload_time';
+				break;
+			case 'download':
+				_event = 'result_time';
+				break;
+		}
+		window.location.href.substring(window.location.href.lastIndexOf('?') + 1).split('&').forEach(function(val) {
+			(val.includes('uuid')) && (uuid = (val.split('='))[1]);
+		})
+		if (_event && uuid) {
+			window.MtaH5.clickStat(_event, {
+				'parameter': {
+					'uuid': uuid,
+					'time': (new Date()).getTime() - window.localStorage.getItem("start_time")
+				}
+			})
+		}
+	}
+	window.localStorage.setItem("start_time", (new Date()).getTime());
+	next();
+})
+
 new Vue({
-    router,
-    store,
-    render: h => h(App)
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app')

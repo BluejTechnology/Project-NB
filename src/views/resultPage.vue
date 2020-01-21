@@ -44,7 +44,7 @@
 		<!-- 下面是海报结构	 -->
 		<div class="result posterCanvas" ref='posterCanvas'>
 			<div class="main">
-				<mheader class="header" :getTitleUrl="titleUrl"  :titleType="'result'">
+				<mheader class="header" :getTitleUrl="titleUrl" :titleType="'result'">
 				</mheader>
 				<div class="content">
 					<div class="cardBox">
@@ -52,8 +52,8 @@
 					</div>
 					<div class="vatar_box">
 						<img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="">
-						<div class="user_vatar_box" :style="{'background-image':'url('+user_vatar+')'}"> 
-						</div> 
+						<div class="user_vatar_box" :style="{'background-image':'url('+user_vatar+')'}">
+						</div>
 						<div class="grade">
 							{{gradeData}}分
 						</div>
@@ -92,41 +92,46 @@
 	import rightTree from "@/components/base/right_tree.vue";
 	import QRCode from "qrcode"; // 引入qrcode
 	import html2canvas from 'html2canvas';
-	import { mapState } from 'vuex';
+	import {
+		mapState
+	} from 'vuex';
 	export default {
 		components: {
 			mheader,
 			leftTree,
 			rightTree
 		},
-		data(){
+		data() {
 			return {
-				user_vatar:'',
-				showPoster:false,
-				outPoster:''
+				user_vatar: '',
+				showPoster: false,
+				outPoster: ''
 			}
-		}, 
-		created(){
+		},
+		created() {
 			// window.console.log(window.user_avator_data)
 			// 传入头像临时地址,读取blob并转化为base64,回调内将结果写入user_vatar
-			this.blobToBase64(window.user_avator_data,(res)=>{
+			this.blobToBase64(window.user_avator_data, (res) => {
 				this.user_vatar = res;
 			})
 		},
-		mounted(){
+		mounted() {
 			function getCookie(sKey) {
-				return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+				return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(
+					/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
 			};
 			let type = this.$store.state.type;
 			let result = this.$store.state.result.resID;
 			let uuid = getCookie('UUID');
-			window.console.log(type,result,uuid)
+			window.console.log(type, result, uuid)
 			// 渲染二维码
 			QRCode.toCanvas(
 				this.$refs.qrCanvas,
-				`https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`,
-				{ width: 200, height: 200 },
-				(error)=>{
+				`https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`, {
+					width: 200,
+					height: 200
+				},
+				(error) => {
 					if (error) window.console.error(error);
 					window.console.log("qr success!");
 					// 二维码生成后生成海报
@@ -139,28 +144,41 @@
 					// });
 				}
 			);
-			
+
 		},
-		methods:{
+		methods: {
 			blobToBase64(blobUrl, callback) {
 				//获取图片的Blob值
 				this.$axios({
-					url:blobUrl,
-					responseType:"blob"
-				}).then(res=>{
+					url: blobUrl,
+					responseType: "blob"
+				}).then(res => {
 					let a = new FileReader();
-					a.onload = function (e) { callback(e.target.result); }
+					a.onload = function(e) {
+						callback(e.target.result);
+					}
 					a.readAsDataURL(res.data);
 				});
 			},
-			toDownload(){
-				this.$router.push({name:"download"})
+			toDownload() {
+				window.MtaH5.clickStat('result_matching_btn', {
+					'uuid': this.$route.query.uuid
+				})
+				window.MtaH5.clickStat('taohuayun', {
+					'resultmatchingbtn': 'true'
+				})
+				this.$router.push({
+					name: "download"
+				})
 			},
 			showImage() {
 				window.console.log("海报!出现吧!")
 				this.showPoster = true;
 				window.console.log(this.showPoster);
-				html2canvas(this.$refs.posterCanvas,{
+				window.MtaH5.clickStat('result_share_btn', {
+					'uuid': this.$route.query.uuid
+				})
+				html2canvas(this.$refs.posterCanvas, {
 					backgroundColor: null
 				}).then((canvas) => {
 					let dataURL = canvas.toDataURL("image/png");
@@ -169,234 +187,269 @@
 				});
 			}
 		},
-		computed:{
+		computed: {
 			...mapState({
-				gradeData:(state)=>state.result.grade,
-				desData:(state)=>state.result.res_des,
-				titleUrl:(state)=>state.gameData.scene_title.res_title_url
-            }),
+				gradeData: (state) => state.result.grade,
+				desData: (state) => state.result.res_des,
+				titleUrl: (state) => state.gameData.scene_title.res_title_url
+			}),
 		}
 	}
 </script>
-<style lang="scss"> 
+<style lang="scss">
 	@import '~@/assets/css/reset.css';
 	@import '~@/assets/scss/util';
-	#app{
+
+	#app {
 		height: 100%;
 		overflow: hidden;
 	}
-	.result_box{
-		height:100%;
-		position:relative;
+
+	.result_box {
+		height: 100%;
+		position: relative;
+
 		// 两个相似dom共用样式,海报在下面有修改
-		.result{
+		.result {
 			display: flex;
 			height: 100%;
-			width:100%;
+			width: 100%;
 			flex-direction: column;
 			align-content: center;
 			justify-content: center;
 			background-repeat: no-repeat;
 			background-image: url(../assets/images/bg.png);
 			background-position: center;
-			background-size:cover;
+			background-size: cover;
 			position: absolute;
-			top:0;
-			left:0;
-			z-index:9;
-			.main{
-				.header{
+			top: 0;
+			left: 0;
+			z-index: 9;
+
+			.main {
+				.header {
 					z-index: 3;
 				}
-				.content{
+
+				.content {
 					position: relative;
 					margin-top: v(-200);
 					z-index: 2;
-					.cardBox{
+
+					.cardBox {
 						width: v(507);
 						margin: 0 auto;
-						>img{
+
+						>img {
 							width: 100%;
 						}
 					}
-					.vatar_box{
-						width:v(260);
-						position:absolute;
+
+					.vatar_box {
+						width: v(260);
+						position: absolute;
 						top: v(30);
 						left: 50%;
 						transform: translateX(-50%);
-						.grade{
-							position:absolute;
+
+						.grade {
+							position: absolute;
 							font-size: v(44);
 							top: v(205);
 							left: 50%;
 							transform: translateX(-50%);
-							color:#ffffff;
+							color: #ffffff;
 							font-weight: bold;
 						}
-						.des{
+
+						.des {
 							margin-top: v(-20);
 							text-align: center;
 							font-size: v(30);
 							color: #ffffff;
 							line-height: v(63);
-							i{
+
+							i {
 								color: #f87bd1;
-								font-style:normal;
+								font-style: normal;
 							}
 						}
-						>img{
+
+						>img {
 							width: 100%;
-							transform: translateX( v(-1) );
+							transform: translateX(v(-1));
 						}
-						.user_vatar_box{
+
+						.user_vatar_box {
 							width: v(152);
 							height: v(152);
-							position:absolute;
+							position: absolute;
 							top: v(43);
 							overflow: hidden;
 							border-radius: 50%;
-							left:50%;
-							background-color:skyblue;
+							left: 50%;
+							background-color: skyblue;
 							transform: translateX(-50%);
-							background-size: cover ;
+							background-size: cover;
 							background-position: center;
 							background-repeat: no-repeat;
-							img{
+
+							img {
 								width: 100%;
 							}
 						}
 					}
-					.tip_box{
+
+					.tip_box {
 						position: absolute;
-						width:100%;
+						width: 100%;
 						top: v(610);
 						text-align: center;
 						font-size: v(24);
 						color: #71416e;
 					}
-					
-					.btn_box{
+
+					.btn_box {
 						width: v(500);
 						margin: v(10) auto 0 auto;
-						img{
-							width : 100%;
+
+						img {
+							width: 100%;
 						}
 					}
 				}
+
 				.cloud_l {
 					position: absolute;
 					top: v(920);
 					left: v(-80);
 					width: v(170);
 					z-index: 2;
+
 					img {
 						width: 100%;
 					}
 				}
+
 				.cloud_r {
 					position: absolute;
 					top: v(550);
 					right: v(-60);
 					width: v(160);
 					z-index: 2;
+
 					img {
 						width: 100%;
 					}
 				}
-				.left_tree{
+
+				.left_tree {
 					position: absolute;
 					left: 0;
 					bottom: v(450);
-					z-index:6;
+					z-index: 6;
 				}
-				.right_tree{
+
+				.right_tree {
 					position: absolute;
 					right: 0;
 					bottom: v(438);
-					z-index:6;
+					z-index: 6;
 				}
-				.bgCloud{
+
+				.bgCloud {
 					width: 100%;
 					position: absolute;
 					bottom: 0;
 				}
-				.logo{
+
+				.logo {
 					position: absolute;
 					width: 100%;
 					left: 0;
 					bottom: v(10);
 					text-align: center;
-					>img{
+
+					>img {
 						width: v(121);
 						height: v(49);
 					}
-					
+
 				}
 			}
 		}
-		.posterCanvas{
-			height:v(1200);
-			z-index:3;
-			.tip{
-				color:white;
+
+		.posterCanvas {
+			height: v(1200);
+			z-index: 3;
+
+			.tip {
+				color: white;
 				margin-top: v(13);
 				text-align: center;
 				font-size: v(19);
 				line-height: v(38);
 			}
-			.qr_box{
+
+			.qr_box {
 				text-align: center;
 				margin: v(18) auto 0 auto;
 				width: v(115);
 				height: v(115);
-				canvas{
+
+				canvas {
 					width: 100% !important;
 					height: 100% !important;
 				}
 			}
-			.main{
-				.logo{
-					position:absolute;
-					left : v(24);
+
+			.main {
+				.logo {
+					position: absolute;
+					left: v(24);
 					bottom: v(48);
 					color: #ffff;
 					width: v(166) !important;
 					font-size: 0;
-					img{
+
+					img {
 						width: 100%;
 						height: auto !important;
 					}
-					p{
-						width:190%;
-						font-size:v(16);
+
+					p {
+						width: 190%;
+						font-size: v(16);
 						letter-spacing: v(2);
-						position:absolute;
+						position: absolute;
 						left: 50%;
 						bottom: v(-30);
-						transform:translate(-50%) scale(0.75);
+						transform: translate(-50%) scale(0.75);
 					}
 				}
 			}
 		}
-		.poster{
-			position:fixed;
-			width:100vw;
-			height:100vh;
-			z-index:99;
-			display:flex;
-			justify-content:center;
+
+		.poster {
+			position: fixed;
+			width: 100vw;
+			height: 100vh;
+			z-index: 99;
+			display: flex;
+			justify-content: center;
 			align-items: center;
 			flex-wrap: wrap;
 			flex-direction: column;
-			background-color:rgba(0,0,0,0.32);
-			img{
-				width:92%;
-				z-index:9;
+			background-color: rgba(0, 0, 0, 0.32);
+
+			img {
+				width: 92%;
+				z-index: 9;
 			}
-			p{
-				z-index:9;
-				position:absolute;
+
+			p {
+				z-index: 9;
+				position: absolute;
 				bottom: v(40);
 				text-align: center;
 				color: white;
@@ -405,6 +458,4 @@
 			}
 		}
 	}
-	
-	
 </style>
