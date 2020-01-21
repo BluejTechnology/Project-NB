@@ -306,9 +306,9 @@ export default {
                         overflow: hidden;
                         background: pink;
                         position: absolute;
-                        opacity:0;
-                        animation : fly 1s 0.5s;
-                        animation-timing-function: cubic-bezier(0.25, 0.1, 0.64, 1.38);
+                        // opacity:0;
+                        // animation : fly 1s 0.5s;
+                        // animation-timing-function: cubic-bezier(0.25, 0.1, 0.64, 1.38);
                         img {
                             width: 100%;
                         }
