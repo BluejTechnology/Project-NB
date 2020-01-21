@@ -62,7 +62,7 @@ export default {
   created() {
 		let m_uid = this.$utils.getCookie("UUID");
 		window.MtaH5.clickStat('matching_view', {
-						'uuid': m_uid;
+						'uuid': m_uid
 					});
     this.getOtherVatar();
     this.btn_url = this.getBtnUrl();
