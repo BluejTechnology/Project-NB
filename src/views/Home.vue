@@ -56,7 +56,7 @@
                             src="//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0"
                             alt=""
                         />
-                        <input type="file" ref="uploadpic" />
+                        <input type="file" accept="image/*" ref="uploadpic" />
                     </label>
                 </div>
                 <span>{{ upload_title }}</span>
@@ -140,7 +140,7 @@ export default {
                     } else {
                         blob = ee.target.result;
                     }
-                    alert(blob);
+                    // alert(blob);
                     window.user_avator_data = blob;
                     let filecontent = reader.result;
                     let res1 = await this.first_step(file.name);

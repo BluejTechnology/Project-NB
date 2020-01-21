@@ -24,12 +24,12 @@ export default {
     },
     created() {},
     mounted() {
-        const tick = tickFactory(5, this.animation);
+        const tick = tickFactory(20, this.animation);
         tick();
     },
     methods: {
         animation() {
-            this.curIndex < 49 ? this.curIndex++ : (this.curIndex = 0);
+            this.curIndex < 99 ? this.curIndex++ : (this.curIndex = 0);
         }
     }
 };
