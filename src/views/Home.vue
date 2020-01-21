@@ -56,7 +56,12 @@
                             src="//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0"
                             alt
                         />
-                        <input type="file" accept="image/*" ref="uploadpic" />
+                        <input
+                            type="file"
+                            accept="image/*"
+                            ref="uploadpic"
+                            capture="camera"
+                        />
                     </label>
                 </div>
                 <span>{{ upload_title }}</span>
@@ -87,6 +92,8 @@ import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
 import tmpArr from "@/data/animation.json";
 import { mapState } from "vuex";
+import EXIF from "exif-js";
+import { isNeedFixPhoto, best4Photo } from "../libs/iphonePicture";
 const SUM = 18;
 export default {
     name: "home",
@@ -143,6 +150,7 @@ export default {
                 uploadbtn: "true"
             });
             let file = e.target.files[0];
+
             this.avatorUrl = this.getObjectURL(file);
             e.target.value = "";
             window.user_avator_data = this.avatorUrl;
