@@ -78,12 +78,15 @@
                             src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0"
                             alt=""
                         />
-                        <div
+                        <!-- <div
                             class="user_vatar_box"
                             :style="{
                                 'background-image': 'url(' + user_vatar + ')'
                             }"
-                        ></div>
+                        > -->
+                        <div class="user_vatar_box">
+                            <img :src="user_vatar" alt="" />
+                        </div>
                         <div class="grade">{{ gradeData }}分</div>
                         <div class="des" v-html="desData"></div>
                     </div>
@@ -143,6 +146,7 @@ export default {
         this.blobToBase64(window.user_avator_data, res => {
             this.user_vatar = res;
         });
+        // this.usrt_vatar = window.user_avator_data;
     },
     mounted() {
         function getCookie(sKey) {
@@ -191,16 +195,21 @@ export default {
     methods: {
         blobToBase64(blobUrl, callback) {
             //获取图片的Blob值
-            this.$axios({
-                url: blobUrl,
-                responseType: "blob"
-            }).then(res => {
-                let a = new FileReader();
-                a.onload = function(e) {
-                    callback(e.target.result);
-                };
-                a.readAsDataURL(res.data);
-            });
+            // this.$axios({
+            //     url: blobUrl,
+            //     responseType: "blob"
+            // }).then(res => {
+            let a = new FileReader();
+            a.onload = function(e) {
+                console.log("base64:", e.target.result);
+                let base64 = e.target.result.replace(
+                    "data:application/octet-stream;base64",
+                    "data:image/jpeg;base64"
+                );
+                callback(base64);
+            };
+            a.readAsDataURL(blobUrl);
+            // });
         },
         toDownload() {
             this.$router.push({
@@ -214,9 +223,12 @@ export default {
             html2canvas(this.$refs.posterCanvas, {
                 backgroundColor: null
             }).then(canvas => {
-                documentt.querySelector("audio").removeAttribute("autoplay");
-                let dataURL = canvas.toDataURL("image/png");
+                // document.querySelector("audio").removeAttribute("autoplay");
+                console.time("toCanvas");
+                let start = Date.now();
+                let dataURL = canvas.toDataURL("image/jpeg", 0.5);
                 window.console.log(6666);
+                alert(Date.now() - start);
                 this.outPoster = dataURL;
             });
         }

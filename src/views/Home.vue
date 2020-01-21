@@ -132,8 +132,16 @@ export default {
             e.target.value = "";
             window.user_avator_data = this.avatorUrl;
             let reader = new FileReader();
-            reader.onload = async () => {
+            reader.onload = async ee => {
                 try {
+                    let blob;
+                    if (typeof ee.target.result === "object") {
+                        blob = new Blob([ee.target.result]);
+                    } else {
+                        blob = ee.target.result;
+                    }
+                    alert(blob);
+                    window.user_avator_data = blob;
                     let filecontent = reader.result;
                     let res1 = await this.first_step(file.name);
                     let res2 = await this.second_step(res1.Sign, filecontent);
