@@ -106,7 +106,19 @@ export default {
             isupload: false
         };
     },
-    created() {},
+    created() {
+        var UAParser = require("ua-parser-js"),
+            parser = new UAParser();
+        window.MtaH5.clickStat("index_view", {
+            parameter: {
+                uuid: this.$route.query.uuid,
+                from: parser.getBrowser().name
+            }
+        }),
+            window.MtaH5.clickStat("taohuayun", {
+                indexview: "true"
+            });
+    },
     computed: {
         ...mapState({
             upload_title: state => state.gameData.scene_title.upload_title,
@@ -124,6 +136,12 @@ export default {
     methods: {
         fileChange(e) {
             this.isupload = true;
+            window.MtaH5.clickStat("upload_btn", {
+                uuid: this.$route.query.uuid
+            });
+            window.MtaH5.clickStat("taohuayun", {
+                uploadbtn: "true"
+            });
             let file = e.target.files[0];
             this.avatorUrl = this.getObjectURL(file);
             e.target.value = "";
@@ -143,7 +161,9 @@ export default {
                         return;
                     }
                     this.preloadAvator();
-                    this.$router.push({ name: "result" });
+                    this.$router.push({
+                        name: "result"
+                    });
                     this.$store.commit("setResult", res3.gender);
                 } catch (e) {
                     window.console.log("报错拉！", e.message);
@@ -232,13 +252,16 @@ export default {
 <style lang="scss">
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
+
 body {
     background-color: #ad2893;
 }
+
 #app {
     height: 100%;
     overflow: hidden;
 }
+
 .web {
     display: flex;
     height: 100%;
@@ -246,7 +269,7 @@ body {
     align-content: center;
     justify-content: center;
     background-repeat: no-repeat;
-    background-image: url(//yoo.qpic.cn/yoo_img/0/a0ecd480343a48d48ece8d5cf2329aaa/0);
+    background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
     background-position: center;
     background-size: 100% 100%;
 }
@@ -283,6 +306,7 @@ body {
         height: v(338);
         margin: 0 auto;
     }
+
     > .avator {
         width: 100%;
         height: 100%;
@@ -290,10 +314,12 @@ body {
         background-position: center;
         background-repeat: no-repeat;
         background-color: #730065;
+
         > img {
             width: 100%;
         }
     }
+
     > .scan_border {
         position: absolute;
         top: 0;
@@ -301,6 +327,7 @@ body {
         width: v(338);
         height: v(338);
     }
+
     .scan_icon {
         position: absolute;
         top: 120%;
@@ -319,11 +346,13 @@ body {
     height: v(184);
     z-index: 1;
 }
+
 .left_tree {
     position: absolute;
     left: 0;
     bottom: v(120);
 }
+
 .l_cloud {
     position: absolute;
     left: 0;
@@ -331,11 +360,13 @@ body {
     width: v(90);
     height: v(67);
     transform: translate3d(-100%, 0, 0);
+
     > img {
         display: block;
         width: 100%;
     }
 }
+
 .r_cloud {
     position: absolute;
     right: v(-60);
@@ -343,11 +374,13 @@ body {
     width: v(159);
     height: v(44);
     transform: translate3d(100%, 0, 0);
+
     > img {
         display: block;
         width: 100%;
     }
 }
+
 .right_tree {
     position: absolute;
     right: 0;
@@ -383,6 +416,7 @@ body {
         display: none;
     }
 }
+
 .loading_txt {
     position: absolute;
     bottom: 10vw;
@@ -392,75 +426,93 @@ body {
     font-size: v(25);
     color: #fff;
 }
+
 .bgCloud {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
 }
+
 .hlogo {
     position: absolute;
     width: 100%;
     left: 0;
     bottom: v(10);
+
     > .logo {
         margin: 0 auto;
     }
 }
+
 .ani_scan {
     animation: ani_scan 2.5s infinite;
 }
+
 @-webkit-keyframes ani_scan {
     from {
         top: 120%;
         opacity: 1;
     }
+
     to {
         top: -50%;
         opacity: 0.2;
     }
 }
+
 @keyframes ani_scan {
     from {
         top: 120%;
         opacity: 1;
     }
+
     to {
         top: -50%;
         opacity: 0.2;
     }
 }
+
 .slideleft {
     animation: sildeLeft 1.3s both;
 }
+
 @keyframes sildeLeft {
     from {
         transform: translate3d(-100%, 0, 0);
     }
+
     to {
         transform: translate3d(0, 0, 0);
     }
 }
+
 .slideright {
     animation: sildeRight 1.3s both;
 }
+
 @keyframes sildeRight {
     from {
         transform: translate3d(100%, 0, 0);
     }
+
     to {
         transform: translate3d(0, 0, 0);
     }
 }
+
 .delay1 {
     animation-delay: 0.8s;
 }
+
 .delay2 {
     animation-delay: 0.8s;
 }
+
 .delay3 {
     animation-delay: 1.3s;
 }
+
 .delay4 {
     animation-delay: 1.4s;
 }
