@@ -109,15 +109,6 @@ export default {
     created() {
         var UAParser = require("ua-parser-js"),
             parser = new UAParser();
-        window.MtaH5.clickStat("index_view", {
-            parameter: {
-                uuid: this.$route.query.uuid,
-                from: parser.getBrowser().name
-            }
-        }),
-            window.MtaH5.clickStat("taohuayun", {
-                indexview: "true"
-            });
     },
     computed: {
         ...mapState({
@@ -136,12 +127,6 @@ export default {
     methods: {
         fileChange(e) {
             this.isupload = true;
-            window.MtaH5.clickStat("upload_btn", {
-                uuid: this.$route.query.uuid
-            });
-            window.MtaH5.clickStat("taohuayun", {
-                uploadbtn: "true"
-            });
             let file = e.target.files[0];
             this.avatorUrl = this.getObjectURL(file);
             e.target.value = "";

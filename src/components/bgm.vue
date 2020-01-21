@@ -57,12 +57,12 @@ export default {
             if (isPlay && media.paused) {
                 media.play().catch(() => {
                     this.isPlay = false;
-                    window.console.log("不能自动播放");
-					// 修复微信/qq环境下,播放图标不同步问题
-					var ua = navigator.userAgent.toLowerCase();
-					if(window.mqq.device.isMobileQQ()|| ua.match(/MicroMessenger/i)=="micromessenger"){
-						this.isPlay = true;
-					}
+                    // window.console.log("不能自动播放");
+                    // // 修复微信/qq环境下,播放图标不同步问题
+                    // var ua = navigator.userAgent.toLowerCase();
+                    // if(window.mqq.device.isMobileQQ()|| ua.match(/MicroMessenger/i)=="micromessenger"){
+                    // 	this.isPlay = true;
+                    // }
                 });
             }
             if (!isPlay && !media.paused) {
@@ -79,15 +79,15 @@ export default {
         toggleIsPlay() {
             this.isPlay = !this.isPlay;
         },
-		createAudio(){
-			let au = document.createElement("audio");
-			au.src="//yoo.gtimg.com/huoguo/publisher/v/cb9b5be89299f0b1802ad0246557eed2.mp3";
-			au.preload="preload";
-			au.autoplay = 'autoplay'
-			au.loop = 'loop';
-			return au;
-		}
-		
+        createAudio() {
+            let au = document.createElement("audio");
+            au.src =
+                "//yoo.gtimg.com/huoguo/publisher/v/cb9b5be89299f0b1802ad0246557eed2.mp3";
+            au.preload = "preload";
+            au.autoplay = "autoplay";
+            au.loop = "loop";
+            return au;
+        }
     }
 };
 </script>
