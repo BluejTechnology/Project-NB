@@ -8,7 +8,7 @@ let gameData = {
         "type1": {
             "title": "测一测你的择偶倾向",
             "scene_title": {
-                "home_title_url": '//yoo.qpic.cn/yoo_img/0/1c5e210094cec4481a9e1d3f25e83410/0',
+                "home_title_url": '//yoo.qpic.cn/yoo_img/0/45a4917fc7d0503f9d17e8d65cf61c5a/0',
                 "res_title_url": '/type1_title.png',
                 "upload_title": "上传本人照片，测出你对另一半的标准！",
                 "to_down_btn": "看看适合的TA",
@@ -138,7 +138,7 @@ let gameData = {
         "type2": {
             "title": "测一测你的脱单时刻",
             "scene_title": {
-                "home_title_url": '//yoo.qpic.cn/yoo_img/0/3026c7f1211d85adc857eb0691159016/0',
+                "home_title_url": 'http://yoo.qpic.cn/yoo_img/0/8ef8729bdc6af0f90157c9543ca0eacc/0',
                 "res_title_url": '/type2_title.png',
                 "upload_title": "上传本人照片，看看新年会在什么情况下脱单？",
                 "to_down_btn": "看看同一天脱单的TA",
@@ -259,7 +259,7 @@ let gameData = {
         "type3": {
             "title": "测一测新年桃花运势",
             "scene_title": {
-                "home_title_url": '//yoo.qpic.cn/yoo_img/0/eb551a41fb609f41cdd01cd4cd7a21b4/0',
+                "home_title_url": '//yoo.qpic.cn/yoo_img/0/cdb7744f326970f670701c176b4b4062/0',
                 "res_title_url": '/type3_title.png',
                 "upload_title": "上传本人照片，看看新年桃花运势如何？",
                 "to_down_btn": "看看同运势的TA",

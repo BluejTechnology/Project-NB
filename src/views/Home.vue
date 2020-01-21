@@ -3,11 +3,11 @@
     <!-- <wb-share></wb-share> -->
     <mheader :getTitleUrl="titleUrl" :titleType="'home'">
       <!-- 208-184 -->
-      <img src="//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0" alt class="icon_angle" />
+      <img src="//yoo.qpic.cn/yoo_img/0/74f0881a5d2db3af7f8e67402055575b/0" alt class="icon_angle" />
     </mheader>
     <div class="hcontent">
       <div class="window">
-        <img src="//yoo.qpic.cn/yoo_img/0/9eaf17e96e7baae3d267123e3012c5a4/0" alt />
+        <img src="//yoo.qpic.cn/yoo_img/0/836bdf02c0dfa8f74be0cbf6c1b255ac/0" alt />
         <div class="avator_wrapper">
           <div
             class="avator"
@@ -16,22 +16,22 @@
                         }"
           ></div>
           <img
-            src="//yoo.qpic.cn/yoo_img/0/107d8e774cb64aa489a7bb5fd4a53d6b/0"
+            src="//yoo.qpic.cn/yoo_img/0/4f27b061cb9657423f09cdbcecfa2930/0"
             alt
             class="scan_icon ani_scan"
           />
           <img
-            src="//yoo.qpic.cn/yoo_img/0/aac53124453f9fded50b2004e4b2903d/0"
+            src="//yoo.qpic.cn/yoo_img/0/cc6f786affa29086fa4e094444a8933a/0"
             alt
             class="scan_border"
           />
         </div>
         <left-tree class="slideleft"></left-tree>
         <div class="l_cloud slideleft">
-          <img src="//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0" alt />
+          <img src="//yoo.qpic.cn/yoo_img/0/447648d7e7104b22bb3f156ebf619e5e/0" alt />
         </div>
         <div class="r_cloud slideright">
-          <img src="//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0" alt />
+          <img src="//yoo.qpic.cn/yoo_img/0/eb3f88ad958a247537fffb03ed8d73b3/0" alt />
         </div>
         <right-tree class="slideright"></right-tree>
       </div>
@@ -39,7 +39,7 @@
         <div class="upload_btn">
           <!-- 474-92 -->
           <label>
-            <img src="//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0" alt />
+            <img src="//yoo.qpic.cn/yoo_img/0/6c7662dcc98b5d3d0610cd8cf2fe3ade/0" alt />
             <input type="file" accept="image/*" ref="uploadpic" />
           </label>
         </div>
@@ -48,7 +48,7 @@
       <div class="loading_txt" v-show="isupload">智能解析中……</div>
     </div>
     <img
-      src="//yoo.qpic.cn/yoo_img/0/ea417e4dab8e9f591c8d70ecd898b209/0"
+      src="//yoo.qpic.cn/yoo_img/0/a597ee87638d5cfe0935471108754158/0"
       alt="cloud"
       class="bgCloud"
     />
@@ -73,9 +73,11 @@ import tmpArr from "@/data/animation.json";
 import { mapState } from "vuex";
 
 import tools from "../libs/iphonePicture";
+import updateshare from '@/mixin/shareData.js';
 const SUM = 18;
 export default {
   name: "home",
+  mixins:[updateshare],
   components: {
     // wbShare,
     mheader,
@@ -85,7 +87,7 @@ export default {
   },
   data() {
     return {
-      avatorUrl: "//yoo.qpic.cn/yoo_img/0/e5d43b13019d854effc1106c88f7a977/0",
+      avatorUrl: "//yoo.qpic.cn/yoo_img/0/3c954dbd539590df9b4c1114bb6a14b6/0",
       isupload: false
     };
   },
@@ -410,8 +412,9 @@ export default {
         ) || null
       );
     },
-    _initShare() {
+    async _initShare() {
       //初始化分享链接
+      await this.updateDesc();
       this._share();
     }
   }
@@ -433,7 +436,7 @@ export default {
   align-content: center;
   justify-content: center;
   background-repeat: no-repeat;
-  background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
+  background-image: url(//yoo.qpic.cn/yoo_img/0/1a59c7224297b470113b7fe2b5c86f8c/0);
   background-position: center;
   background-size: 100% 100%;
 }
