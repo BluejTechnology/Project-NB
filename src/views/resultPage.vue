@@ -24,14 +24,14 @@
             <p>本测试仅供娱乐</p>
           </div>
           <div class="btn_box">
-            <img
-              @click="showImage"
-              src="//yoo.qpic.cn/yoo_img/0/c9ffec292d13f0c0e8896ccd8985a141/0"
-            />
-            <img
-              @click="toDownload"
-              src="//yoo.qpic.cn/yoo_img/0/a9e261b9e1346515362efdf8d8f6018b/0"
-            />
+            <div class="btn_wrap" @click="showImage">
+                <img src="../assets/images/btn_base.png" alt="">
+                <p>保存图片发朋友圈</p>
+            </div>
+            <div class="btn_wrap" @click="toDownload">
+                <img src="../assets/images/btn_base.png" alt="">
+                <p>{{$store.state.gameData.scene_title.to_down_btn}}</p>
+            </div>
           </div>
         </div>
         <div class="cloud_l">
@@ -75,7 +75,7 @@
           </div>
           <div class="tip">
             长按设别二维码
-            <br />测测你的桃花运
+            <br />{{$store.state.gameData.scene_title.poster_title}}
           </div>
         </div>
         <leftTree class="left_tree"></leftTree>
@@ -257,10 +257,13 @@ export default {
 
         .cardBox {
           width: v(507);
+          padding-top: v(654);
           margin: 0 auto;
 
           > img {
-            width: 100%;
+            position: absolute;
+            top: v(0);
+            width: v(507);
           }
         }
 
@@ -273,9 +276,11 @@ export default {
 
           .grade {
             position: absolute;
-            font-size: v(44);
-            top: v(205);
+            font-size: v(32);
+            text-align: center;
+            top: v(220);
             left: 50%;
+            width: 100%;
             transform: translateX(-50%);
             color: #ffffff;
             font-weight: bold;
@@ -330,9 +335,21 @@ export default {
         .btn_box {
           width: v(500);
           margin: v(10) auto 0 auto;
+          .btn_wrap{
+            position:relative;
+            img {
+              width: 100%;
+            }
+            p{
+              position:absolute;
+              top:v(27);
+              width: 100%;
+              color: #ae037c;
+              font-size: v(35);
+              text-shadow: 0 v(5) v(4) #fbbd4c;
+              text-align: center;
+            }
 
-          img {
-            width: 100%;
           }
         }
       }
@@ -457,21 +474,20 @@ export default {
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.32);
+    background-color: rgba(0, 0, 0, 0.6);
 
     img {
-      width: 92%;
+      width: 85%;
       z-index: 9;
     }
 
     p {
       z-index: 9;
       position: absolute;
-      bottom: v(40);
+      bottom: v(65);
       text-align: center;
       color: white;
       width: 100%;
-      margin-top: v(50);
     }
   }
 }
