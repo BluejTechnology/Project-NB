@@ -409,7 +409,7 @@ export default {
     .posterCanvas {
         height: v(1200);
         z-index: 3;
-
+		left: 100%;
         .tip {
             color: white;
             margin-top: v(13);
