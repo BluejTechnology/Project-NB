@@ -137,11 +137,32 @@
         var desc = "从欢遇APP的10000名优质异性嘉宾中,为你找到桃花运势相近的TA们！";
         var src_iconUrl = "https://yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0"
 
+        function m_getCookie(sKey) {
+            return (
+                decodeURIComponent(
+                    document.cookie.replace(
+                        new RegExp(
+                            "(?:(?:^|.*;)\\s*" +
+                            encodeURIComponent(sKey).replace(
+                                /[-.+*]/g,
+                                "\\$&"
+                            ) +
+                            "\\s*\\=\\s*([^;]*).*$)|^.*$"
+                        ),
+                        "$1"
+                    )
+                ) || null
+            );
+        }
+
         _share();
         function _share() {
             if (mqq.device.isMobileQQ()) {
                 setTimeout(function () {
                     mqq.ui.setOnShareHandler(function (type) {
+                        MtaH5.clickStat('global_share', {
+                            'uuid': m_getCookie("UUID")
+                        });
                         mqq.ui.shareMessage(
                             {
                                 title: title,
@@ -166,6 +187,9 @@
             } else {
                 let wechat_url = share_url + '&adtag=wechatshare';
                 let onBridgeReady = function () {
+                    MtaH5.clickStat('global_share', {
+                        'uuid': m_getCookie("UUID")
+                    });
                     // 转发朋友圈
                     WeixinJSBridge.on('menu:share:timeline', function (e) {
                         let data = {
@@ -183,6 +207,9 @@
                     });
                     // 同步到微博
                     WeixinJSBridge.on('menu:share:weibo', function () {
+                        MtaH5.clickStat('global_share', {
+                            'uuid': m_getCookie("UUID")
+                        });
                         WeixinJSBridge.invoke(
                             'shareWeibo',
                             {
@@ -196,6 +223,9 @@
                     });
                     // 分享给朋友
                     WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                        MtaH5.clickStat('global_share', {
+                            'uuid': m_getCookie("UUID")
+                        });
                         WeixinJSBridge.invoke(
                             'sendAppMessage',
                             {
@@ -261,29 +291,32 @@
                 imgUrl: 'https://mat1.gtimg.com/www/mobi/2017/image/apple-touch-icon.png'
             }
         }, (data) => {
+            MtaH5.clickStat('global_share', {
+                'uuid': m_getCookie("UUID")
+            });
             console.log(data)
         }, (err) => {
             console.log('err', err);
         });
     </script>
     <script>
-			/**
-			 * MTA初始化
-			 */
-			var _mtac = {
-				"performanceMonitor": 1,
-				"senseQuery": 1
-			};
-			(function() {
-				var mta = document.createElement("script");
-				mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
-				mta.setAttribute("name", "MTAH5");
-				mta.setAttribute("sid", "500709813");
-				mta.setAttribute("cid", "500709816");
-				var s = document.getElementsByTagName("script")[0];
-				s.parentNode.insertBefore(mta, s);
-			})();
-		</script>
+        /**
+         * MTA初始化
+         */
+        var _mtac = {
+            "performanceMonitor": 1,
+            "senseQuery": 1
+        };
+        (function () {
+            var mta = document.createElement("script");
+            mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+            mta.setAttribute("name", "MTAH5");
+            mta.setAttribute("sid", "500709813");
+            mta.setAttribute("cid", "500709816");
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(mta, s);
+        })();
+    </script>
 
 </body>
 
