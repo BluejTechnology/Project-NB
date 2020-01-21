@@ -3,12 +3,16 @@
         <!-- <wb-share></wb-share> -->
         <mheader :getTitleUrl="titleUrl" :titleType="'home'">
             <!-- 208-184 -->
-            <img src="//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0" alt="" class="icon_angle" />
+            <img
+                src="//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0"
+                alt=""
+                class="icon_angle"
+            />
         </mheader>
         <div class="hcontent">
             <div class="window">
                 <img
-                    src="//yoo.qpic.cn/yoo_img/0/23faf06d6898a1e47cbab546880c5480/0"
+                    src="//yoo.qpic.cn/yoo_img/0/9eaf17e96e7baae3d267123e3012c5a4/0"
                     alt=""
                 />
                 <div class="avator_wrapper">
@@ -31,10 +35,16 @@
                 </div>
                 <left-tree class="slideleft"></left-tree>
                 <div class="l_cloud slideleft">
-                    <img src="//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0" alt="" />
+                    <img
+                        src="//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0"
+                        alt=""
+                    />
                 </div>
                 <div class="r_cloud slideright">
-                    <img src="//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0" alt="" />
+                    <img
+                        src="//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0"
+                        alt=""
+                    />
                 </div>
                 <right-tree class="slideright"></right-tree>
             </div>
@@ -49,13 +59,17 @@
                         <input type="file" ref="uploadpic" />
                     </label>
                 </div>
-                <span>{{upload_title}}</span>
+                <span>{{ upload_title }}</span>
             </div>
             <div class="loading_txt" v-show="isupload">
                 智能解析中……
             </div>
         </div>
-        <img src="//yoo.qpic.cn/yoo_img/0/ea417e4dab8e9f591c8d70ecd898b209/0" alt="cloud" class="bgCloud" />
+        <img
+            src="//yoo.qpic.cn/yoo_img/0/ea417e4dab8e9f591c8d70ecd898b209/0"
+            alt="cloud"
+            class="bgCloud"
+        />
         <div class="hlogo">
             <logo></logo>
         </div>
@@ -74,7 +88,7 @@ import axios from "axios";
 import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
 import tmpArr from "@/data/animation.json";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 const SUM = 18;
 export default {
     name: "home",
@@ -87,16 +101,20 @@ export default {
     },
     data() {
         return {
-            avatorUrl: '//yoo.qpic.cn/yoo_img/0/e5d43b13019d854effc1106c88f7a977/0',
+            avatorUrl:
+                "//yoo.qpic.cn/yoo_img/0/e5d43b13019d854effc1106c88f7a977/0",
             isupload: false
         };
     },
-    created() {},
+    created() {
+        var UAParser = require("ua-parser-js"),
+            parser = new UAParser();
+    },
     computed: {
-		...mapState({
-			upload_title:(state)=>state.gameData.scene_title.upload_title,
-			titleUrl:(state)=>state.gameData.scene_title.home_title_url
-		})
+        ...mapState({
+            upload_title: state => state.gameData.scene_title.upload_title,
+            titleUrl: state => state.gameData.scene_title.home_title_url
+        })
     },
     mounted() {
         // 侦听input
@@ -104,7 +122,7 @@ export default {
 
         setTimeout(() => {
             tool.preload(tmpArr);
-        }, 2000);
+        }, 40000);
     },
     methods: {
         fileChange(e) {
@@ -114,8 +132,16 @@ export default {
             e.target.value = "";
             window.user_avator_data = this.avatorUrl;
             let reader = new FileReader();
-            reader.onload = async () => {
+            reader.onload = async ee => {
                 try {
+                    let blob;
+                    if (typeof ee.target.result === "object") {
+                        blob = new Blob([ee.target.result]);
+                    } else {
+                        blob = ee.target.result;
+                    }
+                    alert(blob);
+                    window.user_avator_data = blob;
                     let filecontent = reader.result;
                     let res1 = await this.first_step(file.name);
                     let res2 = await this.second_step(res1.Sign, filecontent);
@@ -128,7 +154,9 @@ export default {
                         return;
                     }
                     this.preloadAvator();
-                    this.$router.push({ name: "result" });
+                    this.$router.push({
+                        name: "result"
+                    });
                     this.$store.commit("setResult", res3.gender);
                 } catch (e) {
                     window.console.log("报错拉！", e.message);
@@ -217,24 +245,27 @@ export default {
 <style lang="scss">
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
-body{
-	background-color: #ad2893;
+
+body {
+    background-color: #ad2893;
 }
+
 #app {
     height: 100%;
     overflow: hidden;
 }
-	.web {
-		display: flex;
-		height: 100%;
-		flex-direction: column;
-		align-content: center;
-		justify-content: center;
-		background-repeat: no-repeat;
-		background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
-		background-position: center;
-		background-size: 100% 100%;
-	}
+
+.web {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
+    background-position: center;
+    background-size: 100% 100%;
+}
 
 .hcontent {
     position: relative;
@@ -268,6 +299,7 @@ body{
         height: v(338);
         margin: 0 auto;
     }
+
     > .avator {
         width: 100%;
         height: 100%;
@@ -275,10 +307,12 @@ body{
         background-position: center;
         background-repeat: no-repeat;
         background-color: #730065;
+
         > img {
             width: 100%;
         }
     }
+
     > .scan_border {
         position: absolute;
         top: 0;
@@ -286,6 +320,7 @@ body{
         width: v(338);
         height: v(338);
     }
+
     .scan_icon {
         position: absolute;
         top: 120%;
@@ -304,11 +339,13 @@ body{
     height: v(184);
     z-index: 1;
 }
+
 .left_tree {
     position: absolute;
     left: 0;
     bottom: v(120);
 }
+
 .l_cloud {
     position: absolute;
     left: 0;
@@ -316,11 +353,13 @@ body{
     width: v(90);
     height: v(67);
     transform: translate3d(-100%, 0, 0);
+
     > img {
         display: block;
         width: 100%;
     }
 }
+
 .r_cloud {
     position: absolute;
     right: v(-60);
@@ -328,11 +367,13 @@ body{
     width: v(159);
     height: v(44);
     transform: translate3d(100%, 0, 0);
+
     > img {
         display: block;
         width: 100%;
     }
 }
+
 .right_tree {
     position: absolute;
     right: 0;
@@ -368,6 +409,7 @@ body{
         display: none;
     }
 }
+
 .loading_txt {
     position: absolute;
     bottom: 10vw;
@@ -377,75 +419,93 @@ body{
     font-size: v(25);
     color: #fff;
 }
+
 .bgCloud {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
 }
+
 .hlogo {
     position: absolute;
     width: 100%;
     left: 0;
     bottom: v(10);
+
     > .logo {
         margin: 0 auto;
     }
 }
+
 .ani_scan {
     animation: ani_scan 2.5s infinite;
 }
+
 @-webkit-keyframes ani_scan {
     from {
         top: 120%;
         opacity: 1;
     }
+
     to {
         top: -50%;
         opacity: 0.2;
     }
 }
+
 @keyframes ani_scan {
     from {
         top: 120%;
         opacity: 1;
     }
+
     to {
         top: -50%;
         opacity: 0.2;
     }
 }
+
 .slideleft {
     animation: sildeLeft 1.3s both;
 }
+
 @keyframes sildeLeft {
     from {
         transform: translate3d(-100%, 0, 0);
     }
+
     to {
         transform: translate3d(0, 0, 0);
     }
 }
+
 .slideright {
     animation: sildeRight 1.3s both;
 }
+
 @keyframes sildeRight {
     from {
         transform: translate3d(100%, 0, 0);
     }
+
     to {
         transform: translate3d(0, 0, 0);
     }
 }
+
 .delay1 {
     animation-delay: 0.8s;
 }
+
 .delay2 {
     animation-delay: 0.8s;
 }
+
 .delay3 {
     animation-delay: 1.3s;
 }
+
 .delay4 {
     animation-delay: 1.4s;
 }
