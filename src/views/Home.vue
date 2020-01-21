@@ -1,5 +1,5 @@
 <template>
-  <div class="web">
+  <div class="web" v-cloak>
     <!-- <wb-share></wb-share> -->
     <mheader :getTitleUrl="titleUrl" :titleType="'home'">
       <!-- 208-184 -->

@@ -30,6 +30,14 @@ export default {
     this.sound0 = this.$refs.sound0 = this.createAudio();
     this.isPlay = this.$refs.sound0.paused;
     this.autoPlayMusic(this.$refs.sound0);
+    // // 修复微信/qq环境下,播放图标不同步问题
+    var ua = navigator.userAgent.toLowerCase();
+    if (
+      window.mqq.device.isMobileQQ() ||
+      ua.match(/MicroMessenger/i) == "micromessenger"
+    ) {
+      this.isPlay = true;
+    }
   },
   methods: {
     autoPlayMusic(media) {
@@ -54,12 +62,15 @@ export default {
       if (isPlay && media.paused) {
         media.play().catch(() => {
           this.isPlay = false;
-          // window.console.log("不能自动播放");
+          window.console.log("不能自动播放");
           // // 修复微信/qq环境下,播放图标不同步问题
-          // var ua = navigator.userAgent.toLowerCase();
-          // if(window.mqq.device.isMobileQQ()|| ua.match(/MicroMessenger/i)=="micromessenger"){
-          // 	this.isPlay = true;
-          // }
+          var ua = navigator.userAgent.toLowerCase();
+          if (
+            window.mqq.device.isMobileQQ() ||
+            ua.match(/MicroMessenger/i) == "micromessenger"
+          ) {
+            this.isPlay = true;
+          }
         });
       }
       if (!isPlay && !media.paused) {

@@ -12,6 +12,10 @@
 
 <body>
     <style>
+        [v-cloak] {
+            display: none;
+        }
+
         body {
             background-color: #bd0298;
         }
@@ -54,14 +58,18 @@
             width: 40.4vw;
             height: 5.3333333333vw;
             margin: 0 auto;
-            border: 2px solid #f49f09;
+            background-image: url(//yoo.qpic.cn/yoo_img/0/a97bab9a52d7146da91ff31974135846/0);
+            background-repeat: no-repeat;
+            background-size: contain;
             border-radius: 17px;
             overflow: hidden;
         }
 
         .line {
             width: 0%;
-            background-color: #fec967;
+            background-image: url(//yoo.qpic.cn/yoo_img/0/3ddc1d72332a5cd1955c3073d2b7b31b/0);
+            background-repeat: repeat no-repeat;
+            background-position: center;
             height: 5.3333333333vw;
         }
 
@@ -81,53 +89,54 @@
             <img src="//yoo.qpic.cn/yoo_img/0/45d25652112c67eaa8a9e988721ffb6d/0" alt="欢遇logo">
         </div>
     </div>
-    <script>
-        let line = document.querySelector("#line");
-        let preload = document.querySelector("#preload");
-        let temp_Arr = [
-            "http://yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0",
-            "//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0",
-            "//yoo.qpic.cn/yoo_img/0/9eaf17e96e7baae3d267123e3012c5a4/0",
-            "//yoo.qpic.cn/yoo_img/0/107d8e774cb64aa489a7bb5fd4a53d6b/0",
-            "//yoo.qpic.cn/yoo_img/0/aac53124453f9fded50b2004e4b2903d/0",
-            "//yoo.qpic.cn/yoo_img/0/aac53124453f9fded50b2004e4b2903d/0",
-            "//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0",
-            "//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0",
-            "//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0",
-            "//yoo.qpic.cn/yoo_img/0/45d25652112c67eaa8a9e988721ffb6d/0",
-            "//yoo.qpic.cn/yoo_img/0/19c1ebc05d44e8fa5841b711795a9eb2/0",
-            "//yoo.qpic.cn/yoo_img/0/62456866ee493280e495381468410c5a/0"
-        ];
-        temp_Arr.forEach((item, index) => {
-            var img = new Image()
-            img.src = item;
-            img.onload = function () {
-                index += 1;
-                line.style.width = (index / temp_Arr.length) * 100 + "%";
-                if (index == temp_Arr.length) {
-                    preload.style.display = "none";
-                }
-            }
-        });
-
-
-    </script>
     <noscript>
         <strong>We're sorry but project-nb doesn't work properly without JavaScript enabled. Please enable it to
             continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app" v-cloak></div>
+    <script>
+        !(function () {
+            let line = document.querySelector("#line");
+            let preload = document.querySelector("#preload");
+            let temp_Arr = [
+                "//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0",
+                "//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0",
+                "//yoo.qpic.cn/yoo_img/0/9eaf17e96e7baae3d267123e3012c5a4/0",
+                "//yoo.qpic.cn/yoo_img/0/107d8e774cb64aa489a7bb5fd4a53d6b/0",
+                "//yoo.qpic.cn/yoo_img/0/aac53124453f9fded50b2004e4b2903d/0",
+                "//yoo.qpic.cn/yoo_img/0/aac53124453f9fded50b2004e4b2903d/0",
+                "//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0",
+                "//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0",
+                "//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0",
+                "//yoo.qpic.cn/yoo_img/0/45d25652112c67eaa8a9e988721ffb6d/0",
+                "//yoo.qpic.cn/yoo_img/0/19c1ebc05d44e8fa5841b711795a9eb2/0",
+                "//yoo.qpic.cn/yoo_img/0/62456866ee493280e495381468410c5a/0"
+            ];
+            var n = 0;
+            temp_Arr.forEach((item) => {
+                var img = new Image()
+                img.src = item;
+                img.onload = function () {
+                    n += 1;
+                    line.style.width = (n / temp_Arr.length) * 100 + "%";
+                    if (n == temp_Arr.length) {
+                        preload.style.display = "none";
+                    }
+                }
+            });
+        })();
+    </script>
     <!-- built files will be auto injected -->
-    <!-- <script src="//mvp-web-1300522992.file.myqcloud.com/js/mvpapp.min.js"></script>
-    <script src="//mvp-web-1300522992.file.myqcloud.com/js/qqapi.min.js"></script> -->
-    <!-- <script type="text/javascript">
+    <script src="//mvp-web-1300522992.file.myqcloud.com/js/mvpapp.min.js"></script>
+    <script src="//mvp-web-1300522992.file.myqcloud.com/js/qqapi.min.js"></script>
+    <script type="text/javascript">
         var share_url = location.href;
-        var image_url = "https://i.gtimg.cn/vipstyle/mobile/mvip/v5/release/img/index/mod/header/svipqq.png"
+        var image_url = "//yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0"
         var sourceName = "欢遇APP";
         var title = document.title;
         var desc = "从欢遇APP的10000名优质异性嘉宾中,为你找到桃花运势相近的TA们！";
-        var src_iconUrl = "//sqimg.qq.com/qq_product_operations/tencent-doc/title-icon/title/word_16x16.png"
-        
+        var src_iconUrl = "//yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0"
+
         _share();
         function _share() {
             if (mqq.device.isMobileQQ()) {
@@ -224,42 +233,40 @@
                 }
             }
         }
-    </script> -->
+    </script>
 
-    <!-- <script type="text/javascript">
-
-		<script type="text/javascript">
-			/*
-			 *channel 
-			 * 分享渠道（可以组合 1-茄子好友 2-微信 4-QQ 8-朋友圈 16-QQ空间）
-			 * title
-			 * 分享标题
-			 * summary
-			 * 分享概述
-			 * panelTitle分享面板标题
-			 * url
-			 * 分享链接
-			 * imgUrl
-			 * 分享缩略图
-			 */
-			mvpApp.bridge.callHandler({
-				module: 'QZCommon',
-				method: 'share',
-				query: {
-					url: location.url,
-					title: location.title,
-					summary: '2020新年快乐',
-					panelTitle: '发送邀请到',
-					channel: '4',
-					imgUrl: 'https://mat1.gtimg.com/www/mobi/2017/image/apple-touch-icon.png'
-				}
-			}, (data) => {
-				console.log(data)
-			}, (err) => {
-				console.log('err', err);
-			});
-		</script>
-		<script>
+    <script type="text/javascript">
+        /*
+         *channel 
+         * 分享渠道（可以组合 1-茄子好友 2-微信 4-QQ 8-朋友圈 16-QQ空间）
+         * title
+         * 分享标题
+         * summary
+         * 分享概述
+         * panelTitle分享面板标题
+         * url
+         * 分享链接
+         * imgUrl
+         * 分享缩略图
+         */
+        mvpApp.bridge.callHandler({
+            module: 'QZCommon',
+            method: 'share',
+            query: {
+                url: location.url,
+                title: location.title,
+                summary: '2020新年快乐',
+                panelTitle: '发送邀请到',
+                channel: '4',
+                imgUrl: 'https://mat1.gtimg.com/www/mobi/2017/image/apple-touch-icon.png'
+            }
+        }, (data) => {
+            console.log(data)
+        }, (err) => {
+            console.log('err', err);
+        });
+    </script>
+    <!--<script>
 			/**
 			 * MTA初始化
 			 */
