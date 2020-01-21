@@ -40,7 +40,7 @@
           <!-- 474-92 -->
           <label>
             <img src="//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0" alt />
-            <input type="file" accept="image/*" ref="uploadpic"/>
+            <input type="file" accept="image/*" ref="uploadpic" />
           </label>
         </div>
         <span>{{ upload_title }}</span>
@@ -72,7 +72,7 @@ import gameData from "@/data/gameData.json";
 import tmpArr from "@/data/animation.json";
 import { mapState } from "vuex";
 
-import tools from "../libs/iphonePicture"
+import tools from "../libs/iphonePicture";
 const SUM = 18;
 export default {
   name: "home",
@@ -89,7 +89,15 @@ export default {
       isupload: false
     };
   },
-  created() {
+  created() {},
+  computed: {
+    ...mapState({
+      upload_title: state => state.gameData.scene_title.upload_title,
+      titleUrl: state => state.gameData.scene_title.home_title_url,
+      type: state => state.type
+    })
+  },
+  mounted() {
     var UAParser = require("ua-parser-js"),
       parser = new UAParser(),
       browser_name = parser.getBrowser().name;
@@ -102,26 +110,17 @@ export default {
     let m_uid = this.$route.query.uuid,
       type = this.$route.query.type,
       res = this.$route.query.res;
-    // window.MtaH5.clickStat("index_view", {
-    //   parameter: JSON.stringify({
-    //     uuid: m_uid,
-    //     from: browser_name,
-    //     type: type,
-    //     res: res
-    //   })
-    // }),
-    //   window.MtaH5.clickStat("taohuayun", {
-    //     indexview: "true"
-    //   });
-  },
-  computed: {
-    ...mapState({
-      upload_title: state => state.gameData.scene_title.upload_title,
-      titleUrl: state => state.gameData.scene_title.home_title_url,
-      type: state => state.type
-    })
-  },
-  mounted() {
+    window.MtaH5.clickStat("index_view", {
+      parameter: JSON.stringify({
+        uuid: m_uid,
+        from: browser_name,
+        type: type,
+        res: res
+      })
+    });
+    window.MtaH5.clickStat("taohuayun", {
+      indexview: "true"
+    });
     // 侦听input
     this.$refs["uploadpic"].addEventListener("change", this.fileChange);
     // 初始化分享数据
@@ -138,21 +137,21 @@ export default {
         uploadbtn: "true"
       });
       let file = e.target.files[0];
-    //   this.avatorUrl = this.getObjectURL(file);
-	  e.target.value = "";
-	window.user_avator = await tools.repairPhoto(file,1,200)  //获取到用户的头像
-this.avatorUrl = window.user_avator
-    //   window.user_avator_data = this.avatorUrl;
+      //   this.avatorUrl = this.getObjectURL(file);
+      e.target.value = "";
+      window.user_avator = await tools.repairPhoto(file, 1, 200); //获取到用户的头像
+      this.avatorUrl = window.user_avator;
+      //   window.user_avator_data = this.avatorUrl;
       let reader = new FileReader();
       reader.onload = async ee => {
         try {
-        //   let blob;
-        //   if (typeof ee.target.result === "object") {
-        //     blob = new Blob([ee.target.result]);
-        //   } else {
-        //     blob = ee.target.result;
-        //   }
-        //   window.user_avator_data = blob;
+          //   let blob;
+          //   if (typeof ee.target.result === "object") {
+          //     blob = new Blob([ee.target.result]);
+          //   } else {
+          //     blob = ee.target.result;
+          //   }
+          //   window.user_avator_data = blob;
           let filecontent = reader.result;
           let res1 = await this.first_step(file.name);
           let res2 = await this.second_step(res1.Sign, filecontent);
