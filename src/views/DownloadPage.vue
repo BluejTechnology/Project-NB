@@ -28,7 +28,6 @@
                             'background-image': 'url(' + user_avator + ')'
                         }"
                     >
-                        <!-- <img :src="user_avator" alt=""> -->
                     </div>
                     <div class="random_vatar">
                         <div
@@ -69,13 +68,24 @@ export default {
     data() {
         return {
             otherVatar: [], // 其他随机头像
-            user_avator: window.user_avator_data,
+            user_avator:"",
             btn_url: ""
         };
     },
     created() {
         this.getOtherVatar();
         this.btn_url = this.getBtnUrl();
+        window.console.log("全局头像数据",window.user_avator_data);
+        let a = new FileReader();
+            a.onload = (e)=>{
+            console.log("base64:", e.target.result);
+            // let base64 = e.target.result.replace(
+            //     "data:application/octet-stream;base64",
+            //     "data:image/jpeg;base64"
+            // );
+            this.user_avator = e.target.result;
+        };
+        a.readAsDataURL(window.user_avator_data);
     },
     components: {
         animation
@@ -281,12 +291,24 @@ export default {
                 }
 
                 .random_vatar {
+                    @keyframes fly{
+                        from{ 
+                            top: v(300);
+                            right: 50%;
+                            left: 50%;
+                            opacity:0.2;
+                         }
+                         to{
+                         }
+                    }
                     div {
                         border-radius: 50%;
                         overflow: hidden;
                         background: pink;
                         position: absolute;
-
+                        opacity:0;
+                        animation : fly 1s 0.5s;
+                        animation-timing-function: cubic-bezier(0.25, 0.1, 0.64, 1.38);
                         img {
                             width: 100%;
                         }
@@ -305,6 +327,7 @@ export default {
                             left: v(214);
                             width: v(60);
                             height: v(60);
+                            opacity:1;
                         }
 
                         &:nth-child(3) {
@@ -312,6 +335,7 @@ export default {
                             right: v(214);
                             width: v(60);
                             height: v(60);
+                            opacity:1;
                         }
 
                         &:nth-child(4) {
@@ -320,6 +344,7 @@ export default {
                             transform: translateX(-50%);
                             width: v(93);
                             height: v(93);
+                            opacity:1;
                         }
 
                         &:nth-child(5) {
@@ -343,6 +368,7 @@ export default {
                             left: v(175);
                             width: v(93);
                             height: v(93);
+                            opacity:1;
                         }
 
                         &:nth-child(8) {
@@ -350,6 +376,7 @@ export default {
                             right: v(175);
                             width: v(93);
                             height: v(93);
+                            opacity:1;
                         }
 
                         &:nth-child(9) {
@@ -357,6 +384,7 @@ export default {
                             left: v(175);
                             width: v(93);
                             height: v(93);
+                            opacity:1;
                         }
 
                         &:nth-child(10) {
@@ -364,6 +392,7 @@ export default {
                             right: v(175);
                             width: v(93);
                             height: v(93);
+                            opacity:1;
                         }
 
                         &:nth-child(11) {
@@ -371,6 +400,7 @@ export default {
                             left: v(78);
                             width: v(60);
                             height: v(60);
+                            opacity:1;
                         }
 
                         &:nth-child(12) {
@@ -378,6 +408,7 @@ export default {
                             right: v(78);
                             width: v(60);
                             height: v(60);
+                            opacity:1;
                         }
 
                         &:nth-child(13) {
@@ -401,6 +432,7 @@ export default {
                             left: v(214);
                             width: v(60);
                             height: v(60);
+                            opacity:1;
                         }
 
                         &:nth-child(16) {
@@ -408,6 +440,7 @@ export default {
                             right: v(214);
                             width: v(60);
                             height: v(60);
+                            opacity:1;
                         }
 
                         &:nth-child(17) {
@@ -416,6 +449,7 @@ export default {
                             transform: translateX(-50%);
                             width: v(93);
                             height: v(93);
+                            opacity:1;
                         }
 
                         &:nth-child(18) {

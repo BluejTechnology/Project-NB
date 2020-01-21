@@ -40,7 +40,7 @@
           <!-- 474-92 -->
           <label>
             <img src="//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0" alt />
-            <input type="file" ref="uploadpic" />
+            <input type="file" accept="image/*" ref="uploadpic" />
           </label>
         </div>
         <span>{{ upload_title }}</span>
@@ -113,8 +113,16 @@ export default {
       e.target.value = "";
       window.user_avator_data = this.avatorUrl;
       let reader = new FileReader();
-      reader.onload = async () => {
+      reader.onload = async ee => {
         try {
+          let blob;
+          if (typeof ee.target.result === "object") {
+            blob = new Blob([ee.target.result]);
+          } else {
+            blob = ee.target.result;
+          }
+          // alert(blob);
+          window.user_avator_data = blob;
           let filecontent = reader.result;
           let res1 = await this.first_step(file.name);
           let res2 = await this.second_step(res1.Sign, filecontent);
@@ -219,9 +227,6 @@ export default {
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
 
-.preload {
-  background-image: url("../assets/preload_bg.jpg");
-}
 body {
   background-color: #ad2893;
 }
