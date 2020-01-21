@@ -12,7 +12,7 @@
         <div class="hcontent">
             <div class="window">
                 <img
-                    src="//yoo.qpic.cn/yoo_img/0/23faf06d6898a1e47cbab546880c5480/0"
+                    src="//yoo.qpic.cn/yoo_img/0/9eaf17e96e7baae3d267123e3012c5a4/0"
                     alt=""
                 />
                 <div class="avator_wrapper">
@@ -246,7 +246,7 @@ body {
     align-content: center;
     justify-content: center;
     background-repeat: no-repeat;
-    background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
+    background-image: url(//yoo.qpic.cn/yoo_img/0/a0ecd480343a48d48ece8d5cf2329aaa/0);
     background-position: center;
     background-size: 100% 100%;
 }
