@@ -18,13 +18,10 @@
                         />
                         <div
                             class="user_vatar_box"
-                            :style="{
-                                'background-image': 'url(' + user_vatar + ')'
-                            }"
                         >
-                            <!-- <img :src="user_vatar" alt=""> -->
+                            <img crossorigin="Anonymous" :src="user_vatar" alt /> 
                         </div>
-                        <div class="grade">{{ gradeData }}分</div>
+                        <div class="grade">{{ gradeData }}</div>
                         <div class="des" v-html="desData"></div>
                     </div>
                     <div class="tip_box">
@@ -72,20 +69,12 @@
                             src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0"
                             alt
                         />
-                        <!-- <div
+                        <div
                             class="user_vatar_box"
-                            :style="{
-                                'background-image': 'url(' + user_vatar + ')'
-                            }"
-            >-->
-                        <div class="user_vatar_box">
-                            <img
-                                crossorigin="Anonymous"
-                                :src="user_vatar"
-                                alt
-                            />
+                        >
+                            <img crossorigin="Anonymous" :src="user_vatar" alt /> 
                         </div>
-                        <div class="grade">{{ gradeData }}分</div>
+                        <div class="grade">{{ gradeData }}</div>
                         <div class="des" v-html="desData"></div>
                     </div>
                     <div class="qr_box">
@@ -134,25 +123,51 @@ export default {
             outPoster: ""
         };
     },
-    created() {
+    async created() {
         // window.console.log(window.user_avator_data)
         // 传入头像临时地址,读取blob并转化为base64,回调内将结果写入user_vatar
-        this.blobToBase64(window.user_avator_data, res => {
-            this.user_vatar = res;
-        });
-        // this.usrt_vatar = window.user_avator_data;
+        let res1 = await this.blobToBase64();
+        let res2 = await this.outPutQr();
+        this.outPutPoster()
+        window.console.log(res1,res2)
+
         let m_uid = this.$utils.getCookie("UUID");
         window.MtaH5.clickStat("result_view", {
-            uuid: m_uid
+        uuid: m_uid
         });
     },
     mounted() {
-        let type = this.$store.state.type;
-        let result = this.$store.state.result.resID;
-        let uuid = this.$utils.getCookie("UUID");
-        window.console.log(type, result, uuid);
+        // window.console.log(type, result, uuid);
+        let m_uid = this.$utils.getCookie("UUID"),
+        m_url = this.$store.state.avatorCdn,
+        result = this.$store.state.result.resID;
+        window.MtaH5.clickStat("result_analyse", {
+        parameter: JSON.stringify({
+            uuid: m_uid,
+            result_id: result,
+            url: m_url
+        })
+        });
+    },
+    methods: {
+        blobToBase64() {
+        return new Promise((res,rej)=>{
+            let blobUrl = window.user_avator_data;
+            let a = new FileReader();
+            a.onload = (e)=>{
+            this.user_vatar = e.target.result;
+            res('vatar ok')
+            };
+            a.readAsDataURL(blobUrl);
+        })
+        },
+        outPutQr(){
         // 渲染二维码
-        QRCode.toCanvas(
+        return new Promise((res,rej)=>{
+            let type = this.$store.state.type;
+            let result = this.$store.state.result.resID;
+            let uuid = this.$utils.getCookie("UUID");
+            QRCode.toCanvas(
             this.$refs.qrCanvas,
             `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`,
             {
@@ -161,79 +176,57 @@ export default {
             },
             error => {
                 if (error) window.console.error(error);
-                window.console.log("qr success!");
-                // 二维码生成后生成海报
-                // html2canvas(this.$refs.posterCanvas,{
-                // 	backgroundColor: null
-                // }).then((canvas) => {
-                // 	let dataURL = canvas.toDataURL("image/png");
-                // 	window.console.log(6666);
-                // 	this.outPoster = dataURL;
-                // });
+                // window.console.log("qr success!");
+                res("qr success!")
             }
-        );
-        let m_uid = this.$utils.getCookie("UUID"),
-            m_url = this.$store.state.avatorCdn;
-        window.MtaH5.clickStat("result_analyse", {
-            parameter: JSON.stringify({
-                uuid: m_uid,
-                result_id: result,
-                url: m_url
-            })
+            );
+        })
+        },
+        async outPutPoster(){
+        html2canvas(this.$refs.posterCanvas, {
+            useCORS: true
+        }).then(canvas => {
+            // console.time("toCanvas");
+            let start = Date.now();
+            window.console.log("buildPoster")
+            let dataURL = canvas.toDataURL("image/jpeg", 0.5);
+            window.console.log("endBuildPosBter")
+            // alert(Date.now() - start);
+            this.outPoster = dataURL;
         });
-    },
-    methods: {
-        blobToBase64(blobUrl, callback) {
-            //获取图片的Blob值
-            // this.$axios({
-            //     url: blobUrl,
-            //     responseType: "blob"
-            // }).then(res => {
-            let a = new FileReader();
-            a.onload = function(e) {
-                // console.log("base64:", e.target.result);
-                // let base64 = e.target.result.replace(
-                //     "data:application/octet-stream;base64",
-                //     "data:image/jpeg;base64"
-                // );
-                callback(e.target.result);
-            };
-            a.readAsDataURL(blobUrl);
-            // });
         },
         toDownload() {
-            let m_uid = this.$utils.getCookie("UUID");
-            window.MtaH5.clickStat("result_matching_btn", {
-                parameter: JSON.stringify({
-                    uuid: m_uid,
-                    time: new Date().getTime()
-                })
-            });
-            this.$router.push({
-                name: "download"
-            });
+        let m_uid = this.$utils.getCookie("UUID");
+        window.MtaH5.clickStat("result_matching_btn", {
+            parameter: JSON.stringify({
+            uuid: m_uid,
+            time: new Date().getTime()
+            })
+        });
+        this.$router.push({
+            name: "download"
+        });
         },
         showImage() {
-            window.console.log("海报!出现吧!");
-            this.showPoster = true;
-            window.console.log(this.showPoster);
-            let m_uid = this.$utils.getCookie("UUID");
-            window.MtaH5.clickStat("result_share_btn", {
-                parameter: JSON.stringify({
-                    uuid: m_uid,
-                    time: new Date().getTime()
-                })
-            });
-            html2canvas(this.$refs.posterCanvas, {
-                useCORS: true
-            }).then(canvas => {
-                // console.time("toCanvas");
-                let start = Date.now();
-                let dataURL = canvas.toDataURL("image/jpeg", 0.5);
-                // window.console.log(6666);
-                // alert(Date.now() - start);
-                this.outPoster = dataURL;
-            });
+        window.console.log("海报!出现吧!");
+        this.showPoster = true;
+        window.console.log(this.showPoster);
+        let m_uid = this.$utils.getCookie("UUID");
+        window.MtaH5.clickStat("result_share_btn", {
+            parameter: JSON.stringify({
+            uuid: m_uid,
+            time: new Date().getTime()
+            })
+        });
+        // html2canvas(this.$refs.posterCanvas, {
+        //   useCORS: true
+        // }).then(canvas => {
+        //   // console.time("toCanvas");
+        //   let start = Date.now();
+        //   let dataURL = canvas.toDataURL("image/jpeg", 0.5);
+        //   // alert(Date.now() - start);
+        //   this.outPoster = dataURL;
+        // });
         }
     },
     computed: {
