@@ -114,8 +114,12 @@ export default new Vuex.Store({
         type: null,  // 游戏类型
         result: null, // 游戏结果
         gameData: null,
+        avatorCdn: null //存入用户头像CDN
     },
     mutations: {
+        setAvatorCdn(state, url) {
+            state.avatorCdn = url;
+        },
         setGameData(state, type) {
             // 存入游戏类型
             state.type = type;

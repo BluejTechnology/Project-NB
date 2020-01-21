@@ -127,7 +127,8 @@ export default {
           let res1 = await this.first_step(file.name);
           let res2 = await this.second_step(res1.Sign, filecontent);
           let res3 = await this.third_step(res1.CDNUrl);
-          window.console.log(res1, res2, res3);
+		  window.console.log(res1, res2, res3);
+		  this.$store.commit("setAvatorCdn",res1.CDNUrl);
           if (!res3.gender) {
             window.console.log("非人脸请重新上传");
             // 非人脸重置数据
@@ -165,7 +166,8 @@ export default {
         .then(res => {
           if (res.status !== 200 || !res.data) {
             Promise.reject("请求第一步报错");
-          }
+		  }
+		  window.console.log('第一步数据',res.data)
           return res.data;
         });
     },
