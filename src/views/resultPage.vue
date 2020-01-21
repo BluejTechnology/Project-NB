@@ -163,6 +163,7 @@
 				html2canvas(this.$refs.posterCanvas,{
 					backgroundColor: null
 				}).then((canvas) => {
+					documentt.querySelector("audio").removeAttribute("autoplay");
 					let dataURL = canvas.toDataURL("image/png");
 					window.console.log(6666);
 					this.outPoster = dataURL;
