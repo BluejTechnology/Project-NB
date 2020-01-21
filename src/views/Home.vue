@@ -88,17 +88,24 @@ export default {
     };
   },
   created() {
-		let m_uid = this.$route.query.uuid,type = this.$route.query.type;
-			window.MtaH5.clickStat('index_view', {
-					'parameter': JSON.stringify({
-						'uuid': m_uid,
-						'from': browser_name,
-						'type': type
-					})
-				}),
-				window.MtaH5.clickStat('taohuayun', {
-					'indexview': 'true'
-				})
+    var UAParser = require("ua-parser-js"),
+        parser = new UAParser(),
+        browser_name = parser.getBrowser().name;
+      if (browser_name.toLowerCase() == "webkit" && parser.getUA().includes('Weibo')) {
+        browser_name = "Weibo";
+      }
+    let m_uid = this.$route.query.uuid,type = this.$route.query.type,res = this.$route.query.res;
+      window.MtaH5.clickStat('index_view', {
+          'parameter': JSON.stringify({
+            'uuid': m_uid,
+            'from': browser_name,
+            'type': type,
+            'res': res
+          })
+        }),
+        window.MtaH5.clickStat('taohuayun', {
+          'indexview': 'true'
+        })
   },
   computed: {
     ...mapState({
@@ -117,13 +124,13 @@ export default {
   methods: {
     fileChange(e) {
       this.isupload = true;
-	  let m_uid = this.$utils.getCookie("UUID");
-	  	window.MtaH5.clickStat('upload_btn', {
-	  		'uuid': m_uid;
-	  	});
-	  	window.MtaH5.clickStat('taohuayun', {
-	  		'uploadbtn': 'true'
-	  	});
+      let m_uid = this.$utils.getCookie("UUID");
+      window.MtaH5.clickStat("upload_btn", {
+        uuid: m_uid
+      });
+      window.MtaH5.clickStat("taohuayun", {
+        uploadbtn: "true"
+      });
       let file = e.target.files[0];
       this.avatorUrl = this.getObjectURL(file);
       e.target.value = "";
@@ -143,8 +150,8 @@ export default {
           let res1 = await this.first_step(file.name);
           let res2 = await this.second_step(res1.Sign, filecontent);
           let res3 = await this.third_step(res1.CDNUrl);
-		  window.console.log(res1, res2, res3);
-		  this.$store.commit("setAvatorCdn",res1.CDNUrl);
+          window.console.log(res1, res2, res3);
+          this.$store.commit("setAvatorCdn", res1.CDNUrl);
           if (!res3.gender) {
             window.console.log("非人脸请重新上传");
             // 非人脸重置数据
@@ -182,8 +189,8 @@ export default {
         .then(res => {
           if (res.status !== 200 || !res.data) {
             Promise.reject("请求第一步报错");
-		  }
-		  window.console.log('第一步数据',res.data)
+          }
+          window.console.log("第一步数据", res.data);
           return res.data;
         });
     },

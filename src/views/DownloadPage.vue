@@ -60,10 +60,10 @@ export default {
     };
   },
   created() {
-		let m_uid = this.$utils.getCookie("UUID");
-		window.MtaH5.clickStat('matching_view', {
-						'uuid': m_uid;
-					});
+    let m_uid = this.$utils.getCookie("UUID");
+    window.MtaH5.clickStat("matching_view", {
+      uuid: m_uid
+    });
     this.getOtherVatar();
     this.btn_url = this.getBtnUrl();
     window.console.log("全局头像数据", window.user_avator_data);
@@ -127,24 +127,25 @@ export default {
       this.otherVatar = window.femalePicUrl.concat(window.malePicUrl);
     },
     download_mta() {
-            var _event, UAParser = require('ua-parser-js'),
-            	parser = new UAParser(),
-            	is_ios = 1;
-            if (parser.getOS().name == "iOS") {
-            	is_ios = 1;
-            } else {
-            	is_ios = 0;
-            }
-			let m_uid = this.$utils.getCookie("UUID");
-            window.MtaH5.clickStat('matching_download_btn', {
-            	'parameter': JSON.stringify({
-            		'uuid': m_uid,
-            		'is_ios': is_ios
-            	})
-            })
-            window.MtaH5.clickStat('taohuayun', {
-            	'matchingdownloadbtn': 'true'
-            })
+      var _event,
+        UAParser = require("ua-parser-js"),
+        parser = new UAParser(),
+        is_ios = 1;
+      if (parser.getOS().name == "iOS") {
+        is_ios = 1;
+      } else {
+        is_ios = 0;
+      }
+      let m_uid = this.$utils.getCookie("UUID");
+      window.MtaH5.clickStat("matching_download_btn", {
+        parameter: JSON.stringify({
+          uuid: m_uid,
+          is_ios: is_ios
+        })
+      });
+      window.MtaH5.clickStat("taohuayun", {
+        matchingdownloadbtn: "true"
+      });
     }
   }
 };
@@ -292,16 +293,6 @@ export default {
         }
 
         .random_vatar {
-          @keyframes fly {
-            from {
-              top: v(300);
-              right: 50%;
-              left: 50%;
-              opacity: 0.2;
-            }
-            to {
-            }
-          }
           div {
             border-radius: 50%;
             overflow: hidden;
@@ -451,199 +442,6 @@ export default {
               width: v(93);
               height: v(93);
               opacity: 1;
-            }
-
-            .vatar_box {
-              position: relative;
-
-              .user_vatar {
-                width: v(175);
-                height: v(175);
-                position: absolute;
-                top: v(262);
-                left: 50%;
-                z-index: 3;
-                transform: translateX(-50%);
-                overflow: hidden;
-                border-radius: 50%;
-                background-color: #660e61;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center;
-              }
-
-              .random_vatar {
-                @keyframes fly {
-                  from {
-                    top: v(300);
-                    right: 50%;
-                    left: 50%;
-                    opacity: 0.2;
-                  }
-                  to {
-                  }
-                }
-                div {
-                  border-radius: 50%;
-                  overflow: hidden;
-                  background: pink;
-                  position: absolute;
-                  // opacity:0;
-                  // animation : fly 1s 0.5s;
-                  // animation-timing-function: cubic-bezier(0.25, 0.1, 0.64, 1.38);
-                  img {
-                    width: 100%;
-                  }
-
-                  &:nth-child(1) {
-                    top: v(68);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: v(50);
-                    height: v(50);
-                    opacity: 0.5;
-                  }
-
-                  &:nth-child(2) {
-                    top: v(137);
-                    left: v(214);
-                    width: v(60);
-                    height: v(60);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(3) {
-                    top: v(137);
-                    right: v(214);
-                    width: v(60);
-                    height: v(60);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(4) {
-                    top: v(146);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: v(93);
-                    height: v(93);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(5) {
-                    top: v(227);
-                    left: v(108);
-                    width: v(48);
-                    height: v(48);
-                    opacity: 0.5;
-                  }
-
-                  &:nth-child(6) {
-                    top: v(227);
-                    right: v(108);
-                    width: v(50);
-                    height: v(50);
-                    opacity: 0.5;
-                  }
-
-                  &:nth-child(7) {
-                    top: v(236);
-                    left: v(175);
-                    width: v(93);
-                    height: v(93);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(8) {
-                    top: v(236);
-                    right: v(175);
-                    width: v(93);
-                    height: v(93);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(9) {
-                    top: v(372);
-                    left: v(175);
-                    width: v(93);
-                    height: v(93);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(10) {
-                    top: v(372);
-                    right: v(175);
-                    width: v(93);
-                    height: v(93);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(11) {
-                    top: v(328);
-                    left: v(78);
-                    width: v(60);
-                    height: v(60);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(12) {
-                    top: v(328);
-                    right: v(78);
-                    width: v(60);
-                    height: v(60);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(13) {
-                    top: v(453);
-                    left: v(108);
-                    width: v(48);
-                    height: v(48);
-                    opacity: 0.5;
-                  }
-
-                  &:nth-child(14) {
-                    top: v(453);
-                    right: v(108);
-                    width: v(50);
-                    height: v(50);
-                    opacity: 0.5;
-                  }
-
-                  &:nth-child(15) {
-                    top: v(518);
-                    left: v(214);
-                    width: v(60);
-                    height: v(60);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(16) {
-                    top: v(518);
-                    right: v(214);
-                    width: v(60);
-                    height: v(60);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(17) {
-                    top: v(459);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: v(93);
-                    height: v(93);
-                    opacity: 1;
-                  }
-
-                  &:nth-child(18) {
-                    top: v(579);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: v(50);
-                    height: v(50);
-                    opacity: 0.5;
-                  }
-                }
-              }
             }
           }
         }
