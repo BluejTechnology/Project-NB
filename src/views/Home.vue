@@ -249,11 +249,12 @@ export default {
       window.malePicUrl = male_arr;
     },
     _share() {
+      var that = this;
       if (mqq.device.isMobileQQ()) {
         setTimeout(function() {
           mqq.ui.setOnShareHandler(function(type) {
             MtaH5.clickStat("global_share", {
-              uuid: m_getCookie("UUID")
+              uuid: that.m_getCookie("UUID")
             });
             mqq.ui.shareMessage(
               {
@@ -280,7 +281,7 @@ export default {
         let wechat_url = window.share_url + "&adtag=wechatshare";
         let onBridgeReady = function() {
           MtaH5.clickStat("global_share", {
-            uuid: m_getCookie("UUID")
+            uuid: that.m_getCookie("UUID")
           });
           // 转发朋友圈
           WeixinJSBridge.on("menu:share:timeline", function(e) {
@@ -300,7 +301,7 @@ export default {
           // 同步到微博
           WeixinJSBridge.on("menu:share:weibo", function() {
             MtaH5.clickStat("global_share", {
-              uuid: m_getCookie("UUID")
+              uuid: that.m_getCookie("UUID")
             });
             WeixinJSBridge.invoke(
               "shareWeibo",
@@ -316,7 +317,7 @@ export default {
           // 分享给朋友
           WeixinJSBridge.on("menu:share:appmessage", function(argv) {
             MtaH5.clickStat("global_share", {
-              uuid: m_getCookie("UUID")
+              uuid: that.m_getCookie("UUID")
             });
             WeixinJSBridge.invoke(
               "sendAppMessage",
@@ -384,7 +385,7 @@ export default {
         },
         data => {
           MtaH5.clickStat("global_share", {
-            uuid: m_getCookie("UUID")
+            uuid: this.m_getCookie("UUID")
           });
           console.log(data);
         },
