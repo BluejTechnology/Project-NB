@@ -126,14 +126,19 @@ export default {
             this.otherVatar = window.femalePicUrl.concat(window.malePicUrl);
         },
         download_mta() {
-            var _event,
-                UAParser = require("ua-parser-js"),
-                parser = new UAParser();
-            if (parser.getOS().name == "iOS") {
-                _event = "matching_ios_download_btn";
-            } else {
-                _event = "matching_download_btn";
-            }
+				var _event, UAParser = require('ua-parser-js'),
+					parser = new UAParser();
+				if (parser.getOS().name == "iOS") {
+					_event = 'matching_ios_download_btn';
+				} else {
+					_event = 'matching_download_btn';
+				}
+				window.MtaH5.clickStat(_event, {
+					'uuid': this.$route.query.uuid
+				})
+				window.MtaH5.clickStat('taohuayun', {
+					'matchingdownloadbtn': 'true'
+				})
         }
     }
 };

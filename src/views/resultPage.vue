@@ -203,6 +203,12 @@ export default {
             });
         },
         toDownload() {
+				window.MtaH5.clickStat('result_matching_btn', {
+					'uuid': this.$route.query.uuid
+				})
+				window.MtaH5.clickStat('taohuayun', {
+					'resultmatchingbtn': 'true'
+				})
             this.$router.push({
                 name: "download"
             });
@@ -210,6 +216,10 @@ export default {
         showImage() {
             window.console.log("海报!出现吧!");
             this.showPoster = true;
+				window.console.log(this.showPoster);
+				window.MtaH5.clickStat('result_share_btn', {
+					'uuid': this.$route.query.uuid
+				})
             window.console.log(this.showPoster);
             html2canvas(this.$refs.posterCanvas, {
                 backgroundColor: null

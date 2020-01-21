@@ -19,22 +19,30 @@ Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
-    if (to.name == "result" || to.name == "download") {
-        var _event, uuid;
-        switch (to.name) {
-            case 'result':
-                _event = 'upload_time';
-                break;
-            case 'download':
-                _event = 'result_time';
-                break;
-        }
-        window.location.href.substring(window.location.href.lastIndexOf('?') + 1).split('&').forEach(function (val) {
-            (val.includes('uuid')) && (uuid = (val.split('='))[1]);
-        })
-    }
-    window.localStorage.setItem("start_time", (new Date()).getTime());
-    next();
+	if (to.name == "result" || to.name == "download") {
+		var _event, uuid;
+		switch (to.name) {
+			case 'result':
+				_event = 'upload_time';
+				break;
+			case 'download':
+				_event = 'result_time';
+				break;
+		}
+		window.location.href.substring(window.location.href.lastIndexOf('?') + 1).split('&').forEach(function(val) {
+			(val.includes('uuid')) && (uuid = (val.split('='))[1]);
+		})
+		if (_event && uuid) {
+			window.MtaH5.clickStat(_event, {
+				'parameter': {
+					'uuid': uuid,
+					'time': (new Date()).getTime() - window.localStorage.getItem("start_time")
+				}
+			})
+		}
+	}
+	window.localStorage.setItem("start_time", (new Date()).getTime());
+	next();
 })
 
 new Vue({
