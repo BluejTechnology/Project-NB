@@ -112,192 +112,38 @@
                 "//yoo.qpic.cn/yoo_img/0/19c1ebc05d44e8fa5841b711795a9eb2/0",
                 "//yoo.qpic.cn/yoo_img/0/62456866ee493280e495381468410c5a/0"
             ];
-            var n = 0;
+            var n = 0, sum = temp_Arr.length;
             temp_Arr.forEach((item) => {
                 var img = new Image()
                 img.src = item;
                 img.onload = function () {
-                    n += 1;
-                    line.style.width = (n / temp_Arr.length) * 100 + "%";
-                    if (n == temp_Arr.length) {
-                        preload.style.display = "none";
-                    }
+                    run();
                 }
             });
+            function run() {
+                n += 1;
+                line.style.width = (n / sum) * 100 + "%";
+                if (n == sum) {
+                    preload.style.display = "none";
+                }
+            }
         })();
     </script>
-    <!-- built files will be auto injected -->
     <script src="//mvp-web-1300522992.file.myqcloud.com/js/mvpapp.min.js"></script>
     <script src="//mvp-web-1300522992.file.myqcloud.com/js/qqapi.min.js"></script>
+    <!-- built files will be auto injected -->
     <script type="text/javascript">
-        var share_url = location.href;
-        var image_url = "https://yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0"
-        var sourceName = "欢遇APP";
-        var title = document.title;
-        var desc = "从欢遇APP的10000名优质异性嘉宾中,为你找到桃花运势相近的TA们！";
-        var src_iconUrl = "https://yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0"
-
-        function m_getCookie(sKey) {
-            return (
-                decodeURIComponent(
-                    document.cookie.replace(
-                        new RegExp(
-                            "(?:(?:^|.*;)\\s*" +
-                            encodeURIComponent(sKey).replace(
-                                /[-.+*]/g,
-                                "\\$&"
-                            ) +
-                            "\\s*\\=\\s*([^;]*).*$)|^.*$"
-                        ),
-                        "$1"
-                    )
-                ) || null
-            );
-        }
-
-        _share();
-        function _share() {
-            if (mqq.device.isMobileQQ()) {
-                setTimeout(function () {
-                    mqq.ui.setOnShareHandler(function (type) {
-                        MtaH5.clickStat('global_share', {
-                            'uuid': m_getCookie("UUID")
-                        });
-                        mqq.ui.shareMessage(
-                            {
-                                title: title,
-                                desc: desc,
-                                share_type: type,
-                                back: true,
-                                image_url: image_url,
-                                imageUrl: image_url,
-                                share_url: share_url,
-                                sourceName: sourceName,
-                                puin: 0,
-                                src_iconUrl: src_iconUrl
-                            },
-                            function (res) {
-                                if (res.retCode === 0) {
-                                    // mqq.ui.popBack();
-                                }
-                            }
-                        );
-                    });
-                }, 200);
-            } else {
-                let wechat_url = share_url + '&adtag=wechatshare';
-                let onBridgeReady = function () {
-                    MtaH5.clickStat('global_share', {
-                        'uuid': m_getCookie("UUID")
-                    });
-                    // 转发朋友圈
-                    WeixinJSBridge.on('menu:share:timeline', function (e) {
-                        let data = {
-                            img_url: image_url,
-                            img_width: '120',
-                            img_height: '120',
-                            link: wechat_url,
-                            // desc这个属性要加上，虽然不会显示，但是不加暂时会导致无法转发至朋友圈，
-                            desc: desc,
-                            title: title
-                        };
-                        WeixinJSBridge.invoke('shareTimeline', data, function (res) {
-                            WeixinJSBridge.log(res.err_msg);
-                        });
-                    });
-                    // 同步到微博
-                    WeixinJSBridge.on('menu:share:weibo', function () {
-                        MtaH5.clickStat('global_share', {
-                            'uuid': m_getCookie("UUID")
-                        });
-                        WeixinJSBridge.invoke(
-                            'shareWeibo',
-                            {
-                                content: title,
-                                url: wechat_url
-                            },
-                            function (res) {
-                                WeixinJSBridge.log(res.err_msg);
-                            }
-                        );
-                    });
-                    // 分享给朋友
-                    WeixinJSBridge.on('menu:share:appmessage', function (argv) {
-                        MtaH5.clickStat('global_share', {
-                            'uuid': m_getCookie("UUID")
-                        });
-                        WeixinJSBridge.invoke(
-                            'sendAppMessage',
-                            {
-                                img_url: image_url,
-                                img_width: '120',
-                                img_height: '120',
-                                link: wechat_url,
-                                desc: desc,
-                                title: title
-                            },
-                            function (res) {
-                                WeixinJSBridge.log(res.err_msg);
-                            }
-                        );
-                    });
-                };
-                if (
-                    typeof top.window.WeixinJSBridge === 'undefined' ||
-                    !top.window.WeixinJSBridge.invoke
-                ) {
-                    // 没有就监听ready事件
-                    if (document.addEventListener) {
-                        document.addEventListener(
-                            'WeixinJSBridgeReady',
-                            onBridgeReady,
-                            false
-                        );
-                    } else if (document.attachEvent) {
-                        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-                        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-                    }
-                } else {
-                    // 初始化结束直接就执行吧！
-                    onBridgeReady();
-                }
-            }
-        }
+        // 初始化分享默认参数
+        window.share_url = location.href;
+        window.image_url = "https://yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0";
+        window.sourceName = "欢遇APP";
+        window.title = document.title;
+        window.desc = "从欢遇APP的10000名优质异性嘉宾中,为你找到桃花运势相近的TA们！";
+        window.src_iconUrl == "https://yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0"
     </script>
 
     <script type="text/javascript">
-        /*
-         *channel 
-         * 分享渠道（可以组合 1-茄子好友 2-微信 4-QQ 8-朋友圈 16-QQ空间）
-         * title
-         * 分享标题
-         * summary
-         * 分享概述
-         * panelTitle分享面板标题
-         * url
-         * 分享链接
-         * imgUrl
-         * 分享缩略图
-         */
-        mvpApp.bridge.callHandler({
-            module: 'QZCommon',
-            method: 'share',
-            query: {
-                url: location.url,
-                title: location.title,
-                summary: '2020新年快乐',
-                panelTitle: '发送邀请到',
-                channel: '4',
-                imgUrl: 'https://mat1.gtimg.com/www/mobi/2017/image/apple-touch-icon.png'
-            }
-        }, (data) => {
-            MtaH5.clickStat('global_share', {
-                'uuid': m_getCookie("UUID")
-            });
-            console.log(data)
-        }, (err) => {
-            console.log('err', err);
-        });
+
     </script>
     <script>
         /**

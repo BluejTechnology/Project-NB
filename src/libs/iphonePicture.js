@@ -1,7 +1,7 @@
-
+import EXIF from "exif-js";
 //判断是否需要矫正
-function isNeedFixPhoto(file) {
-	let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+async function isNeedFixPhoto(file) {
+	let isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
 	return new Promise(function (resolve, reject) {
 		if (!isiOS) {
@@ -22,7 +22,7 @@ function isNeedFixPhoto(file) {
 }
 
 //压缩图片
-function best4Photo(resultBase64, Orientation, num, w) {
+async function best4Photo(resultBase64, Orientation, num, w) {
 	return new Promise(function (resolve, reject) {
 		let image = new Image();
 		image.src = resultBase64;
@@ -64,8 +64,34 @@ function best4Photo(resultBase64, Orientation, num, w) {
 	})
 }
 
+// 定义方法
+async function file2Base64(file) {
+	return new Promise(function (resolve, reject) {
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function (ev) {
+			resolve(ev.target.result);
+		}
+	})
+}
+
+
+
+async function repairPhoto(file,num,w){
+	const result=await isNeedFixPhoto(file);
+	const resultBase64=await file2Base64(file);
+	const Orientation = result.Orientation;
+	const numb = num || 1;
+	if(result.flag){  // 处理旋转
+		return await best4Photo(resultBase64,Orientation,numb,w)
+	}else{            // 不处理旋转
+		return await best4Photo(resultBase64,1,numb,w)
+	}
+}
 
 export default {
 	isNeedFixPhoto,
-	best4Photo
+	best4Photo,
+	file2Base64,
+	repairPhoto
 }
