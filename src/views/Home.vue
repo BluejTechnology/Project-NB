@@ -235,16 +235,11 @@ export default {
       return temp_arr;
     },
     preloadAvator() {
-      //固定几个随机数
-      let rand_mode = [4, 8, 9, 10];
-      let rand_n = parseInt(Math.random() * rand_mode.length);
-      let male_num = rand_mode[rand_n];
-      let female_num = SUM - male_num;
       //分别产生预加载数组
-      let female_arr = this.c_rand(female_num).map(ele => {
+      let female_arr = this.c_rand(SUM).map(ele => {
         return gameData.avatarData.femalePicUrl[ele];
       });
-      let male_arr = this.c_rand(male_num).map(ele => {
+      let male_arr = this.c_rand(SUM).map(ele => {
         return gameData.avatarData.malePicUrl[ele];
       });
       tool.preload(male_arr);
@@ -422,10 +417,6 @@ export default {
 <style lang="scss">
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
-
-body {
-  background-color: #ad2893;
-}
 
 #app {
   height: 100%;
