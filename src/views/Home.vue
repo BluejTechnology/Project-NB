@@ -108,11 +108,15 @@ export default {
     },
     created() {
         var UAParser = require("ua-parser-js"),
-            parser = new UAParser();
+            parser = new UAParser(),
+			browser_name = parser.getBrowser().name;
+			if (browser_name.toLowerCase() == "webkit" && parser.getUA().includes('Weibo')) {
+				browser_name = "Weibo";
+			}
 			window.MtaH5.clickStat('index_view', {
 					'parameter': JSON.stringify({
 						'uuid': this.$route.query.uuid,
-						'from': parser.getBrowser().name
+						'from': browser_name
 					})
 				}),
 				window.MtaH5.clickStat('taohuayun', {
