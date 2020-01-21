@@ -123,6 +123,7 @@ export default {
     // 侦听input
     this.$refs["uploadpic"].addEventListener("change", this.fileChange);
     // 初始化分享数据
+
     this._initShare();
     setTimeout(() => {
       tool.preload(tmpArr);

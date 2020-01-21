@@ -193,261 +193,295 @@ export default {
 
   .bgCloud {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-  }
-
-  .logoImg {
-    width: v(165);
-    position: absolute;
-    bottom: v(27);
-    left: 50%;
-    z-index: 2;
-    transform: translateX(-50%);
-  }
-
-  .main {
-    height: v(1079);
-    // border: 1px solid skyblue;
-    color: white;
+    overflow: hidden;
     position: relative;
-    z-index: 2;
 
-    .title {
-      text-align: center;
-      letter-spacing: 1px;
-      padding: v(40) 0 v(11) 0;
-
-      p {
-        font-size: V(24);
-        line-height: v(46);
-      }
-    }
-
-    .content {
-      height: v(903);
-      margin: 0 auto;
-      background-image: url("//yoo.qpic.cn/yoo_img/0/0aaf65a4dada537ad528fd0eb86a74f5/0");
-      background-size: 100%;
-      background-repeat: no-repeat;
-      position: relative;
-
-      .angle {
+    .cloud_l {
         position: absolute;
-        width: v(126);
-        top: v(-30);
+        top: v(920);
+        left: v(-80);
+        width: v(170);
+        z-index: 2;
 
         img {
-          width: 100%;
+            width: 100%;
         }
-      }
+    }
 
-      .angle_left {
-        left: v(45);
-        transform: rotate(-30deg);
-      }
-
-      .angle_right {
-        right: v(45);
-        transform: rotate(30deg) scaleX(-1);
-      }
-
-      .des {
+    .cloud_r {
         position: absolute;
-        // bottom: v(219);
-        bottom: v(193);
-        font-size: v(25);
-        text-align: center;
+        top: v(550);
+        right: v(-60);
+        width: v(160);
+        z-index: 2;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .bgCloud {
         width: 100%;
-      }
-
-      .download_btn_box {
         position: absolute;
-        bottom: v(85);
-        left: 50%;
-        transform: translateX(-50%);
-        width: v(484);
-        height: v(110);
-
-        img {
-          width: 100%;
-        }
-      }
-
-      .vatar_box {
-        position: relative;
-
-        .user_vatar {
-          width: v(175);
-          height: v(175);
-          position: absolute;
-          top: v(262);
-          left: 50%;
-          z-index: 3;
-          transform: translateX(-50%);
-          overflow: hidden;
-          border-radius: 50%;
-          background-color: #660e61;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-        }
-
-        .random_vatar {
-          div {
-            border-radius: 50%;
-            overflow: hidden;
-            background: pink;
-            position: absolute;
-            opacity: 0;
-            animation: fly 1s 0.5s;
-            animation-timing-function: cubic-bezier(0.25, 0.1, 0.64, 1.38);
-            img {
-              width: 100%;
-            }
-
-            &:nth-child(1) {
-              top: v(68);
-              left: 50%;
-              transform: translateX(-50%);
-              width: v(50);
-              height: v(50);
-              opacity: 0.5;
-            }
-
-            &:nth-child(2) {
-              top: v(137);
-              left: v(214);
-              width: v(60);
-              height: v(60);
-              opacity: 1;
-            }
-
-            &:nth-child(3) {
-              top: v(137);
-              right: v(214);
-              width: v(60);
-              height: v(60);
-              opacity: 1;
-            }
-
-            &:nth-child(4) {
-              top: v(146);
-              left: 50%;
-              transform: translateX(-50%);
-              width: v(93);
-              height: v(93);
-              opacity: 1;
-            }
-
-            &:nth-child(5) {
-              top: v(227);
-              left: v(108);
-              width: v(48);
-              height: v(48);
-              opacity: 0.5;
-            }
-
-            &:nth-child(6) {
-              top: v(227);
-              right: v(108);
-              width: v(50);
-              height: v(50);
-              opacity: 0.5;
-            }
-
-            &:nth-child(7) {
-              top: v(236);
-              left: v(175);
-              width: v(93);
-              height: v(93);
-              opacity: 1;
-            }
-
-            &:nth-child(8) {
-              top: v(236);
-              right: v(175);
-              width: v(93);
-              height: v(93);
-              opacity: 1;
-            }
-
-            &:nth-child(9) {
-              top: v(372);
-              left: v(175);
-              width: v(93);
-              height: v(93);
-              opacity: 1;
-            }
-
-            &:nth-child(10) {
-              top: v(372);
-              right: v(175);
-              width: v(93);
-              height: v(93);
-              opacity: 1;
-            }
-
-            &:nth-child(11) {
-              top: v(328);
-              left: v(78);
-              width: v(60);
-              height: v(60);
-              opacity: 1;
-            }
-
-            &:nth-child(12) {
-              top: v(328);
-              right: v(78);
-              width: v(60);
-              height: v(60);
-              opacity: 1;
-            }
-
-            &:nth-child(13) {
-              top: v(453);
-              left: v(108);
-              width: v(48);
-              height: v(48);
-              opacity: 0.5;
-            }
-
-            &:nth-child(14) {
-              top: v(453);
-              right: v(108);
-              width: v(50);
-              height: v(50);
-              opacity: 0.5;
-            }
-
-            &:nth-child(15) {
-              top: v(518);
-              left: v(214);
-              width: v(60);
-              height: v(60);
-              opacity: 1;
-            }
-
-            &:nth-child(16) {
-              top: v(518);
-              right: v(214);
-              width: v(60);
-              height: v(60);
-              opacity: 1;
-            }
-
-            &:nth-child(17) {
-              top: v(459);
-              left: 50%;
-              transform: translateX(-50%);
-              width: v(93);
-              height: v(93);
-              opacity: 1;
-            }
-          }
-        }
-      }
+        bottom: 0;
     }
-  }
+
+    .logoImg {
+        width: v(165);
+        position: absolute;
+        bottom: v(27);
+        left: 50%;
+        z-index: 2;
+        transform: translateX(-50%);
+    }
+
+    .main {
+        height: v(1079);
+        // border: 1px solid skyblue;
+        color: white;
+        position: relative;
+        z-index: 2;
+
+        .title {
+            text-align: center;
+            letter-spacing: 1px;
+            padding: v(40) 0 v(11) 0;
+
+            p {
+                font-size: V(24);
+                line-height: v(46);
+            }
+        }
+
+        .content {
+            height: v(903);
+            margin: 0 auto;
+            background-image: url("//yoo.qpic.cn/yoo_img/0/0aaf65a4dada537ad528fd0eb86a74f5/0");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            position: relative;
+
+            .angle {
+                position: absolute;
+                width: v(126);
+                top: v(-30);
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .angle_left {
+                left: v(45);
+                transform: rotate(-30deg);
+            }
+
+            .angle_right {
+                right: v(45);
+                transform: rotate(30deg) scaleX(-1);
+            }
+
+            .des {
+                position: absolute;
+                // bottom: v(219);
+                bottom: v(193);
+                font-size: v(25);
+                text-align: center;
+                width: 100%;
+            }
+
+            .download_btn_box {
+                position: absolute;
+                bottom: v(85);
+                left: 50%;
+                transform: translateX(-50%);
+                width: v(484);
+                height: v(110);
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .vatar_box {
+                position: relative;
+
+                .user_vatar {
+                    width: v(175);
+                    height: v(175);
+                    position: absolute;
+                    top: v(262);
+                    left: 50%;
+                    z-index: 3;
+                    transform: translateX(-50%);
+                    overflow: hidden;
+                    border-radius: 50%;
+                    background-color: #660e61;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                .random_vatar {
+                    div {
+                        border-radius: 50%;
+                        overflow: hidden;
+                        background: pink;
+                        position: absolute;
+                        opacity: 0;
+                        animation: fly 1s 0.5s;
+                        animation-timing-function: cubic-bezier(
+                            0.25,
+                            0.1,
+                            0.64,
+                            1.38
+                        );
+                        img {
+                            width: 100%;
+                        }
+
+                        &:nth-child(1) {
+                            top: v(68);
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: v(50);
+                            height: v(50);
+                            opacity: 0.5;
+                        }
+
+                        &:nth-child(2) {
+                            top: v(137);
+                            left: v(214);
+                            width: v(60);
+                            height: v(60);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(3) {
+                            top: v(137);
+                            right: v(214);
+                            width: v(60);
+                            height: v(60);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(4) {
+                            top: v(146);
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: v(93);
+                            height: v(93);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(5) {
+                            top: v(227);
+                            left: v(108);
+                            width: v(48);
+                            height: v(48);
+                            opacity: 0.5;
+                        }
+
+                        &:nth-child(6) {
+                            top: v(227);
+                            right: v(108);
+                            width: v(50);
+                            height: v(50);
+                            opacity: 0.5;
+                        }
+
+                        &:nth-child(7) {
+                            top: v(236);
+                            left: v(175);
+                            width: v(93);
+                            height: v(93);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(8) {
+                            top: v(236);
+                            right: v(175);
+                            width: v(93);
+                            height: v(93);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(9) {
+                            top: v(372);
+                            left: v(175);
+                            width: v(93);
+                            height: v(93);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(10) {
+                            top: v(372);
+                            right: v(175);
+                            width: v(93);
+                            height: v(93);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(11) {
+                            top: v(328);
+                            left: v(78);
+                            width: v(60);
+                            height: v(60);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(12) {
+                            top: v(328);
+                            right: v(78);
+                            width: v(60);
+                            height: v(60);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(13) {
+                            top: v(453);
+                            left: v(108);
+                            width: v(48);
+                            height: v(48);
+                            opacity: 0.5;
+                        }
+
+                        &:nth-child(14) {
+                            top: v(453);
+                            right: v(108);
+                            width: v(50);
+                            height: v(50);
+                            opacity: 0.5;
+                        }
+
+                        &:nth-child(15) {
+                            top: v(518);
+                            left: v(214);
+                            width: v(60);
+                            height: v(60);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(16) {
+                            top: v(518);
+                            right: v(214);
+                            width: v(60);
+                            height: v(60);
+                            opacity: 1;
+                        }
+
+                        &:nth-child(17) {
+                            top: v(459);
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: v(93);
+                            height: v(93);
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 </style>
