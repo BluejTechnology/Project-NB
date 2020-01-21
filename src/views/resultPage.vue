@@ -204,7 +204,10 @@ export default {
         },
         toDownload() {
 				window.MtaH5.clickStat('result_matching_btn', {
-					'uuid': this.$route.query.uuid
+					'parameter': JSON.stringify({
+						'uuid': this.$route.query.uuid,
+						'time': (new Date).getTime()
+					})
 				})
 				window.MtaH5.clickStat('taohuayun', {
 					'resultmatchingbtn': 'true'
@@ -218,7 +221,10 @@ export default {
             this.showPoster = true;
 				window.console.log(this.showPoster);
 				window.MtaH5.clickStat('result_share_btn', {
-					'uuid': this.$route.query.uuid
+					'parameter': JSON.stringify({
+						'uuid': this.$route.query.uuid,
+						'time': (new Date).getTime()
+					})
 				})
             window.console.log(this.showPoster);
             html2canvas(this.$refs.posterCanvas, {

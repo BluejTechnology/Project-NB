@@ -110,10 +110,10 @@ export default {
         var UAParser = require("ua-parser-js"),
             parser = new UAParser();
 			window.MtaH5.clickStat('index_view', {
-					'parameter': {
+					'parameter': JSON.stringify({
 						'uuid': this.$route.query.uuid,
 						'from': parser.getBrowser().name
-					}
+					})
 				}),
 				window.MtaH5.clickStat('taohuayun', {
 					'indexview': 'true'
