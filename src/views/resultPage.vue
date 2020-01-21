@@ -74,7 +74,7 @@
             <canvas ref="qrCanvas"></canvas>
           </div>
           <div class="tip">
-            长按设别二维码
+            长按识别二维码
             <br />{{$store.state.gameData.scene_title.poster_title}}
           </div>
         </div>
