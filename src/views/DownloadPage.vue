@@ -60,6 +60,10 @@ export default {
     };
   },
   created() {
+		let m_uid = this.$utils.getCookie("UUID");
+		window.MtaH5.clickStat('matching_view', {
+						'uuid': m_uid;
+					});
     this.getOtherVatar();
     this.btn_url = this.getBtnUrl();
     window.console.log("全局头像数据", window.user_avator_data);
@@ -123,14 +127,24 @@ export default {
       this.otherVatar = window.femalePicUrl.concat(window.malePicUrl);
     },
     download_mta() {
-      var _event,
-        UAParser = require("ua-parser-js"),
-        parser = new UAParser();
-      if (parser.getOS().name == "iOS") {
-        _event = "matching_ios_download_btn";
-      } else {
-        _event = "matching_download_btn";
-      }
+            var _event, UAParser = require('ua-parser-js'),
+            	parser = new UAParser(),
+            	is_ios = 1;
+            if (parser.getOS().name == "iOS") {
+            	is_ios = 1;
+            } else {
+            	is_ios = 0;
+            }
+			let m_uid = this.$utils.getCookie("UUID");
+            window.MtaH5.clickStat('matching_download_btn', {
+            	'parameter': JSON.stringify({
+            		'uuid': m_uid,
+            		'is_ios': is_ios
+            	})
+            })
+            window.MtaH5.clickStat('taohuayun', {
+            	'matchingdownloadbtn': 'true'
+            })
     }
   }
 };

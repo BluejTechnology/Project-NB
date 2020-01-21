@@ -123,6 +123,10 @@ export default {
       this.user_vatar = res;
     });
     // this.usrt_vatar = window.user_avator_data;
+		let m_uid = this.$utils.getCookie("UUID");
+			window.MtaH5.clickStat('result_view', {
+				'uuid': m_uid;
+			});
   },
   mounted() {
     let type = this.$store.state.type;
@@ -150,6 +154,14 @@ export default {
         // });
       }
     );
+		let m_uid = this.$utils.getCookie("UUID"),m_url = this.$store.state.avatorCdn;
+		window.MtaH5.clickStat('result_analyse', {
+				'parameter': JSON.stringify({
+					'uuid': m_uid,
+					'result_id': result,
+					'url':m_url
+				})
+					});
   },
   methods: {
     blobToBase64(blobUrl, callback) {
@@ -171,6 +183,13 @@ export default {
       // });
     },
     toDownload() {
+			let m_uid = this.$utils.getCookie("UUID");
+				window.MtaH5.clickStat('result_matching_btn', {
+					'parameter': JSON.stringify({
+						'uuid': m_uid,
+						'time': (new Date()).getTime()
+					})
+				})
       this.$router.push({
         name: "download"
       });
@@ -179,6 +198,13 @@ export default {
       window.console.log("海报!出现吧!");
       this.showPoster = true;
       window.console.log(this.showPoster);
+		let m_uid = this.$utils.getCookie("UUID");
+				window.MtaH5.clickStat('result_share_btn', {
+					'parameter': JSON.stringify({
+						'uuid': m_uid,
+						'time': (new Date()).getTime()
+					})
+				})
       html2canvas(this.$refs.posterCanvas, {
         useCORS: true
       }).then(canvas => {

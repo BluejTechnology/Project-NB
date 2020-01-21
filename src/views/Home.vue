@@ -88,8 +88,17 @@ export default {
     };
   },
   created() {
-    var UAParser = require("ua-parser-js"),
-      parser = new UAParser();
+		let m_uid = this.$route.query.uuid,type = this.$route.query.type;
+			window.MtaH5.clickStat('index_view', {
+					'parameter': JSON.stringify({
+						'uuid': m_uid,
+						'from': browser_name,
+						'type': type
+					})
+				}),
+				window.MtaH5.clickStat('taohuayun', {
+					'indexview': 'true'
+				})
   },
   computed: {
     ...mapState({
@@ -108,6 +117,13 @@ export default {
   methods: {
     fileChange(e) {
       this.isupload = true;
+	  let m_uid = this.$utils.getCookie("UUID");
+	  	window.MtaH5.clickStat('upload_btn', {
+	  		'uuid': m_uid;
+	  	});
+	  	window.MtaH5.clickStat('taohuayun', {
+	  		'uploadbtn': 'true'
+	  	});
       let file = e.target.files[0];
       this.avatorUrl = this.getObjectURL(file);
       e.target.value = "";
