@@ -24,7 +24,7 @@ export default {
     },
     created() {},
     mounted() {
-        const tick = tickFactory(10, this.animation);
+        const tick = tickFactory(5, this.animation);
         tick();
     },
     methods: {
