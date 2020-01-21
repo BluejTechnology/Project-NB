@@ -85,7 +85,7 @@
                             }"
                         > -->
                         <div class="user_vatar_box">
-                            <img :src="user_vatar" alt="" />
+                            <img crossOrigin="Anonymous" :src="user_vatar" alt="" />
                         </div>
                         <div class="grade">{{ gradeData }}分</div>
                         <div class="des" v-html="desData"></div>
@@ -149,26 +149,9 @@ export default {
         // this.usrt_vatar = window.user_avator_data;
     },
     mounted() {
-        function getCookie(sKey) {
-            return (
-                decodeURIComponent(
-                    document.cookie.replace(
-                        new RegExp(
-                            "(?:(?:^|.*;)\\s*" +
-                                encodeURIComponent(sKey).replace(
-                                    /[-.+*]/g,
-                                    "\\$&"
-                                ) +
-                                "\\s*\\=\\s*([^;]*).*$)|^.*$"
-                        ),
-                        "$1"
-                    )
-                ) || null
-            );
-        }
         let type = this.$store.state.type;
         let result = this.$store.state.result.resID;
-        let uuid = getCookie("UUID");
+        let uuid = this.$utils.getCookie("UUID");
         window.console.log(type, result, uuid);
         // 渲染二维码
         QRCode.toCanvas(
@@ -201,13 +184,13 @@ export default {
             // }).then(res => {
             let a = new FileReader();
             a.onload = function(e) {
-                console.log("base64:", e.target.result);
-                let base64 = e.target.result.replace(
-                    "data:application/octet-stream;base64",
-                    "data:image/jpeg;base64"
-                );
-                callback(base64);
-            };
+                // console.log("base64:", e.target.result);
+                // let base64 = e.target.result.replace(
+                //     "data:application/octet-stream;base64",
+                //     "data:image/jpeg;base64"
+				// );
+				callback(e.target.result)
+			};
             a.readAsDataURL(blobUrl);
             // });
         },
@@ -221,14 +204,13 @@ export default {
             this.showPoster = true;
             window.console.log(this.showPoster);
             html2canvas(this.$refs.posterCanvas, {
-                backgroundColor: null
+				useCORS: true
             }).then(canvas => {
-                // document.querySelector("audio").removeAttribute("autoplay");
-                console.time("toCanvas");
+                // console.time("toCanvas");
                 let start = Date.now();
                 let dataURL = canvas.toDataURL("image/jpeg", 0.5);
-                window.console.log(6666);
-                alert(Date.now() - start);
+                // window.console.log(6666);
+                // alert(Date.now() - start);
                 this.outPoster = dataURL;
             });
         }

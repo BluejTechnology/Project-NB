@@ -6,6 +6,7 @@ import axios from 'axios'
 // 前端sentry监控
 import * as Sentry from '@sentry/browser'
 import * as Integrations from '@sentry/integrations'
+import utils from "./libs/utils.js";
 process.env.isBuild && Sentry.init({
     dsn: 'https://266aeebd126448cfb530211d02ff9825@report.url.cn/sentry/2163',
     integrations: [new Integrations.Vue({
@@ -16,6 +17,7 @@ process.env.isBuild && Sentry.init({
     release: `qzi`
 })
 Vue.prototype.$axios = axios;
+Vue.prototype.$utils = utils;
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
