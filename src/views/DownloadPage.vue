@@ -165,6 +165,7 @@ export default {
   width: 100%;
   overflow: hidden;
   position: relative;
+  z-index: 4;
 
   .cloud_l {
     position: absolute;
