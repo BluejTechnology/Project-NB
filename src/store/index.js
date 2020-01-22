@@ -138,7 +138,7 @@ let gameData = {
         "type2": {
             "title": "测一测你的脱单时刻",
             "scene_title": {
-                "home_title_url": 'http://yoo.qpic.cn/yoo_img/0/8ef8729bdc6af0f90157c9543ca0eacc/0',
+                "home_title_url": '//yoo.qpic.cn/yoo_img/0/8ef8729bdc6af0f90157c9543ca0eacc/0',
                 "res_title_url": '/type2_title.png',
                 "upload_title": "上传本人照片，看看新年会在什么情况下脱单？",
                 "to_down_btn": "看看同一天脱单的TA",
@@ -415,7 +415,7 @@ export default new Vuex.Store({
             state.type = type;
             // 存入当前游戏类型的相关数据
             state.gameData = gameData.resultData[`type${type}`];
-            let htmlTitle = ["测一测新年催婚火力", "测一测新年脱单日", "测一测新年桃花运"];
+            let htmlTitle = ["测一测你的择偶倾向", "测一测你的脱单时刻", "测一测你的桃花运是"];
             document.title = htmlTitle[type - 1];
         },
         setResult(state, sex) {

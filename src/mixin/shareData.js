@@ -1,5 +1,4 @@
 import shareData from '@/data/shareData.json';
-window.console.log(shareData)
 import { mapState } from "vuex";
 export default {
     methods:{
