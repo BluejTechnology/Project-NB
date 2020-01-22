@@ -117,17 +117,20 @@ export default {
     let m_uid = this.$route.query.uuid,
       type = this.$route.query.type,
       res = this.$route.query.res;
-    window.MtaH5.clickStat("index_view", {
-      parameter: JSON.stringify({
-        uuid: m_uid,
-        from: browser_name,
-        type: type,
-        res: res
-      })
-    });
-    window.MtaH5.clickStat("taohuayun", {
-      indexview: "true"
-    });
+      setTimeout(()=>{
+        window.MtaH5.clickStat("index_view", {
+              parameter: JSON.stringify({
+                uuid: m_uid,
+                from: browser_name,
+                type: type,
+                res: res
+              })
+            });
+        window.MtaH5.clickStat("taohuayun", {
+          indexview: "true"
+        });
+      },100)
+    
     // 侦听input
     this.$refs["uploadpic"].addEventListener("change", this.fileChange);
     // 初始化分享数据
