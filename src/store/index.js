@@ -125,7 +125,7 @@ let gameData = {
                 "res_des": "不恋荣华富贵的虚无，重视尘世相守的幸福。",
                 "resID": "24"
             }, {
-                "grade": "9899",
+                "grade": "单身挺好",
                 "res_des": "作为新时代的女性，爱美食爱美酒，更爱自由。",
                 "resID": "25"
             }],
@@ -415,20 +415,23 @@ export default new Vuex.Store({
             state.type = type;
             // 存入当前游戏类型的相关数据
             state.gameData = gameData.resultData[`type${type}`];
-            let htmlTitle = ["测一测新年催婚火力", "测一测新年脱单日", "测一测新年桃花运"];
+            let htmlTitle = ["测一测你的择偶倾向", "测一测你的脱单时刻", "测一测新年桃花运势"];
             document.title = htmlTitle[type - 1];
         },
         setResult(state, sex) {
             // gender: 1 为男 2 为女
-            window.console.log(state.gameData)
-            window.console.log(sex);
+            // window.console.log(state.gameData)
+            // window.console.log(sex);
             state.userSex = sex;
+            if(sex == "noface"){
+                state.result = state.gameData.other[0]
+            }
             if (sex == 1) {
                 let boys = state.gameData.boy;
                 let result = boys[Math.floor(Math.random() * boys.length)];
                 state.result = result
                 // window.console.log(result)
-            } else {
+            } else if(sex == 2) {
                 let girls = state.gameData.girl;
                 let result = girls[Math.floor(Math.random() * girls.length)];
                 state.result = result;

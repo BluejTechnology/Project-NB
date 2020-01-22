@@ -55,6 +55,7 @@
     <div class="hlogo">
       <logo></logo>
     </div>
+    <transition name="fade"><pop :msg="'您上传的图片无法识别,请重新上传'" v-if="showPop" :isPop="isPop" @closePop="closePop"></pop></transition>
   </div>
 </template>
 
@@ -66,6 +67,7 @@ import leftTree from "@/components/base/left_tree.vue";
 import rightTree from "@/components/base/right_tree.vue";
 // import avatorUrl from "@/assets/images/default_avator.jpg";
 import logo from "@/components/base/logo.vue";
+import pop from "@/components/base/pop.vue";
 import axios from "axios";
 import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
@@ -81,12 +83,15 @@ export default {
     mheader,
     leftTree,
     rightTree,
-    logo
+    logo,
+    pop
   },
   data() {
     return {
       avatorUrl: "//yoo.qpic.cn/yoo_img/0/e5d43b13019d854effc1106c88f7a977/0",
-      isupload: false
+      isupload: false,
+      isPop: false,
+      showPop: false
     };
   },
   created() {
@@ -132,6 +137,9 @@ export default {
     }, 40000);
   },
   methods: {
+    closePop(){
+        this.showPop=false
+    },
     async fileChange(e) {
       this.isupload = true;
       window.MtaH5.clickStat("taohuayun", {
@@ -164,9 +172,20 @@ this.avatorUrl = window.user_avator
           });
           this.$store.commit("setAvatorCdn", res1.CDNUrl);
           if (!res3.gender) {
-            window.console.log("非人脸请重新上传");
-            // 非人脸重置数据
-            Object.assign(this.$data, this.$options.data());
+            if(res3.result==2){
+              window.console.log("unsafe 不安全图片");
+              this.showPop = true;
+              this.isPop = true;
+              // 非人脸重置数据
+              Object.assign(this.$data, this.$options.data());
+            }
+            if(res3.result==3){
+              window.console.log("no face 不含人脸")
+              this.$router.push({
+                name: "result"
+              });
+              this.$store.commit("setResult", 'noface');
+            }
             return;
           }
           this.preloadAvator();
@@ -421,7 +440,14 @@ this.avatorUrl = window.user_avator
 <style lang="scss">
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
-
+/* 动画开始前 和 结束时刻 */
+.fade-enter,.fade-leave-to{
+    opacity: 0;
+}
+/* 元素进场时 和  元素离场时 */
+.fade-enter-active,.fade-leave-active{
+    transition: all .5s;
+}
 #app {
   height: 100%;
   overflow: hidden;
