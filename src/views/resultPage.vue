@@ -17,7 +17,7 @@
             >
               <!-- <img :src="user_vatar" alt=""> -->
             </div>
-            <div class="grade">{{ gradeData }}分</div>
+            <div class="grade">{{ gradeData }}</div>
             <div class="des" v-html="desData"></div>
           </div>
           <div class="tip_box">
@@ -25,11 +25,11 @@
           </div>
           <div class="btn_box">
             <div class="btn_wrap" @click="showImage">
-                <img src="../assets/images/btn_base.png" alt="">
+                <img src="//yoo.qpic.cn/yoo_img/0/bdb018899124e106fe4f7ad9a95df0a4/0" alt="">
                 <p>保存图片发朋友圈</p>
             </div>
             <div class="btn_wrap" @click="toDownload">
-                <img src="../assets/images/btn_base.png" alt="">
+                <img src="//yoo.qpic.cn/yoo_img/0/bdb018899124e106fe4f7ad9a95df0a4/0" alt="">
                 <p>{{$store.state.gameData.scene_title.to_down_btn}}</p>
             </div>
           </div>
@@ -67,7 +67,7 @@
             <div class="user_vatar_box">
               <img crossorigin="Anonymous" :src="user_vatar" alt />
             </div>
-            <div class="grade">{{ gradeData }}分</div>
+            <div class="grade">{{ gradeData }}</div>
             <div class="des" v-html="desData"></div>
           </div>
           <div class="qr_box">

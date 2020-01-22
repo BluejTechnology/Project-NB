@@ -8,7 +8,7 @@ let gameData = {
         "type1": {
             "title": "测一测你的择偶倾向",
             "scene_title": {
-                "home_title_url": '//yoo.qpic.cn/yoo_img/0/1c5e210094cec4481a9e1d3f25e83410/0',
+                "home_title_url": '//yoo.qpic.cn/yoo_img/0/45a4917fc7d0503f9d17e8d65cf61c5a/0',
                 "res_title_url": '/type1_title.png',
                 "upload_title": "上传本人照片，测出你对另一半的标准！",
                 "to_down_btn": "看看适合的TA",
@@ -125,7 +125,7 @@ let gameData = {
                 "res_des": "不恋荣华富贵的虚无，重视尘世相守的幸福。",
                 "resID": "24"
             }, {
-                "grade": "9899",
+                "grade": "单身挺好",
                 "res_des": "作为新时代的女性，爱美食爱美酒，更爱自由。",
                 "resID": "25"
             }],
@@ -138,7 +138,7 @@ let gameData = {
         "type2": {
             "title": "测一测你的脱单时刻",
             "scene_title": {
-                "home_title_url": '//yoo.qpic.cn/yoo_img/0/3026c7f1211d85adc857eb0691159016/0',
+                "home_title_url": '//yoo.qpic.cn/yoo_img/0/8ef8729bdc6af0f90157c9543ca0eacc/0',
                 "res_title_url": '/type2_title.png',
                 "upload_title": "上传本人照片，看看新年会在什么情况下脱单？",
                 "to_down_btn": "看看同一天脱单的TA",
@@ -259,7 +259,7 @@ let gameData = {
         "type3": {
             "title": "测一测新年桃花运势",
             "scene_title": {
-                "home_title_url": '//yoo.qpic.cn/yoo_img/0/eb551a41fb609f41cdd01cd4cd7a21b4/0',
+                "home_title_url": '//yoo.qpic.cn/yoo_img/0/cdb7744f326970f670701c176b4b4062/0',
                 "res_title_url": '/type3_title.png',
                 "upload_title": "上传本人照片，看看新年桃花运势如何？",
                 "to_down_btn": "看看同运势的TA",
@@ -415,20 +415,23 @@ export default new Vuex.Store({
             state.type = type;
             // 存入当前游戏类型的相关数据
             state.gameData = gameData.resultData[`type${type}`];
-            let htmlTitle = ["测一测新年催婚火力", "测一测新年脱单日", "测一测新年桃花运"];
+            let htmlTitle = ["测一测你的择偶倾向", "测一测你的脱单时刻", "测一测你的桃花运是"];
             document.title = htmlTitle[type - 1];
         },
         setResult(state, sex) {
             // gender: 1 为男 2 为女
-            window.console.log(state.gameData)
-            window.console.log(sex);
+            // window.console.log(state.gameData)
+            // window.console.log(sex);
             state.userSex = sex;
+            if(sex == "noface"){
+                state.result = state.gameData.other[0]
+            }
             if (sex == 1) {
                 let boys = state.gameData.boy;
                 let result = boys[Math.floor(Math.random() * boys.length)];
                 state.result = result
                 // window.console.log(result)
-            } else {
+            } else if(sex == 2) {
                 let girls = state.gameData.girl;
                 let result = girls[Math.floor(Math.random() * girls.length)];
                 state.result = result;

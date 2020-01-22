@@ -128,10 +128,10 @@ export default {
   background-repeat: no-repeat;
 }
 .sound-on {
-  background-image: url(//yoo.qpic.cn/yoo_img/0/19c1ebc05d44e8fa5841b711795a9eb2/0);
+  background-image: url(//yoo.qpic.cn/yoo_img/0/09a594422d153973515622ae1f82e30c/0);
 }
 .sound-off {
-  background-image: url(//yoo.qpic.cn/yoo_img/0/62456866ee493280e495381468410c5a/0);
+  background-image: url(//yoo.qpic.cn/yoo_img/0/13297edaf3de0d4ea0841f5a31244337/0);
 }
 @-webkit-keyframes rotate {
   from {

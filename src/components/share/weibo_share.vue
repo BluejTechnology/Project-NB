@@ -10,7 +10,7 @@
 						分享
 					</div>
 					<div class="logowrapper">
-						<img src="//yoo.qpic.cn/yoo_img/0/e21365a0a555b5798f9652eeddab4e78/0" alt="" @click="sharewb">
+						<img src="//yoo.qpic.cn/yoo_img/0/b355def1f8af2909147452579010313a/0" alt="" @click="sharewb">
 					</div>
 					<div @click="hideMask" class="btn_hide">取消</div>
 				</div>
@@ -75,7 +75,7 @@
 		height: 100%;
 		background-repeat: no-repeat;
 		background-size: cover;
-		background-image: url(//yoo.qpic.cn/yoo_img/0/cf197466706b87270938ff6f7ef3639d/0);
+		background-image: url(//yoo.qpic.cn/yoo_img/0/6d8e76d748f57afcab0cc94f22f3e209/0);
 		background-position: 50%;
 		transform: scale(0.6);
 	}

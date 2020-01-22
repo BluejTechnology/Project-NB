@@ -3,11 +3,11 @@
     <!-- <wb-share></wb-share> -->
     <mheader :getTitleUrl="titleUrl" :titleType="'home'">
       <!-- 208-184 -->
-      <img src="//yoo.qpic.cn/yoo_img/0/1a8057b72fd3b3353c8beeb44ad8ec05/0" alt class="icon_angle" />
+      <img src="//yoo.qpic.cn/yoo_img/0/74f0881a5d2db3af7f8e67402055575b/0" alt class="icon_angle" />
     </mheader>
     <div class="hcontent">
       <div class="window">
-        <img src="//yoo.qpic.cn/yoo_img/0/9eaf17e96e7baae3d267123e3012c5a4/0" alt />
+        <img src="//yoo.qpic.cn/yoo_img/0/836bdf02c0dfa8f74be0cbf6c1b255ac/0" alt />
         <div class="avator_wrapper">
           <div
             class="avator"
@@ -16,22 +16,22 @@
                         }"
           ></div>
           <img
-            src="//yoo.qpic.cn/yoo_img/0/107d8e774cb64aa489a7bb5fd4a53d6b/0"
+            src="//yoo.qpic.cn/yoo_img/0/4f27b061cb9657423f09cdbcecfa2930/0"
             alt
             class="scan_icon ani_scan"
           />
           <img
-            src="//yoo.qpic.cn/yoo_img/0/aac53124453f9fded50b2004e4b2903d/0"
+            src="//yoo.qpic.cn/yoo_img/0/cc6f786affa29086fa4e094444a8933a/0"
             alt
             class="scan_border"
           />
         </div>
         <left-tree class="slideleft"></left-tree>
         <div class="l_cloud slideleft">
-          <img src="//yoo.qpic.cn/yoo_img/0/f7a17066469aef3aa88e5b51c6099284/0" alt />
+          <img src="//yoo.qpic.cn/yoo_img/0/447648d7e7104b22bb3f156ebf619e5e/0" alt />
         </div>
         <div class="r_cloud slideright">
-          <img src="//yoo.qpic.cn/yoo_img/0/f77ff6f173cec91adf4f9e1f450b7fa1/0" alt />
+          <img src="//yoo.qpic.cn/yoo_img/0/eb3f88ad958a247537fffb03ed8d73b3/0" alt />
         </div>
         <right-tree class="slideright"></right-tree>
       </div>
@@ -39,7 +39,7 @@
         <div class="upload_btn">
           <!-- 474-92 -->
           <label>
-            <img src="//yoo.qpic.cn/yoo_img/0/ee2afffbed072b4f478f112e142cef13/0" alt />
+            <img src="//yoo.qpic.cn/yoo_img/0/6c7662dcc98b5d3d0610cd8cf2fe3ade/0" alt />
             <input type="file" accept="image/*" ref="uploadpic" />
           </label>
         </div>
@@ -48,13 +48,14 @@
       <div class="loading_txt" v-show="isupload">智能解析中……</div>
     </div>
     <img
-      src="//yoo.qpic.cn/yoo_img/0/ea417e4dab8e9f591c8d70ecd898b209/0"
+      src="//yoo.qpic.cn/yoo_img/0/a597ee87638d5cfe0935471108754158/0"
       alt="cloud"
       class="bgCloud"
     />
     <div class="hlogo">
       <logo></logo>
     </div>
+    <transition name="fade"><pop :msg="'您上传的图片无法识别,请重新上传'" v-if="showPop" :isPop="isPop" @closePop="closePop"></pop></transition>
   </div>
 </template>
 
@@ -66,6 +67,7 @@ import leftTree from "@/components/base/left_tree.vue";
 import rightTree from "@/components/base/right_tree.vue";
 // import avatorUrl from "@/assets/images/default_avator.jpg";
 import logo from "@/components/base/logo.vue";
+import pop from "@/components/base/pop.vue";
 import axios from "axios";
 import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
@@ -73,20 +75,25 @@ import tmpArr from "@/data/animation.json";
 import { mapState } from "vuex";
 
 import tools from "../libs/iphonePicture";
+import updateshare from '@/mixin/shareData.js';
 const SUM = 18;
 export default {
   name: "home",
+  mixins:[updateshare],
   components: {
     // wbShare,
     mheader,
     leftTree,
     rightTree,
-    logo
+    logo,
+    pop
   },
   data() {
     return {
       avatorUrl: "//yoo.qpic.cn/yoo_img/0/e5d43b13019d854effc1106c88f7a977/0",
-      isupload: false
+      isupload: false,
+      isPop: false,
+      showPop: false
     };
   },
   created() {},
@@ -110,17 +117,20 @@ export default {
     let m_uid = this.$route.query.uuid,
       type = this.$route.query.type,
       res = this.$route.query.res;
-    window.MtaH5.clickStat("index_view", {
-      parameter: JSON.stringify({
-        uuid: m_uid,
-        from: browser_name,
-        type: type,
-        res: res
-      })
-    });
-    window.MtaH5.clickStat("taohuayun", {
-      indexview: "true"
-    });
+      setTimeout(()=>{
+        window.MtaH5.clickStat("index_view", {
+              parameter: JSON.stringify({
+                uuid: m_uid,
+                from: browser_name,
+                type: type,
+                res: res
+              })
+            });
+        window.MtaH5.clickStat("taohuayun", {
+          indexview: "true"
+        });
+      },100)
+    
     // 侦听input
     this.$refs["uploadpic"].addEventListener("change", this.fileChange);
     // 初始化分享数据
@@ -131,6 +141,9 @@ export default {
     }, 50000);
   },
   methods: {
+    closePop(){
+        this.showPop=false
+    },
     async fileChange(e) {
       this.isupload = true;
       window.MtaH5.clickStat("taohuayun", {
@@ -163,9 +176,20 @@ export default {
           });
           this.$store.commit("setAvatorCdn", res1.CDNUrl);
           if (!res3.gender) {
-            window.console.log("非人脸请重新上传");
-            // 非人脸重置数据
-            Object.assign(this.$data, this.$options.data());
+            if(res3.result==2){
+              window.console.log("unsafe 不安全图片");
+              this.showPop = true;
+              this.isPop = true;
+              // 非人脸重置数据
+              Object.assign(this.$data, this.$options.data());
+            }
+            if(res3.result==3){
+              window.console.log("no face 不含人脸")
+              this.$router.push({
+                name: "result"
+              });
+              this.$store.commit("setResult", 'noface');
+            }
             return;
           }
           this.preloadAvator();
@@ -410,8 +434,9 @@ export default {
         ) || null
       );
     },
-    _initShare() {
+    async _initShare() {
       //初始化分享链接
+      await this.updateDesc();
       this._share();
     }
   }
@@ -420,7 +445,14 @@ export default {
 <style lang="scss">
 @import "~@/assets/css/reset.css";
 @import "~@/assets/scss/util";
-
+/* 动画开始前 和 结束时刻 */
+.fade-enter,.fade-leave-to{
+    opacity: 0;
+}
+/* 元素进场时 和  元素离场时 */
+.fade-enter-active,.fade-leave-active{
+    transition: all .5s;
+}
 #app {
   height: 100%;
   overflow: hidden;
@@ -433,7 +465,7 @@ export default {
   align-content: center;
   justify-content: center;
   background-repeat: no-repeat;
-  background-image: url(//yoo.qpic.cn/yoo_img/0/9ea3bc8a06caf180659cf222b0f7904e/0);
+  background-image: url(//yoo.qpic.cn/yoo_img/0/1a59c7224297b470113b7fe2b5c86f8c/0);
   background-position: center;
   background-size: 100% 100%;
 }
