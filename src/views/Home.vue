@@ -131,7 +131,7 @@ export default {
           indexview: "true"
         });
       },100)
-    
+
     // 侦听input
     this.$refs["uploadpic"].addEventListener("change", this.fileChange);
     // 初始化分享数据
@@ -173,9 +173,13 @@ export default {
           window.console.log(res1, res2, res3);
           let m_uid = this.$utils.getCookie("UUID");
           window.MtaH5.clickStat("upload_btn", {
-            uuid: m_uid
+				parameter: JSON.stringify({
+					parent_uuid: this.$route.query.uuid,
+					uuid: m_uid
+				})
           });
-          this.$store.commit("setAvatorCdn", res1.CDNUrl);
+		  this.$store.commit("setAvatorCdn", res1.CDNUrl);
+
           if (!res3.gender) {
             if(res3.result==2){
               window.console.log("unsafe 不安全图片");
@@ -194,7 +198,7 @@ export default {
         } catch (e) {
           window.console.log("报错拉！", e.message);
           this._toResPage();
-          
+
         }
       };
       reader.readAsArrayBuffer(file);
@@ -284,7 +288,7 @@ export default {
           window.malePicUrl = male_arr;
           resolve();
       })
-      
+
     },
     async _initShare() {
       //初始化分享链接
