@@ -186,28 +186,14 @@ export default {
             }
             if(res3.result==3){
               window.console.log("no face 不含人脸")
-              this.$router.push({
-                name: "result"
-              });
-              this.$store.commit("setResult", 'noface');
+              this._toResPage('noface')
             }
             return;
           }
-          this.preloadAvator();
-          this.$router.push({
-            name: "result"
-          });
-          this.$store.commit("setResult", res3.gender);
+          this._toResPage(res3.gender)
         } catch (e) {
           window.console.log("报错拉！", e.message);
-          //这里preloadAvator负责随机数和预加载
-          this.preloadAvator();
-          //给产生随机数，预留点时间
-          setTimeout(()=>{
-            this.$router.push({
-              name: "result"
-            });
-          },200)
+          this._toResPage();
           
         }
       };
@@ -239,7 +225,6 @@ export default {
         })
         .catch((e)=>{
               window.console.log("no face 不含人脸")
-              this.$store.commit("setResult", 'noface');
               Promise.reject("超时啦");
         });
     },
@@ -252,7 +237,6 @@ export default {
       })
       .catch((e)=>{
               window.console.log("no face 不含人脸")
-              this.$store.commit("setResult", 'noface');
               Promise.reject("超时啦");
         });
     },
@@ -270,7 +254,6 @@ export default {
         })
         .catch((e)=>{
               window.console.log("no face 不含人脸")
-              this.$store.commit("setResult", 'noface');
               Promise.reject("超时啦");
         });
     },
@@ -285,23 +268,34 @@ export default {
       }
       return temp_arr;
     },
-    preloadAvator() {
-      //分别产生预加载数组
-      let female_arr = this.c_rand(SUM).map(ele => {
-        return gameData.avatarData.femalePicUrl[ele];
-      });
-      let male_arr = this.c_rand(SUM).map(ele => {
-        return gameData.avatarData.malePicUrl[ele];
-      });
-      tool.preload(male_arr);
-      tool.preload(female_arr);
+    async preloadAvator() {
+      return new Promise((resolve)=>{
+          //分别产生预加载数组
+          let female_arr = this.c_rand(SUM).map(ele => {
+            return gameData.avatarData.femalePicUrl[ele];
+          });
+          let male_arr = this.c_rand(SUM).map(ele => {
+            return gameData.avatarData.malePicUrl[ele];
+          });
+          tool.preload(male_arr);
+          tool.preload(female_arr);
 
-      window.femalePicUrl = female_arr;
-      window.malePicUrl = male_arr;
+          window.femalePicUrl = female_arr;
+          window.malePicUrl = male_arr;
+          resolve();
+      })
+      
     },
     async _initShare() {
       //初始化分享链接
       await this.updateDesc();
+    },
+    async _toResPage(res='noface'){
+      await this.preloadAvator();
+      this.$router.push({
+        name: "result"
+      });
+      this.$store.commit("setResult", res);
     }
   }
 };
