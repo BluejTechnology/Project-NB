@@ -415,7 +415,7 @@ export default new Vuex.Store({
             state.type = type;
             // 存入当前游戏类型的相关数据
             state.gameData = gameData.resultData[`type${type}`];
-            let htmlTitle = ["测一测你的择偶倾向", "测一测你的脱单时刻", "测一测你的桃花运是"];
+            let htmlTitle = ["测一测你的择偶倾向", "测一测你的脱单时刻", "测一测你的桃花运势"];
             document.title = htmlTitle[type - 1];
         },
         setResult(state, sex) {
