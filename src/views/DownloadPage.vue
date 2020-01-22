@@ -115,8 +115,9 @@ export default {
       // this.otherVatar = mockData;
       window.femalePicUrl = window.femalePicUrl || [];
       window.malePicUrl = window.malePicUrl || [];
+      console.log((this.userSex != 2||this.userSex=='noface'))
       this.otherVatar =
-        this.userSex == 1 ? window.femalePicUrl : window.malePicUrl;
+        (this.userSex != 2||this.userSex=='noface') ? window.femalePicUrl : window.malePicUrl;
     },
     download_mta() {
       var _event,

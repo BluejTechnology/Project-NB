@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta property="wb:webmaster" content="fa38ad6c2e7e6ecc" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <link rel="icon" href="http://yoo.qpic.cn/yoo_img/0/d046a09e0d038750ce32e2efa49b7936/0">
+    <link rel="icon" href="//yoo.qpic.cn/yoo_img/0/d046a09e0d038750ce32e2efa49b7936/0">
     <title>测一测你的择偶倾向</title>
 </head>
 
@@ -144,7 +144,168 @@
     </script>
 
     <script type="text/javascript">
+        _share();
+        function _share() {
+      if (mqq.device.isMobileQQ()) {
 
+        setTimeout(function() {
+          mqq.ui.setOnShareHandler(function(type) {
+            mqq.ui.shareMessage(
+              {
+                title: title,
+                desc: desc,
+                share_type: type,
+                back: true,
+                image_url: image_url,
+                imageUrl: image_url,
+                share_url: share_url,
+                sourceName: sourceName,
+                puin: 0,
+                src_iconUrl: src_iconUrl
+              },
+              function(res) {
+                if (res.retCode === 0) {
+                  // mqq.ui.popBack();
+                }
+              }
+            );
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
+          });
+        }, 200);
+      } else {
+        let wechat_url = share_url + '&adtag=wechatshare';
+        let onBridgeReady = function() {
+          // 转发朋友圈
+          WeixinJSBridge.on('menu:share:timeline', function(e) {
+            let data = {
+              img_url: image_url,
+              img_width: '120',
+              img_height: '120',
+              link: wechat_url,
+              // desc这个属性要加上，虽然不会显示，但是不加暂时会导致无法转发至朋友圈，
+              desc: desc,
+              title: title
+            };
+            WeixinJSBridge.invoke('shareTimeline', data, function(res) {
+              WeixinJSBridge.log(res.err_msg);
+            });
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
+          });
+          // 同步到微博
+          WeixinJSBridge.on('menu:share:weibo', function() {
+            WeixinJSBridge.invoke(
+              'shareWeibo',
+              {
+                content: title,
+                url: wechat_url
+              },
+              function(res) {
+                WeixinJSBridge.log(res.err_msg);
+              }
+            );
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
+          });
+          // 分享给朋友
+          WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+            WeixinJSBridge.invoke(
+              'sendAppMessage',
+              {
+                img_url: image_url,
+                img_width: '120',
+                img_height: '120',
+                link: wechat_url,
+                desc: desc,
+                title: title
+              },
+              function(res) {
+                WeixinJSBridge.log(res.err_msg);
+              }
+            );
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
+          });
+        };
+        if (
+          typeof top.window.WeixinJSBridge === 'undefined' ||
+          !top.window.WeixinJSBridge.invoke
+        ) {
+          // 没有就监听ready事件
+          if (document.addEventListener) {
+            document.addEventListener(
+              'WeixinJSBridgeReady',
+              onBridgeReady,
+              false
+            );
+          } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+          }
+        } else {
+          // 初始化结束直接就执行吧！
+          onBridgeReady();
+        }
+      }
+    }
+    mvpshare();
+    function mvpshare() {
+      /*
+       *channel
+       * 分享渠道（可以组合 1-茄子好友 2-微信 4-QQ 8-朋友圈 16-QQ空间）
+       * title
+       * 分享标题
+       * summary
+       * 分享概述
+       * panelTitle分享面板标题
+       * url
+       * 分享链接
+       * imgUrl
+       * 分享缩略图
+       */
+      mvpApp.bridge.callHandler(
+        {
+          module: "QZCommon",
+          method: "share",
+          query: {
+            url: window.share_url,
+            title: window.title,
+            summary: "2020新年快乐",
+            panelTitle: "发送邀请到",
+            channel: "4",
+            imgUrl: window.image_url
+          }
+        },
+        data => {
+          MtaH5.clickStat("global_share", {
+            uuid: this.m_getCookie("UUID")
+          });
+          console.log(data);
+        },
+        err => {
+          console.log("err", err);
+        }
+      );
+    }
+    function m_getCookie(sKey) {
+      return (
+        decodeURIComponent(
+          document.cookie.replace(
+            new RegExp(
+              "(?:(?:^|.*;)\\s*" +
+                encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") +
+                "\\s*\\=\\s*([^;]*).*$)|^.*$"
+            ),
+            "$1"
+          )
+        ) || null
+      );
+    }
     </script>
     <script>
         /**
