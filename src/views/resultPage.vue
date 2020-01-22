@@ -8,7 +8,9 @@
             <img src="../assets/images/resultCard.png" alt />
           </div>
           <div class="vatar_box">
-            <img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt />
+            <div class="vatar_wrapper" >
+              <img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="" />
+            </div>
             <div
               class="user_vatar_box"
               :style="{
@@ -57,7 +59,9 @@
             <img src="../assets/images/resultCard.png" alt />
           </div>
           <div class="vatar_box">
-            <img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt />
+            <div class="vatar_wrapper" >
+              <img src="//yoo.qpic.cn/yoo_img/0/65de1118e8876dcce293afe37f1c15b6/0" alt="" />
+            </div>
             <!-- <div
                             class="user_vatar_box"
                             :style="{
@@ -298,8 +302,11 @@ export default {
               font-style: normal;
             }
           }
-
-          > img {
+          .vatar_wrapper{
+            width: v(260);
+            height: v(320);
+          }
+          img {
             width: 100%;
             transform: translateX(v(-1));
           }
@@ -484,7 +491,7 @@ export default {
     p {
       z-index: 9;
       position: absolute;
-      bottom: v(65);
+      bottom: v(100);
       text-align: center;
       color: white;
       width: 100%;

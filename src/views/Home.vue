@@ -16,7 +16,7 @@
                         }"
           ></div>
           <img
-            src="//yoo.qpic.cn/yoo_img/0/4f27b061cb9657423f09cdbcecfa2930/0"
+            src="//yoo.qpic.cn/yoo_img/0/229fe65cbb9ab8ad09c839683f888528/0"
             alt
             class="scan_icon ani_scan"
           />
@@ -48,7 +48,7 @@
       <div class="loading_txt" v-show="isupload">智能解析中……</div>
     </div>
     <img
-      src="//yoo.qpic.cn/yoo_img/0/a597ee87638d5cfe0935471108754158/0"
+      src="//yoo.qpic.cn/yoo_img/0/26c9503bb89adff164445ec6e7fc1fdd/0"
       alt="cloud"
       class="bgCloud"
     />
@@ -327,7 +327,7 @@ export default {
   align-content: center;
   justify-content: center;
   background-repeat: no-repeat;
-  background-image: url(//yoo.qpic.cn/yoo_img/0/1a59c7224297b470113b7fe2b5c86f8c/0);
+  background-image: url(//yoo.qpic.cn/yoo_img/0/b191ce978e6901d0afb7b654b0e8db82/0);
   background-position: center;
   background-size: 100% 100%;
 }
@@ -509,24 +509,24 @@ export default {
 
 @-webkit-keyframes ani_scan {
   from {
-    top: 120%;
+    top: -120%;
     opacity: 1;
   }
 
   to {
-    top: -50%;
+    top: 120%;
     opacity: 0.2;
   }
 }
 
 @keyframes ani_scan {
   from {
-    top: 120%;
+    top: -120%;
     opacity: 1;
   }
 
   to {
-    top: -50%;
+    top: 120%;
     opacity: 0.2;
   }
 }
@@ -573,5 +573,41 @@ export default {
 
 .delay4 {
   animation-delay: 1.4s;
+}
+//iphoneX、iphoneXs
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .header{
+    margin-top: -40px;
+  }
+  .downLoadPage .main{
+    margin-top: -40px;
+  }
+}
+
+
+
+ 
+
+//iphone Xs Max
+@media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio:3) {
+  .header{
+    margin-top: -40px;
+  }
+  .downLoadPage .main{
+    margin-top: -40px;
+  }
+}
+
+ 
+
+//iphone XR
+@media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio:2) {
+  .header{
+    margin-top: -40px;
+  }
+  .downLoadPage .main{
+    margin-top: -40px;
+  }
 }
 </style>
