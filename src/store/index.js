@@ -125,7 +125,7 @@ let gameData = {
                 "res_des": "不恋荣华富贵的虚无，重视尘世相守的幸福。",
                 "resID": "24"
             }, {
-                "grade": "9899",
+                "grade": "单身挺好",
                 "res_des": "作为新时代的女性，爱美食爱美酒，更爱自由。",
                 "resID": "25"
             }],
@@ -420,15 +420,18 @@ export default new Vuex.Store({
         },
         setResult(state, sex) {
             // gender: 1 为男 2 为女
-            window.console.log(state.gameData)
-            window.console.log(sex);
+            // window.console.log(state.gameData)
+            // window.console.log(sex);
             state.userSex = sex;
+            if(sex == "noface"){
+                state.result = state.gameData.other[0]
+            }
             if (sex == 1) {
                 let boys = state.gameData.boy;
                 let result = boys[Math.floor(Math.random() * boys.length)];
                 state.result = result
                 // window.console.log(result)
-            } else {
+            } else if(sex == 2) {
                 let girls = state.gameData.girl;
                 let result = girls[Math.floor(Math.random() * girls.length)];
                 state.result = result;
