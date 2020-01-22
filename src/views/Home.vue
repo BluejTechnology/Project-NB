@@ -138,7 +138,7 @@ export default {
     this._initShare();
     setTimeout(() => {
       tool.preload(tmpArr);
-    }, 40000);
+    }, 50000);
   },
   methods: {
     closePop(){
