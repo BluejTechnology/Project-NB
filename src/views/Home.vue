@@ -77,7 +77,7 @@ import { mapState } from "vuex";
 import tools from "../libs/iphonePicture";
 import updateshare from '@/mixin/shareData.js';
 const SUM = 18;
-const axiosConfig={timeout:100};
+const axiosConfig={timeout:10000};
 export default {
   name: "home",
   mixins:[updateshare],
