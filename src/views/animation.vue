@@ -24,8 +24,10 @@ export default {
     },
     created() {},
     mounted() {
-        const tick = tickFactory(20, this.animation);
-        tick();
+		const tick = tickFactory(20, this.animation);
+		setTimeout(()=>{
+			tick();
+		},1500)
     },
     methods: {
         animation() {
