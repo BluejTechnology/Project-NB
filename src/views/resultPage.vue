@@ -17,7 +17,7 @@
             >
               <!-- <img :src="user_vatar" alt=""> -->
             </div>
-            <div class="grade">{{ gradeData }}分</div>
+            <div class="grade">{{ gradeData }}</div>
             <div class="des" v-html="desData"></div>
           </div>
           <div class="tip_box">
@@ -67,7 +67,7 @@
             <div class="user_vatar_box">
               <img crossorigin="Anonymous" :src="user_vatar" alt />
             </div>
-            <div class="grade">{{ gradeData }}分</div>
+            <div class="grade">{{ gradeData }}</div>
             <div class="des" v-html="desData"></div>
           </div>
           <div class="qr_box">
