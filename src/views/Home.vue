@@ -148,6 +148,7 @@ export default {
       });
       let file = e.target.files[0];
       //   this.avatorUrl = this.getObjectURL(file);
+      window.console.log(999999)
       e.target.value = "";
       window.user_avator = await tools.repairPhoto(file, 1, 200); //获取到用户的头像
       this.avatorUrl = window.user_avator;
