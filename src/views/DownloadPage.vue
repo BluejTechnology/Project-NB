@@ -75,7 +75,7 @@ export default {
     ...mapState({
       down_title1: state => state.gameData.scene_title.down_title1,
       down_title2: state => state.gameData.scene_title.down_title2,
-      useSex: state => state.useSex
+      userSex: state => state.userSex
     })
   },
   methods: {
@@ -116,7 +116,7 @@ export default {
       window.femalePicUrl = window.femalePicUrl || [];
       window.malePicUrl = window.malePicUrl || [];
       this.otherVatar =
-        this.useSex == 1 ? window.femalePicUrl : window.malePicUrl;
+        this.userSex == 1 ? window.femalePicUrl : window.malePicUrl;
     },
     download_mta() {
       var _event,
