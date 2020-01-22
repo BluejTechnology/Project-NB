@@ -1,6 +1,6 @@
 <template>
 	<div class="left_tree">
-		<img src="//yoo.qpic.cn/yoo_img/0/27bb76327b7eadd9ff0999e57a8229fd/0" alt="">
+		<img src="//yoo.qpic.cn/yoo_img/0/893b4d4ca59a299fe6a94369d87b1fd3/0" alt="">
 	</div>
 </template>
 

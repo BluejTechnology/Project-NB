@@ -31,7 +31,7 @@
         <p class="des" v-html="down_title2">下载欢遇APP，红娘帮你撮合和TA们的桃花缘！</p>
         <div class="download_btn_box">
           <a @click="download_mta" :href="btn_url">
-            <img src="../assets/images/downloadBtn.png" alt />
+            <img src="//yoo.qpic.cn/yoo_img/0/fcdded609a6154eb7612041bfe7cbbd1/0" alt />
           </a>
         </div>
       </div>

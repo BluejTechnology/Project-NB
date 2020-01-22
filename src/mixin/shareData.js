@@ -1,12 +1,14 @@
 import shareData from '@/data/shareData.json';
 import { mapState } from "vuex";
 export default {
-    mounted(){
-        window.image_url =shareData[`type${shareType}`].image_url  ;
-        window.desc = shareData[`type${shareType}`].desc;
-    },
     methods:{
-
+        async updateDesc(){
+            window.image_url =shareData[`type${this.shareType}`].image_url  ;
+            window.desc = shareData[`type${this.shareType}`].desc;
+            window.title = shareData[`type${this.shareType}`].title;
+            window.src_iconUrl = shareData[`type${this.shareType}`].src_iconUrl
+            window.sourceName = shareData[`type${this.shareType}`].sourceName;
+        }
     },
     computed:{
         ...mapState({
