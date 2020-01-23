@@ -323,7 +323,7 @@ export default {
       let title = window.title = shareData[`type${type}`].title;
       let share_url = window.share_url;
       if(!result){
-        share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}`;
+        share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}`;
       }else{
         share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`;
       }
