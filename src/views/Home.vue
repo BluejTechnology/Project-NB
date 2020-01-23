@@ -307,7 +307,7 @@ export default {
 			});
       this.$store.commit("setResult", res);
        let type = this.$store.state.type;
-      let result = 1||this.$store.state.result;
+      let result = this.$store.state.result.resID;
       let uuid = this.$utils.getCookie("UUID");
       let desc = window.desc = shareData[`type${type}`].desc;
       let title = window.title = shareData[`type${type}`].title;
