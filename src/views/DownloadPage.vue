@@ -223,8 +223,9 @@ export default {
       height: v(903);
       margin: 0 auto;
       background-image: url("//yoo.qpic.cn/yoo_img/0/0aaf65a4dada537ad528fd0eb86a74f5/0");
-      background-size: 100%;
+      background-size: 97%;
       background-repeat: no-repeat;
+      background-position: center top;
       position: relative;
 
       .angle {
