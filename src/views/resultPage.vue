@@ -296,11 +296,14 @@ export default {
 
           .des {
             margin-top: v(-20);
-            text-align: center;
+            text-align: left;
             font-size: v(30);
             color: #ffffff;
             line-height: v(63);
-
+            width: v(290);
+            position:absolute;
+            left:50%;
+            transform: translate(-50%);
             i {
               color: #f87bd1;
               font-style: normal;
