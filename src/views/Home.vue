@@ -306,7 +306,7 @@ export default {
 				name: "result"
 			});
       this.$store.commit("setResult", res);
-       let type = this.$store.state.type;
+      let type = this.$store.state.type;
       let result = this.$store.state.result.resID||"";
       let uuid = this.$utils.getCookie("UUID");
       let desc = window.desc = shareData[`type${type}`].desc;
