@@ -296,7 +296,7 @@ export default {
 
           .des {
             margin-top: v(-20);
-            text-align: left;
+            text-align: center;
             font-size: v(30);
             color: #ffffff;
             line-height: v(63);
