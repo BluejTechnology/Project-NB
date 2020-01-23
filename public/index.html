@@ -137,8 +137,7 @@
             var getCloak=new Promise((resolve)=>{
                   var cloak;
                   var timer = setInterval(()=>{
-                      cloak = document.getElementById("app").getAttribute("v-cloak")
-                      console.log(cloak);
+                      cloak = document.getElementById("app").getAttribute("v-cloak");
                       if(cloak===null){
                         clearInterval(timer);
                         resolve(true)
