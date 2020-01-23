@@ -53,6 +53,7 @@
       class="bgCloud"
     />
     <div class="hlogo">
+      <img style="opacity:0;display:none;position:absolute;z-index:-1;" src="//yoo.qpic.cn/yoo_img/0/8341e52172bb1fec401ef54b69cc5c75/0" alt="欢遇logo">
       <logo></logo>
     </div>
     <transition name="fade"><pop :msg="'您上传的图片无法识别,请重新上传'" v-if="showPop" :isPop="isPop" @closePop="closePop"></pop></transition>
@@ -495,6 +496,7 @@ export default {
   position: absolute;
   bottom: 10vw;
   left: 0;
+  z-index: 1;
   width: 100%;
   text-align: center;
   font-size: v(25);
