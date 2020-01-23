@@ -293,13 +293,29 @@ export default {
     async _initShare() {
       //初始化分享链接
       await this.updateDesc();
-    },
+	},
+
+	//进入结果页
     async _toResPage(res='noface'){
-      await this.preloadAvator();
-      this.$router.push({
-        name: "result"
-      });
-      this.$store.commit("setResult", res);
+		try{
+			//这里做一层手Q的分享设置
+			if (mqq.device.isMobileQQ()) {
+				mqq.data.setShareInfo({
+					share_url:"",
+					title:"",
+					desc:"",
+					image_url:""
+				})
+			}
+			await this.preloadAvator();
+			this.$router.push({
+				name: "result"
+			});
+			this.$store.commit("setResult", res);
+		}catch(e){
+			console.log("_toResPage报错:",e.message);
+		}
+
     }
   }
 };
@@ -587,7 +603,7 @@ export default {
 
 
 
- 
+
 
 //iphone Xs Max
 @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio:3) {
@@ -599,7 +615,7 @@ export default {
   }
 }
 
- 
+
 
 //iphone XR
 @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio:2) {
