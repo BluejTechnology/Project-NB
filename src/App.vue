@@ -25,7 +25,7 @@ export default {
     let { type } = qrInfo;
     this.$store.commit("setGameData", type || "1");
 
-    if (!this.$store.state.result) {
+    if (!this.$route.query.result) {
       // window.console.log("初始化没relust判断为中途页面");
       this.$router.replace({ name: "home" });
     }

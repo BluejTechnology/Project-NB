@@ -72,7 +72,9 @@ import pop from "@/components/base/pop.vue";
 import axios from "axios";
 import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
+import shareData from "@/data/shareData.json";
 import tmpArr from "@/data/animation.json";
+import {setQQ,setWechat} from "@/libs/share.js";
 import { mapState } from "vuex";
 
 import tools from "../libs/iphonePicture";
@@ -299,14 +301,26 @@ export default {
 	//进入结果页
     async _toResPage(res='noface'){
 		try{
-			let config = {}
-			setQQ(config);
-			setWechat(config);
 			await this.preloadAvator();
 			this.$router.push({
 				name: "result"
 			});
-			this.$store.commit("setResult", res);
+      this.$store.commit("setResult", res);
+       let type = this.$store.state.type;
+      let result = this.$store.state.result.resID;
+      let uuid = this.$utils.getCookie("UUID");
+      let desc = window.desc = shareData[`type${type}`].desc;
+      let title = window.title = shareData[`type${type}`].title;
+      let share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`;
+      let config = {
+        url:share_url,
+        title:window.title,
+        desc:window.desc,
+        img_url:window.image_url,
+      };
+			setQQ(config);
+			setWechat(config);
+      console.log('config',config);
 		}catch(e){
 			console.log("_toResPage报错:",e.message);
 		}

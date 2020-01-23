@@ -1,11 +1,11 @@
-function setWechat( {url,title,img_url,desc}=config ) {
+export function setWechat( {url,title,img_url,desc}=config ) {
 	// 转发朋友圈
 	WeixinJSBridge.on('menu:share:timeline', function(e) {
         let data = {
-          img_url: image_url,
+          img_url: img_url,
           img_width: '120',
           img_height: '120',
-          link: wechat_url,
+          link: url,
           // desc这个属性要加上，虽然不会显示，但是不加暂时会导致无法转发至朋友圈，
           desc: desc,
           title: title
@@ -23,7 +23,7 @@ function setWechat( {url,title,img_url,desc}=config ) {
           'shareWeibo',
           {
             content: title,
-            url: wechat_url
+            url: url
           },
           function(res) {
             WeixinJSBridge.log(res.err_msg);
@@ -38,10 +38,10 @@ function setWechat( {url,title,img_url,desc}=config ) {
         WeixinJSBridge.invoke(
           'sendAppMessage',
           {
-            img_url: image_url,
+            img_url: img_url,
             img_width: '120',
             img_height: '120',
-            link: wechat_url,
+            link: url,
             desc: desc,
             title: title
           },
@@ -55,16 +55,37 @@ function setWechat( {url,title,img_url,desc}=config ) {
       });
 }
 
-function setQQ( {url,title,img_url,desc}=config ) {
+export function setQQ( {url,title,img_url,desc}=config ) {
 	// 转发朋友圈
 	//这里做一层手Q的分享设置
 	if (mqq.device.isMobileQQ()) {
-		mqq.data.setShareInfo({
-			share_url:"",
-			title:"",
-			desc:"",
-			image_url:""
-		})
+		// mqq.data.setShareInfo({
+		// 	share_url:url,
+		// 	title:title,
+		// 	desc:desc,
+		// 	image_url:img_url
+    // })
+      mqq.ui.setOnShareHandler(function(type) {
+        mqq.ui.shareMessage(
+          {
+            title: title,
+            desc: desc,
+            share_type: type,
+            back: true,
+            image_url: img_url,
+            imageUrl: img_url,
+            share_url: url,
+            sourceName: window.sourceName,
+            puin: 0,
+            src_iconUrl: img_url
+          },
+          function(res) {
+            if (res.retCode === 0) {
+              // mqq.ui.popBack();
+            }
+          }
+        );
+      });
+    
 	}
 }
-
