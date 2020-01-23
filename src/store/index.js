@@ -401,7 +401,9 @@ let gameData = {
 export default new Vuex.Store({
     state: {
         type: null,  // 游戏类型
-        result: null, // 游戏结果
+        result: {
+          resID:undefined
+        }, // 游戏结果
         gameData: null,
         avatorCdn: null, //存入用户头像CDN
         userSex:null
