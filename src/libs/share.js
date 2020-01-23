@@ -1,4 +1,4 @@
-export function setWechat( {url,title,img_url,desc}=config ) {
+function setWechat( {url,title,img_url,desc}=config ) {
 	// 转发朋友圈
 	WeixinJSBridge.on('menu:share:timeline', function(e) {
         let data = {
@@ -55,7 +55,7 @@ export function setWechat( {url,title,img_url,desc}=config ) {
       });
 }
 
-export function setQQ( {url,title,img_url,desc}=config ) {
+function setQQ( {url,title,img_url,desc}=config ) {
 	// 转发朋友圈
 	//这里做一层手Q的分享设置
 	if (mqq.device.isMobileQQ()) {
@@ -66,4 +66,8 @@ export function setQQ( {url,title,img_url,desc}=config ) {
 			image_url:img_url
 		})
 	}
+}
+export default {
+  setQQ:setQQ,
+  setWechat:setWechat
 }

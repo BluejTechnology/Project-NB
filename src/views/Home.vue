@@ -73,8 +73,10 @@ import axios from "axios";
 import tool from "@/libs/utils.js";
 import gameData from "@/data/gameData.json";
 import shareData from "@/data/shareData.json";
+console.log('shareData',shareData);
 import tmpArr from "@/data/animation.json";
-import {setQQ,setsetWechat} from "@/libs/share.js";
+import {setQQ,setWechat} from "@/libs/share.js";
+
 import { mapState } from "vuex";
 
 import tools from "../libs/iphonePicture";
@@ -301,11 +303,16 @@ export default {
 	//进入结果页
     async _toResPage(res='noface'){
 		try{
-      let type = this.$store.state.type;
+			await this.preloadAvator();
+			this.$router.push({
+				name: "result"
+			});
+      this.$store.commit("setResult", res);
+       let type = this.$store.state.type;
       let result = 1||this.$store.state.result;
       let uuid = this.$utils.getCookie("UUID");
-      window.desc = shareData[type].desc;
-      window.title = shareData[type].title;
+      let desc = window.desc = shareData[`type${type}`].desc;
+      let title = window.title = shareData[`type${type}`].title;
       let share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`;
       //url,title,img_url,desc
       let config = {
@@ -316,11 +323,6 @@ export default {
       };
 			setQQ(config);
 			setWechat(config);
-			await this.preloadAvator();
-			this.$router.push({
-				name: "result"
-			});
-			this.$store.commit("setResult", res);
 		}catch(e){
 			console.log("_toResPage报错:",e.message);
 		}
