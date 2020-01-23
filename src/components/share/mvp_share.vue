@@ -1,23 +1,8 @@
 <template>
-	<div>
+	<div class="share_wrap" v-show="isShow">
 		<div class="share_mvp" @click="showMask">
 			<i class="icon_share"></i>
 		</div>
-		<transition name="fade">
-			<div class="mask" v-if="isShowMask" @click="hideMask">
-				<div class="botwrapper">
-					<div class="mtitle">
-						分享
-					</div>
-					<div class="logowrapper">
-						<img src="//yoo.qpic.cn/yoo_img/0/b355def1f8af2909147452579010313a/0" alt="" @click="sharewb">
-					</div>
-					<div @click="hideMask" class="btn_hide">取消</div>
-				</div>
-			</div>
-		
-		</transition>
-
 	</div>
 
 </template>
@@ -26,25 +11,38 @@
 	export default {
 		data() {
 			return {
-				isShowMask: false
+				isShow: false
 			}
 		},
+		mounted(){
+
+		},
 		methods: {
+			sharemvp(){
+
+			},
 			showMask() {
-				this.isShowMask = true;
+				this.isShow = true;
 			},
 			hideMask() {
-				this.isShowMask = false;
+				this.isShow = false;
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.share_weibo {
-		position: absolute;
-		top: 0;
-		right: v(20);
+	@import "~@/assets/scss/util";
+	.share_wrap{
+		position:fixed;
+		right: 3vw;
+		top: 10vw;
+		z-index:10;
+
+		width: v(50);
+		height: v(50);
+	}
+	.share_mvp {
 		width: v(50);
 		height: v(50);
 		border-radius: 50%;
@@ -60,7 +58,6 @@
 		background-position: 50%;
 		transform: scale(0.6);
 	}
-
 	.mask {
 		position: fixed;
 		top: 0;
