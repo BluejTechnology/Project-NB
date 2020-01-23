@@ -108,7 +108,7 @@ export default {
       type: state => state.type
     })
   },
-  mounted() {
+  async mounted() {
     var UAParser = require("ua-parser-js"),
       parser = new UAParser(),
       browser_name = parser.getBrowser().name;
@@ -120,11 +120,23 @@ export default {
     }
     let m_uid = this.$route.query.uuid,
       type = this.$route.query.type,
-      res = this.$route.query.res;
+	  res = this.$route.query.result;
+
+	  await this.first_step("taohuayun");//先获取一下凭证
       setTimeout(()=>{
+		console.log({
+              parameter: JSON.stringify({
+                parent_id: m_uid,
+                uuid: this.$utils.getCookie("UUID"),
+                from: browser_name,
+                type: type,
+                res: res
+              })
+            })
         window.MtaH5.clickStat("index_view", {
               parameter: JSON.stringify({
-                uuid: m_uid,
+                parent_id: m_uid,
+                uuid: this.$utils.getCookie("UUID"),
                 from: browser_name,
                 type: type,
                 res: res
@@ -152,7 +164,12 @@ export default {
       this.isupload = true;
       window.MtaH5.clickStat("taohuayun", {
         uploadbtn: "true"
-      });
+	  });
+	  window.MtaH5.clickStat("upload_btn", {
+			parameter: JSON.stringify({
+				uuid: this.$utils.getCookie("UUID")
+			})
+		});
       let file = e.target.files[0];
       //   this.avatorUrl = this.getObjectURL(file);
       e.target.value = "";
@@ -175,12 +192,6 @@ export default {
           let res3 = await this.third_step(res1.CDNUrl);
           window.console.log(res1, res2, res3);
           let m_uid = this.$utils.getCookie("UUID");
-          window.MtaH5.clickStat("upload_btn", {
-				parameter: JSON.stringify({
-					parent_uuid: this.$route.query.uuid,
-					uuid: m_uid
-				})
-          });
 		  this.$store.commit("setAvatorCdn", res1.CDNUrl);
 
           if (!res3.gender) {
@@ -201,7 +212,6 @@ export default {
         } catch (e) {
           window.console.log("报错拉！", e.message);
           this._toResPage();
-
         }
       };
       reader.readAsArrayBuffer(file);
