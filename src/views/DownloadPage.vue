@@ -64,6 +64,9 @@ export default {
     window.MtaH5.clickStat("matching_view", {
       uuid: m_uid
     });
+    window.MtaH5.clickStat("taohuayun", {
+            resultmatchingbtn: "true"
+      });
     this.getOtherVatar();
     this.btn_url = this.getBtnUrl();
     this.user_avator = window.user_avator

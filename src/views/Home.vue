@@ -53,6 +53,7 @@
       class="bgCloud"
     />
     <div class="hlogo">
+      <img style="opacity:0;display:none;position:absolute;z-index:-1;" src="//yoo.qpic.cn/yoo_img/0/8341e52172bb1fec401ef54b69cc5c75/0" alt="欢遇logo">
       <logo></logo>
     </div>
     <transition name="fade"><pop :msg="'您上传的图片无法识别,请重新上传'" v-if="showPop" :isPop="isPop" @closePop="closePop"></pop></transition>
@@ -293,13 +294,23 @@ export default {
     async _initShare() {
       //初始化分享链接
       await this.updateDesc();
-    },
+	},
+
+	//进入结果页
     async _toResPage(res='noface'){
-      await this.preloadAvator();
-      this.$router.push({
-        name: "result"
-      });
-      this.$store.commit("setResult", res);
+		try{
+			let config = {}
+			setQQ(config);
+			setWechat(config);
+			await this.preloadAvator();
+			this.$router.push({
+				name: "result"
+			});
+			this.$store.commit("setResult", res);
+		}catch(e){
+			console.log("_toResPage报错:",e.message);
+		}
+
     }
   }
 };
@@ -479,6 +490,7 @@ export default {
   position: absolute;
   bottom: 10vw;
   left: 0;
+  z-index: 1;
   width: 100%;
   text-align: center;
   font-size: v(25);
@@ -587,7 +599,7 @@ export default {
 
 
 
- 
+
 
 //iphone Xs Max
 @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio:3) {
@@ -599,7 +611,7 @@ export default {
   }
 }
 
- 
+
 
 //iphone XR
 @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio:2) {

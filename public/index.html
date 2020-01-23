@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta property="wb:webmaster" content="fa38ad6c2e7e6ecc" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="keywords" content="欢遇APP" />
+    <meta name="Description" content="测一测你的择偶倾向" >
     <link rel="icon" href="//yoo.qpic.cn/yoo_img/0/d046a09e0d038750ce32e2efa49b7936/0">
     <title>测一测你的择偶倾向</title>
 </head>
@@ -113,21 +114,45 @@
                 "//yoo.qpic.cn/yoo_img/0/62456866ee493280e495381468410c5a/0"
             ];
             var n = 0, sum = temp_Arr.length;
-            temp_Arr.forEach((item) => {
-                var img = new Image()
-                img.src = item;
-                img.onload = function () {
-                    run();
-                }
-            });
-            function run() {
-                n += 1;
-                line.style.width = (n / sum) * 100 + "%";
-                if (n == sum) {
-                    preload.style.display = "none";
-                }
+            var showApp = sum+1;
+            function run(){
+              n += 1;
+              line.style.width = (n / showApp) * 100 + "%";
             }
-        })();
+            var preImg=new Promise((resolve)=>{
+                  temp_Arr.forEach((item) => {
+                  var img = new Image()
+                  img.src = item;
+                  img.onload = function () {
+                    run();
+                    if(n===sum){
+                        resolve(true);
+                    }
+                  }
+                  img.onerror=function(){
+                    n++;
+                  }
+                })
+              })
+            var getCloak=new Promise((resolve)=>{
+                  var cloak;
+                  var timer = setInterval(()=>{
+                      cloak = document.getElementById("app").getAttribute("v-cloak")
+                      console.log(cloak);
+                      if(cloak===null){
+                        clearInterval(timer);
+                        resolve(true)
+                      }
+                    },50)
+              })
+            Promise.all([preImg,getCloak]).then((res1)=>{
+              console.log(res1);
+              if(res1[0]&&res1[1]){
+                run();
+                document.querySelector("#preload").style.display="none";
+              }
+            })
+          })();
     </script>
     <script src="//mvp-web-1300522992.file.myqcloud.com/js/mvpapp.min.js"></script>
     <script src="//mvp-web-1300522992.file.myqcloud.com/js/qqapi.min.js"></script>
@@ -136,11 +161,11 @@
     <script type="text/javascript">
         // 初始化分享默认参数
         window.share_url = location.href;
-        window.image_url = "https://yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0";
+        window.image_url = "https://yoo.qpic.cn/yoo_img/0/8341e52172bb1fec401ef54b69cc5c75/0";
         window.sourceName = "欢遇APP";
         window.title = document.title;
         window.desc = "测一测你的择偶倾向";
-        window.src_iconUrl == "https://yoo.qpic.cn/yoo_img/0/7d8d0e199dff7b464c2e5f7c6205bfa5/0";
+        window.src_iconUrl == "https://yoo.qpic.cn/yoo_img/0/8341e52172bb1fec401ef54b69cc5c75/0";
     </script>
 
     <script type="text/javascript">
