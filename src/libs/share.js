@@ -1,4 +1,4 @@
-function setWechat( {url,title,img_url,desc}=config ) {
+export function setWechat( {url,title,img_url,desc}=config ) {
 	// 转发朋友圈
 	WeixinJSBridge.on('menu:share:timeline', function(e) {
         let data = {
@@ -55,19 +55,37 @@ function setWechat( {url,title,img_url,desc}=config ) {
       });
 }
 
-function setQQ( {url,title,img_url,desc}=config ) {
+export function setQQ( {url,title,img_url,desc}=config ) {
 	// 转发朋友圈
 	//这里做一层手Q的分享设置
 	if (mqq.device.isMobileQQ()) {
-		mqq.data.setShareInfo({
-			share_url:url,
-			title:title,
-			desc:desc,
-			image_url:img_url
-		})
+		// mqq.data.setShareInfo({
+		// 	share_url:url,
+		// 	title:title,
+		// 	desc:desc,
+		// 	image_url:img_url
+    // })
+      mqq.ui.setOnShareHandler(function(type) {
+        mqq.ui.shareMessage(
+          {
+            title: title,
+            desc: desc,
+            share_type: type,
+            back: true,
+            image_url: img_url,
+            imageUrl: img_url,
+            share_url: url,
+            sourceName: window.sourceName,
+            puin: 0,
+            src_iconUrl: img_url
+          },
+          function(res) {
+            if (res.retCode === 0) {
+              // mqq.ui.popBack();
+            }
+          }
+        );
+      });
+    
 	}
-}
-export default {
-  setQQ:setQQ,
-  setWechat:setWechat
 }

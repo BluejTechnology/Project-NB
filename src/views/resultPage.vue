@@ -107,7 +107,7 @@ import rightTree from "@/components/base/right_tree.vue";
 import QRCode from "qrcode"; // 引入qrcode
 import html2canvas from "html2canvas";
 import { mapState } from "vuex";
-import tools from "../libs/iphonePicture"
+import tools from "../libs/iphonePicture";
 export default {
   components: {
     mheader,
