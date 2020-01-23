@@ -193,8 +193,8 @@ export default {
           window.console.log(res1, res2, res3);
           let m_uid = this.$utils.getCookie("UUID");
 		  this.$store.commit("setAvatorCdn", res1.CDNUrl);
-          if(res3 === fasle){
-            window.console.log("no face 不含人脸")
+          if(res3 === false){
+            // window.console.log("no face 不含人脸")
             this._toResPage('noface')
           }
           if (!res3.gender) {
