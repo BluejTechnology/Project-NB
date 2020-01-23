@@ -118,7 +118,7 @@ export default {
     return {
       user_vatar: "",
       showPoster: false,
-      outPoster: "",
+      outPoster: undefined,
       timerSwitch:true
     };
   },
@@ -189,15 +189,14 @@ export default {
       });
     },
     showImage() {
-      // window.console.log("海报!出现吧!");
-        this.showPoster = true;
-        // window.console.log(this.showPoster);
-      if(this.timerSwitch){
-        this.timerSwitch = false;
-        setTimeout(()=>{
-          // window.console.log("节流复位")
-          this.timerSwitch = true;
-        },3000);
+      this.showPoster = true;// 显示海报dom结构
+      this.buildPoster();
+    },
+    async buildPoster(){
+      if(this.outPoster){
+        console.log("走缓存吧少年")
+        return 
+      }else{
         let m_uid = this.$utils.getCookie("UUID");
         window.MtaH5.clickStat("result_share_btn", {
           parameter: JSON.stringify({
@@ -205,15 +204,11 @@ export default {
             time: new Date().getTime()
           })
         });
-        html2canvas(this.$refs.posterCanvas, {
+        let res = await html2canvas(this.$refs.posterCanvas, {
           useCORS: true
-        }).then(canvas => {
-          // console.time("toCanvas");
-          let start = Date.now();
-          let dataURL = canvas.toDataURL("image/jpeg", 0.5);
-          // alert(Date.now() - start);
-          this.outPoster = dataURL;
-        });
+        })
+        let dataURL = res.toDataURL("image/jpeg", 0.5);
+        this.outPoster = dataURL;
       }
     }
   },
