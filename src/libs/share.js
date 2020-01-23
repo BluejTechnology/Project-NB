@@ -12,9 +12,9 @@ export function setWechat( {url,title,img_url,desc}=config ) {
         };
         WeixinJSBridge.invoke('shareTimeline', data, function(res) {
           WeixinJSBridge.log(res.err_msg);
-        });
-        MtaH5.clickStat("global_share", {
-          uuid: m_getCookie("UUID")
+          MtaH5.clickStat("global_share", {
+            uuid: m_getCookie("UUID")
+          });
         });
       });
       // 同步到微博
@@ -27,11 +27,11 @@ export function setWechat( {url,title,img_url,desc}=config ) {
           },
           function(res) {
             WeixinJSBridge.log(res.err_msg);
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
           }
         );
-        MtaH5.clickStat("global_share", {
-          uuid: m_getCookie("UUID")
-        });
       });
       // 分享给朋友
       WeixinJSBridge.on('menu:share:appmessage', function(argv) {
@@ -47,11 +47,12 @@ export function setWechat( {url,title,img_url,desc}=config ) {
           },
           function(res) {
             WeixinJSBridge.log(res.err_msg);
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
           }
         );
-        MtaH5.clickStat("global_share", {
-          uuid: m_getCookie("UUID")
-        });
+        
       });
 }
 
@@ -83,6 +84,9 @@ export function setQQ( {url,title,img_url,desc}=config ) {
             if (res.retCode === 0) {
               // mqq.ui.popBack();
             }
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
           }
         );
       });
