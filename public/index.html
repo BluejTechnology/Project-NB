@@ -193,12 +193,14 @@
           function(res) {
             if (res.retCode === 0) {
               // mqq.ui.popBack();
+              
             }
+            MtaH5.clickStat("global_share", {
+                uuid: m_getCookie("UUID")
+            });
           }
         );
-        MtaH5.clickStat("global_share", {
-          uuid: m_getCookie("UUID")
-        });
+        
       });
     }, 200);
   } else {
@@ -217,10 +219,11 @@
         };
         WeixinJSBridge.invoke('shareTimeline', data, function(res) {
           WeixinJSBridge.log(res.err_msg);
+          MtaH5.clickStat("global_share", {
+            uuid: m_getCookie("UUID")
+          });
         });
-        MtaH5.clickStat("global_share", {
-          uuid: m_getCookie("UUID")
-        });
+        
       });
       // 同步到微博
       WeixinJSBridge.on('menu:share:weibo', function() {
@@ -232,11 +235,12 @@
           },
           function(res) {
             WeixinJSBridge.log(res.err_msg);
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
           }
         );
-        MtaH5.clickStat("global_share", {
-          uuid: m_getCookie("UUID")
-        });
+        
       });
       // 分享给朋友
       WeixinJSBridge.on('menu:share:appmessage', function(argv) {
@@ -252,11 +256,11 @@
           },
           function(res) {
             WeixinJSBridge.log(res.err_msg);
+            MtaH5.clickStat("global_share", {
+              uuid: m_getCookie("UUID")
+            });
           }
         );
-        MtaH5.clickStat("global_share", {
-          uuid: m_getCookie("UUID")
-        });
       });
     };
     if (
