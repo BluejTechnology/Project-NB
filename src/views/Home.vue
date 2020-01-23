@@ -335,7 +335,6 @@ export default {
       };
 			setQQ(config);
 			setWechat(config);
-      console.log('config',config);
 		}catch(e){
 			console.log("_toResPage报错:",e.message);
 		}
