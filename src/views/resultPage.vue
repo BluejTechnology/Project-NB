@@ -19,7 +19,7 @@
             >
               <!-- <img :src="user_vatar" alt=""> -->
             </div>
-            <div class="grade">{{ gradeData }}</div>
+            <div class="grade">{{ gradeData }}{{curType==3?"分":""}}</div>
             <div class="des" v-html="desData"></div>
           </div>
           <div class="tip_box">
@@ -71,7 +71,7 @@
             <div class="user_vatar_box">
               <img crossorigin="Anonymous" :src="user_vatar" alt />
             </div>
-            <div class="grade">{{ gradeData }}</div>
+            <div class="grade">{{ gradeData }}{{curType==3?"分":""}}</div>
             <div class="des" v-html="desData"></div>
           </div>
           <div class="qr_box">
@@ -214,7 +214,8 @@ export default {
     ...mapState({
       gradeData: state => state.result.grade,
       desData: state => state.result.res_des,
-      titleUrl: state => state.gameData.scene_title.res_title_url
+      titleUrl: state => state.gameData.scene_title.res_title_url,
+      curType:state =>state.type
     })
   }
 };
