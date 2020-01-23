@@ -128,9 +128,6 @@ export default {
     this.user_vatar = window.user_avator;
     this.availHeight = window.screen.availHeight;
     let m_uid = this.$utils.getCookie("UUID");
-    window.MtaH5.clickStat("result_view", {
-      uuid: m_uid
-    });
   },
   mounted() {
     let type = this.$store.state.type;
@@ -152,7 +149,7 @@ export default {
     );
     let m_uid = this.$utils.getCookie("UUID"),
       m_url = this.$store.state.avatorCdn;
-    window.MtaH5.clickStat("result_analyse", {
+    window.MtaH5.clickStat("result_view", {
       parameter: JSON.stringify({
         uuid: m_uid,
         result_id: result,
@@ -198,7 +195,7 @@ export default {
     async buildPoster(){
       if(this.outPoster){
         console.log("走缓存吧少年")
-        return 
+        return
       }else{
         let m_uid = this.$utils.getCookie("UUID");
         window.MtaH5.clickStat("result_share_btn", {
