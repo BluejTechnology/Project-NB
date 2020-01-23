@@ -118,7 +118,8 @@ export default {
     return {
       user_vatar: "",
       showPoster: false,
-      outPoster: ""
+      outPoster: "",
+      timerSwitch:true
     };
   },
   async created() {
@@ -188,26 +189,32 @@ export default {
       });
     },
     showImage() {
-      window.console.log("海报!出现吧!");
-      this.showPoster = true;
-      window.console.log(this.showPoster);
-      let m_uid = this.$utils.getCookie("UUID");
-      window.MtaH5.clickStat("result_share_btn", {
-        parameter: JSON.stringify({
-          uuid: m_uid,
-          time: new Date().getTime()
-        })
-      });
-      html2canvas(this.$refs.posterCanvas, {
-        useCORS: true
-      }).then(canvas => {
-        // console.time("toCanvas");
-        let start = Date.now();
-        let dataURL = canvas.toDataURL("image/jpeg", 0.5);
-        // window.console.log(6666);
-        // alert(Date.now() - start);
-        this.outPoster = dataURL;
-      });
+      // window.console.log("海报!出现吧!");
+        this.showPoster = true;
+        // window.console.log(this.showPoster);
+      if(this.timerSwitch){
+        this.timerSwitch = false;
+        setTimeout(()=>{
+          // window.console.log("节流复位")
+          this.timerSwitch = true;
+        },3000);
+        let m_uid = this.$utils.getCookie("UUID");
+        window.MtaH5.clickStat("result_share_btn", {
+          parameter: JSON.stringify({
+            uuid: m_uid,
+            time: new Date().getTime()
+          })
+        });
+        html2canvas(this.$refs.posterCanvas, {
+          useCORS: true
+        }).then(canvas => {
+          // console.time("toCanvas");
+          let start = Date.now();
+          let dataURL = canvas.toDataURL("image/jpeg", 0.5);
+          // alert(Date.now() - start);
+          this.outPoster = dataURL;
+        });
+      }
     }
   },
   computed: {
