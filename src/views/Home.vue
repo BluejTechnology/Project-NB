@@ -306,13 +306,17 @@ export default {
 				name: "result"
 			});
       this.$store.commit("setResult", res);
-       let type = this.$store.state.type;
-      let result = this.$store.state.result.resID;
+      let type = this.$store.state.type;
+      let result = this.$store.state.result.resID||"";
       let uuid = this.$utils.getCookie("UUID");
       let desc = window.desc = shareData[`type${type}`].desc;
       let title = window.title = shareData[`type${type}`].title;
-      let share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`;
-      window.console.log(share_url);
+      let share_url = window.share_url;
+      if(!result){
+        share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}`;
+      }else{
+        share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`;
+      }
       let config = {
         url:share_url,
         title:window.title,
