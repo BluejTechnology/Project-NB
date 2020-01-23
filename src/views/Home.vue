@@ -194,6 +194,11 @@ export default {
           let m_uid = this.$utils.getCookie("UUID");
 		  this.$store.commit("setAvatorCdn", res1.CDNUrl);
 
+			if(res3 === ''){
+				this._toResPage();
+				return
+			}
+
           if (!res3.gender) {
             if(res3.result==2){
               window.console.log("unsafe 不安全图片");

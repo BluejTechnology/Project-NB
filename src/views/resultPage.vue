@@ -148,6 +148,7 @@ export default {
       m_url = this.$store.state.avatorCdn;
     window.MtaH5.clickStat("result_view", {
       parameter: JSON.stringify({
+		  type,
         uuid: m_uid,
         result_id: result,
         url: m_url
