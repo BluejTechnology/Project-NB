@@ -119,11 +119,14 @@ export default {
       user_vatar: "",
       showPoster: false,
       outPoster: undefined,
-      timerSwitch:true
+      timerSwitch:true,
+      availHeight:0
     };
   },
   async created() {
-		this.user_vatar = window.user_avator
+    console.log("result")
+    this.user_vatar = window.user_avator;
+    this.availHeight = window.screen.availHeight;
     let m_uid = this.$utils.getCookie("UUID");
     window.MtaH5.clickStat("result_view", {
       uuid: m_uid
@@ -347,6 +350,7 @@ export default {
           margin: v(10) auto 0 auto;
           .btn_wrap{
             position:relative;
+            text-align: center;
             img {
               width: 100%;
             }
@@ -359,7 +363,6 @@ export default {
               text-shadow: 0 v(5) v(4) #fbbd4c;
               text-align: center;
             }
-
           }
         }
       }
@@ -499,6 +502,51 @@ export default {
       color: white;
       width: 100%;
     }
+  }
+}
+@media screen and (max-height:605px){
+  .result_box .result{
+    .main{
+      width:88%;
+      margin: 0 auto;
+      .header{
+        .htitle{
+          width: 95%;
+        }
+      }
+      .content{
+        .cardBox{
+          padding-top:v(580);
+          img{
+            top:v(-68);
+          }
+        }
+        .vatar_box{
+          top:v(-10);
+        }
+        .tip_box{
+          top:v(540);
+        }
+      }
+    }
+  }
+  .btn_wrap{
+    font-size:0 !important;
+    img {
+      width: 80% !important;
+    }
+    p{
+      top: v(16) !important;
+    }
+
+  }
+}
+@media screen and (max-height:645px){
+  .result_box .poster p{
+    bottom: v(60);
+  }
+  .result_box .poster img {
+    width: 78%;
   }
 }
 </style>

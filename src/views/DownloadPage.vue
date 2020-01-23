@@ -239,12 +239,12 @@ export default {
       }
 
       .angle_left {
-        left: v(45);
+        left: v(55);
         transform: rotate(-30deg);
       }
 
       .angle_right {
-        right: v(45);
+        right: v(50);
         transform: rotate(30deg) scaleX(-1);
       }
 
