@@ -193,7 +193,10 @@ export default {
           window.console.log(res1, res2, res3);
           let m_uid = this.$utils.getCookie("UUID");
 		  this.$store.commit("setAvatorCdn", res1.CDNUrl);
-
+          if(res3 === fasle){
+            window.console.log("no face 不含人脸")
+            this._toResPage('noface')
+          }
           if (!res3.gender) {
             if(res3.result==2){
               window.console.log("unsafe 不安全图片");
@@ -265,7 +268,7 @@ export default {
         },axiosConfig)
         .then(res => {
           if (res.status !== 200 || !res.data) {
-            Promise.reject("请求第三步报错");
+            return false;
           }
           return res.data;
         })
