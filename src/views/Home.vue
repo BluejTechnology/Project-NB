@@ -299,15 +299,9 @@ export default {
 	//进入结果页
     async _toResPage(res='noface'){
 		try{
-			//这里做一层手Q的分享设置
-			if (mqq.device.isMobileQQ()) {
-				mqq.data.setShareInfo({
-					share_url:"",
-					title:"",
-					desc:"",
-					image_url:""
-				})
-			}
+			let config = {}
+			setQQ(config);
+			setWechat(config);
 			await this.preloadAvator();
 			this.$router.push({
 				name: "result"
