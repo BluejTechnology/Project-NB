@@ -306,6 +306,7 @@ export default {
     async _initShare() {
       //初始化分享链接
       await this.updateDesc();
+      await this.updateShareInfo();
 	},
 
 	//进入结果页
@@ -316,8 +317,15 @@ export default {
 				name: "result"
 			});
       this.$store.commit("setResult", res);
+      this.updateShareInfo()
+		}catch(e){
+			console.log("_toResPage报错:",e.message);
+		}
+
+    },
+    async updateShareInfo(){
       let type = this.$store.state.type;
-      let result = this.$store.state.result.resID||"";
+      let result = this.$store.state.result.resID ||"";
       let uuid = this.$utils.getCookie("UUID");
       let desc = window.desc = shareData[`type${type}`].desc;
       let title = window.title = shareData[`type${type}`].title;
@@ -335,11 +343,8 @@ export default {
       };
 			setQQ(config);
 			setWechat(config);
-		}catch(e){
-			console.log("_toResPage报错:",e.message);
-		}
-
     }
+    
   }
 };
 </script>
