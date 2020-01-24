@@ -36,7 +36,7 @@
 				!top.window.WeixinJSBridge.invoke);
 	  			if(!isMobileQQ && !isWechat){
 					  this.isShow=true;
-					  
+
 				}
 			},
 			mvpshare() {
@@ -68,7 +68,7 @@
 				},
 				data => {
 					MtaH5.clickStat("global_share", {
-					uuid: this.m_getCookie("UUID")
+					uuid: window.m_getCookie("UUID")
 					});
 					console.log(data);
 				},
