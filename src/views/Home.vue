@@ -150,7 +150,6 @@ export default {
     // 侦听input
     this.$refs["uploadpic"].addEventListener("change", this.fileChange);
     // 初始化分享数据
-
     this._initShare();
     setTimeout(() => {
       tool.preload(tmpArr);
@@ -319,7 +318,8 @@ export default {
 			this.$router.push({
 				name: "result"
 			});
-      this.$store.commit("setResult", res);
+	  this.$store.commit("setResult", res);
+	  console.log("BGGGGGGG",this.$store.state.result,this.$store.state.result.resID)
       this.updateShareInfo()
 		}catch(e){
 			console.log("_toResPage报错:",e.message);
@@ -337,7 +337,8 @@ export default {
         share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}`;
       }else{
         share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}&result=${result}`;
-      }
+	  }
+	  alert(share_url)
       let config = {
         url:share_url,
         title:window.title,
@@ -347,7 +348,7 @@ export default {
 			setQQ(config);
 			setWechat(config);
     }
-    
+
   }
 };
 </script>
