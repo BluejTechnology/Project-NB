@@ -85,7 +85,7 @@ export function setQQ({ url, title, img_url, desc } = config) {
 				puin: 0,
 				src_iconUrl: img_url
 			}
-			alert(JSON.stringify(data))
+			// alert(JSON.stringify(data))
 			mqq.ui.shareMessage(
 				data,
 				function (res) {
