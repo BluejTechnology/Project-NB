@@ -178,7 +178,7 @@ export default {
         // 侦听input
         this.$refs["uploadpic"].addEventListener("change", this.fileChange);
 		// 初始化分享数据
-		setTimeout(this._initShare,2500)
+		setTimeout(this._initShare,3000)
         // this._initShare();
         setTimeout(() => {
             tool.preload(tmpArr);
