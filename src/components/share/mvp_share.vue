@@ -36,6 +36,7 @@
 				!top.window.WeixinJSBridge.invoke);
 	  			if(!isMobileQQ && !isWechat){
 					  this.isShow=true;
+					  
 				}
 			},
 			mvpshare() {
