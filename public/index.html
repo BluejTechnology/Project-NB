@@ -212,7 +212,7 @@
           img_url: image_url,
           img_width: '120',
           img_height: '120',
-          link: wechat_url,
+          link: window.share_url,
           // desc这个属性要加上，虽然不会显示，但是不加暂时会导致无法转发至朋友圈，
           desc: desc,
           title: title
@@ -231,7 +231,7 @@
           'shareWeibo',
           {
             content: title,
-            url: wechat_url
+            url: window.share_url
           },
           function(res) {
             WeixinJSBridge.log(res.err_msg);
@@ -250,7 +250,7 @@
             img_url: image_url,
             img_width: '120',
             img_height: '120',
-            link: wechat_url,
+            link: window.share_url,
             desc: desc,
             title: title
           },
@@ -299,6 +299,7 @@
        * imgUrl
        * 分享缩略图
        */
+      alert(window.share_url)
       mvpApp.bridge.callHandler(
         {
           module: "QZCommon",
@@ -306,8 +307,8 @@
           query: {
             url: window.share_url,
             title: window.title,
-            summary: "2020新年快乐",
-            panelTitle: "发送邀请到",
+            summary: window.desc,
+            panelTitle: "发送到",
             channel: "4",
             imgUrl: window.image_url
           }

@@ -1,5 +1,6 @@
 <template>
   <div class="result_box" v-cloak>
+    <mvp-share />
     <div class="result">
       <div class="main">
         <mheader class="header" :getTitleUrl="titleUrl" :titleType="'result'"></mheader>
@@ -104,6 +105,7 @@
 import mheader from "@/components/head.vue";
 import leftTree from "@/components/base/left_tree.vue";
 import rightTree from "@/components/base/right_tree.vue";
+import mvpShare from '@//components/share/mvp_share.vue';
 import QRCode from "qrcode"; // 引入qrcode
 import html2canvas from "html2canvas";
 import { mapState } from "vuex";
@@ -112,7 +114,8 @@ export default {
   components: {
     mheader,
     leftTree,
-    rightTree
+    rightTree,
+    mvpShare
   },
   data() {
     return {
