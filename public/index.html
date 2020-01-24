@@ -193,14 +193,14 @@
           function(res) {
             if (res.retCode === 0) {
               // mqq.ui.popBack();
-              
+
             }
             MtaH5.clickStat("global_share", {
                 uuid: m_getCookie("UUID")
             });
           }
         );
-        
+
       });
     }, 200);
   } else {
@@ -223,7 +223,7 @@
             uuid: m_getCookie("UUID")
           });
         });
-        
+
       });
       // 同步到微博
       WeixinJSBridge.on('menu:share:weibo', function() {
@@ -240,7 +240,7 @@
             });
           }
         );
-        
+
       });
       // 分享给朋友
       WeixinJSBridge.on('menu:share:appmessage', function(argv) {
@@ -285,45 +285,6 @@
   }
 }
 
-    function mvpshare() {
-      /*
-       *channel
-       * 分享渠道（可以组合 1-茄子好友 2-微信 4-QQ 8-朋友圈 16-QQ空间）
-       * title
-       * 分享标题
-       * summary
-       * 分享概述
-       * panelTitle分享面板标题
-       * url
-       * 分享链接
-       * imgUrl
-       * 分享缩略图
-       */
-      alert(window.share_url)
-      mvpApp.bridge.callHandler(
-        {
-          module: "QZCommon",
-          method: "share",
-          query: {
-            url: window.share_url,
-            title: window.title,
-            summary: window.desc,
-            panelTitle: "发送到",
-            channel: "4",
-            imgUrl: window.image_url
-          }
-        },
-        data => {
-          MtaH5.clickStat("global_share", {
-            uuid: this.m_getCookie("UUID")
-          });
-          console.log(data);
-        },
-        err => {
-          console.log("err", err);
-        }
-      );
-    }
     function m_getCookie(sKey) {
       return (
         decodeURIComponent(
