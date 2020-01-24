@@ -337,7 +337,7 @@ export default {
             position: absolute;
             font-size: v(32);
             text-align: center;
-            top: v(220);
+            top: v(215);
             left: 50%;
             width: 100%;
             transform: translateX(-50%);
