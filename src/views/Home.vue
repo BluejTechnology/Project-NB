@@ -374,7 +374,7 @@ export default {
             let desc = (window.desc = shareData[`type${type}`].desc);
             let title = (window.title = shareData[`type${type}`].title);
             let share_url = window.share_url;
-			share_url = window.share_url = `https://qzi.html5.qq.com/fission_activitie/#/?type=${type}&uuid=${uuid}${!result?'':`&result=${result}`}`;
+			share_url = window.share_url = `http://dm.sparta.html5.qq.com/#/?type=${type}&uuid=${uuid}${!result?'':`&result=${result}`}`;
             let config = {
                 url: share_url,
                 title: window.title,
