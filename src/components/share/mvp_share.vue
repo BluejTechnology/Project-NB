@@ -40,25 +40,12 @@
 				}
 			},
 			mvpshare() {
-				// let share_url = window.share_url;
-				// let share_url = 
-				// 'https://qzi.html5.qq.com/fission_activitie/#/home?type=3&uuid=73801e5f-c04c-4d02-8853-6331d2dcea06';
-				// let search = share_url.slice(share_url.lastIndexOf("?")+1);
-				// let temp_arr = search.split("&");
-				// let str='';
-				// temp_arr.forEach((item)=>{
-				// 	let t_arr = item.split("=");
-				// 	str+=`${t_arr[0]}=${encodeURIComponent(t_arr[1])}&`;
-				// })
-				// str=str.slice(0,-1);
-				// alert("shareurl");
-				// alert("https://qzi.html5.qq.com/fission_activitie/#/home?"+"aaa=bbb&cc=dd");
 				mvpApp.bridge.callHandler(
 				{
 					module: "QZCommon",
 					method: "share",
 					query: {
-					url: "https://qzi.html5.qq.com/fission_activitie/#/home?"+"aaa=bbb&cc=dd",
+					url: encodeURIComponent(window.share_url),
 					title: window.title,
 					summary: window.desc,
 					panelTitle: "发送到",
