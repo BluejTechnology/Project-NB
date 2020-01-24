@@ -1,6 +1,5 @@
 <template>
   <div class="result_box" v-cloak>
-    <mvp-share />
     <div class="result">
       <div class="main">
         <mheader class="header" :getTitleUrl="titleUrl" :titleType="'result'"></mheader>
@@ -105,7 +104,6 @@
 import mheader from "@/components/head.vue";
 import leftTree from "@/components/base/left_tree.vue";
 import rightTree from "@/components/base/right_tree.vue";
-import mvpShare from '@//components/share/mvp_share.vue';
 import QRCode from "qrcode"; // 引入qrcode
 import html2canvas from "html2canvas";
 import { mapState } from "vuex";
@@ -114,8 +112,7 @@ export default {
   components: {
     mheader,
     leftTree,
-    rightTree,
-    mvpShare
+    rightTree
   },
   data() {
     return {
@@ -193,8 +190,59 @@ export default {
       });
     },
     showImage() {
-      this.showPoster = true;// 显示海报dom结构
-      this.buildPoster();
+      let isInApp = this.isInApp();//判断环境
+      if(isInApp){
+        let m_uid = this.$utils.getCookie("UUID");
+        window.MtaH5.clickStat("result_share_btn", {
+          parameter: JSON.stringify({
+            uuid: m_uid,
+            time: new Date().getTime()
+          })
+        });
+        this.mvpshare()//拉起app分享
+      }else{
+        this.showPoster = true;// 显示海报dom结构
+        this.buildPoster();
+      }
+      
+    },
+    isInApp(){
+				//是否在手Q false则不是
+				let isMobileQQ = window.mqq.device.isMobileQQ();
+				//是否在微信 false则不是
+				let isWechat = !(typeof top.window.WeixinJSBridge === 'undefined' ||
+				!top.window.WeixinJSBridge.invoke);
+        if(!isMobileQQ && !isWechat){
+            //说明在app环境
+					  return true;
+        }
+        //不在app内
+        return false;
+    },
+    mvpshare() {
+				mvpApp.bridge.callHandler(
+				{
+					module: "QZCommon",
+					method: "share",
+					query: {
+					url: encodeURIComponent(window.share_url),
+					title: window.title,
+					summary: window.desc,
+					panelTitle: "发送到",
+					channel: "4",
+					imgUrl: window.image_url
+					}
+				},
+				data => {
+					MtaH5.clickStat("global_share", {
+					uuid: window.m_getCookie("UUID")
+					});
+					console.log(data);
+				},
+				err => {
+					console.log("err", err);
+				}
+				);
     },
     async buildPoster(){
       if(this.outPoster){
