@@ -159,7 +159,11 @@ export default {
       })
     });
     //测试是否在app环境
-    this.isInApp();
+    this.isInApp()
+    .catch(()=>{
+      window.console.log("调取api有问题");
+      // alert("isInApp 调用有误");
+    });
     
   },
   methods: {
