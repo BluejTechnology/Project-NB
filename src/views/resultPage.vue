@@ -28,9 +28,9 @@
           <div class="btn_box">
             <div class="btn_wrap" @click="showImage">
                 <img src="//yoo.qpic.cn/yoo_img/0/bdb018899124e106fe4f7ad9a95df0a4/0" alt="">
-                <p>保存图片发朋友圈</p>
+                <p>{{inApp?'分享测试到朋友圈':'保存图片发朋友圈'}}</p>
             </div>
-            <div class="btn_wrap" @click="toDownload">
+            <div class="btn_wrap" @click="toDownload" v-show="!inApp">
                 <img src="//yoo.qpic.cn/yoo_img/0/bdb018899124e106fe4f7ad9a95df0a4/0" alt="">
                 <p>{{$store.state.gameData.scene_title.to_down_btn}}</p>
             </div>
@@ -120,7 +120,8 @@ export default {
       showPoster: false,
       outPoster: undefined,
       timerSwitch:true,
-      availHeight:0
+      availHeight:0,
+      inApp:false,//默认不在app环境
     };
   },
   async created() {
@@ -157,6 +158,9 @@ export default {
         url: m_url
       })
     });
+    //测试是否在app环境
+    this.isInApp();
+    
   },
   methods: {
     blobToBase64(blobUrl, callback) {
@@ -189,9 +193,9 @@ export default {
         name: "download"
       });
     },
-    showImage() {
-      let isInApp = this.isInApp();//判断环境
-      if(isInApp){
+    async showImage() {
+      let inApp = this.inApp;//判断环境
+      if(inApp){
         let m_uid = this.$utils.getCookie("UUID");
         window.MtaH5.clickStat("result_share_btn", {
           parameter: JSON.stringify({
@@ -207,17 +211,19 @@ export default {
       
     },
     isInApp(){
-				//是否在手Q false则不是
-				let isMobileQQ = window.mqq.device.isMobileQQ();
-				//是否在微信 false则不是
-				let isWechat = !(typeof top.window.WeixinJSBridge === 'undefined' ||
-				!top.window.WeixinJSBridge.invoke);
-        if(!isMobileQQ && !isWechat){
+        return new Promise((resolve)=>{
+          mvpApp.bridge.callHandler(
+          {
+            module:"common",
+            method:"getUserInfo"
+          },
+          t=>{
+            // alert(JSON.parse(t))
             //说明在app环境
-					  return true;
-        }
-        //不在app内
-        return false;
+            this.inApp=true;
+            resolve(true);
+          })
+        })
     },
     mvpshare() {
 				mvpApp.bridge.callHandler(
