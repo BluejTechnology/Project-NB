@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import resultData from '../data/resultData.json';
 
 Vue.use(Vuex)
 
-let gameData = {
-    "resultData": {
+let  resultData_old = {
         "type1": {
             "title": "测一测你的择偶倾向",
             "scene_title": {
@@ -395,9 +395,8 @@ let gameData = {
                 "resID": "25"
             }]
         }
-    }
-
-};
+    };
+// console.log("vueX",resultData,resultData_old);
 export default new Vuex.Store({
     state: {
         type: null,  // 游戏类型
@@ -416,7 +415,7 @@ export default new Vuex.Store({
             // 存入游戏类型
             state.type = type;
             // 存入当前游戏类型的相关数据
-            state.gameData = gameData.resultData[`type${type}`];
+            state.gameData = resultData[`type${type}`];
             let htmlTitle = ["测一测你的择偶倾向", "测一测你的脱单时刻", "测一测你的桃花运势"];
             document.title = htmlTitle[type - 1];
         },

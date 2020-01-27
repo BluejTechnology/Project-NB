@@ -1,5 +1,14 @@
 {
 	"type1": {
+		"scene_title": {
+			"home_title_url": "//yoo.qpic.cn/yoo_img/0/45a4917fc7d0503f9d17e8d65cf61c5a/0",
+			"res_title_url": "/type1_title.png",
+			"upload_title": "上传本人照片，测出你对另一半的标准！",
+			"to_down_btn": "看看适合的TA",
+			"down_title1": "从欢遇APP的上万名优质嘉宾中，<br>找到接近你标准的TA们！",
+			"down_title2": "下载欢遇APP，视频相亲更靠谱，<br>来找到真实优质的TA！",
+			"poster_title": "扫码测我的择偶倾向"
+		},
 		"boy": [
 			{
 				"grade": "颜值正义",
@@ -193,6 +202,15 @@
 		]
 	},
 	"type2": {
+		"scene_title": {
+			"home_title_url": "//yoo.qpic.cn/yoo_img/0/8ef8729bdc6af0f90157c9543ca0eacc/0",
+			"res_title_url": "/type2_title.png",
+			"upload_title": "上传本人照片，看看新年会在什么情况下脱单？",
+			"to_down_btn": "看看同一天脱单的TA",
+			"down_title1": "从欢遇APP的上万名优质异性嘉宾中，<br>找到跟你同天脱单的TA们！",
+			"down_title2": "下载欢遇APP，视频相亲更靠谱，<br>来找到真实优质的TA！",
+			"poster_title": "扫码测我的脱单时刻"
+		},
 		"boy": [
 			{
 				"grade": "7月11日",
@@ -381,6 +399,15 @@
 		]
 	},
 	"type3": {
+		"scene_title": {
+			"home_title_url": "//yoo.qpic.cn/yoo_img/0/cdb7744f326970f670701c176b4b4062/0",
+			"res_title_url": "/type3_title.png",
+			"upload_title": "上传本人照片，看看新年桃花运势如何？",
+			"to_down_btn": "看看同运势的TA",
+			"down_title1": "从欢遇APP的上万名优质异性嘉宾中，<br>找到跟你同运势的TA们！",
+			"down_title2": "下载欢遇APP，视频相亲更靠谱，<br>来找到真实优质的TA！",
+			"poster_title": "扫码测我的桃花运势"
+		},
 		"boy": [
 			{
 				"grade": 99,
