@@ -64,8 +64,8 @@ export default {
     window.MtaH5.clickStat("matching_view", {
       uuid: m_uid
     });
-    window.MtaH5.clickStat("taohuayun", {
-            resultmatchingbtn: "true"
+	window.MtaH5.clickStat("taohuayunxiazai", {
+        girlsview: "true"
       });
     this.getOtherVatar();
     this.btn_url = this.getBtnUrl();
@@ -139,7 +139,7 @@ export default {
           is_ios: is_ios
         })
       });
-      window.MtaH5.clickStat("taohuayun", {
+      window.MtaH5.clickStat("taohuayunxiazai", {
         matchingdownloadbtn: "true"
       });
     }

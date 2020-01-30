@@ -170,7 +170,10 @@ export default {
                     res: res
                 })
             });
-            window.MtaH5.clickStat("taohuayun", {
+            window.MtaH5.clickStat("taohuayunxiazai", {
+                indexview: "true"
+            });
+            window.MtaH5.clickStat("taohuayuanfenxi", {
                 indexview: "true"
             });
         }, 100);
@@ -189,7 +192,10 @@ export default {
         },
         async fileChange(e) {
             this.isupload = true;
-            window.MtaH5.clickStat("taohuayun", {
+            window.MtaH5.clickStat("taohuayunxiazai", {
+                uploadbtn: "true"
+            });
+            window.MtaH5.clickStat("taohuayuanfenxi", {
                 uploadbtn: "true"
             });
             window.MtaH5.clickStat("upload_btn", {

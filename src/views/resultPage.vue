@@ -149,7 +149,13 @@ export default {
       }
     );
     let m_uid = this.$utils.getCookie("UUID"),
-      m_url = this.$store.state.avatorCdn;
+	  m_url = this.$store.state.avatorCdn;
+	window.MtaH5.clickStat("taohuayunxiazai", {
+		resultview: "true"
+	});
+	window.MtaH5.clickStat("taohuayuanfenxi", {
+		resultview: "true"
+	});
     window.MtaH5.clickStat("result_view", {
       parameter: JSON.stringify({
 		  type,
@@ -164,7 +170,7 @@ export default {
       window.console.log("调取api有问题");
       // alert("isInApp 调用有误");
     });
-    
+
   },
   methods: {
     blobToBase64(blobUrl, callback) {
@@ -198,7 +204,8 @@ export default {
       });
     },
     async showImage() {
-      let inApp = this.inApp;//判断环境
+	  let inApp = this.inApp;//判断环境
+	  window.MtaH5.clickStat('taohuayuanfenxi',{'sharebtn':'true'})
       if(inApp){
         let m_uid = this.$utils.getCookie("UUID");
         window.MtaH5.clickStat("result_share_btn", {
@@ -212,7 +219,7 @@ export default {
         this.showPoster = true;// 显示海报dom结构
         this.buildPoster();
       }
-      
+
     },
     isInApp(){
         return new Promise((resolve)=>{
