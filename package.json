@@ -19,7 +19,7 @@
     "qrcode": "^1.4.4",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
-    "ua-parser-js": "^0.7.21",
+    "ua-parser-js": "^0.7.24",
     "vue": "^2.6.10",
     "vue-qr": "^2.2.1",
     "vue-router": "^3.1.3",
