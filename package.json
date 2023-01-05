@@ -11,7 +11,7 @@
     "@sentry/browser": "^5.10.2",
     "@sentry/integrations": "^5.10.2",
     "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-service": "^4.1.0",
+    "@vue/cli-service": "^5.0.8",
     "axios": "^0.19.1",
     "core-js": "^3.4.4",
     "exif-js": "^2.3.0",
